@@ -2,13 +2,13 @@
   <div id="app">
     <Header></Header>
     <div class="content">
-      <div class="left">
+      <!-- <div class="left">
         <Shishi></Shishi>
         <Kongzhi></Kongzhi>
         <Shangqing></Shangqing>
-      </div>
+      </div> -->
       <div class="center">
-        
+        <Shuifeiji></Shuifeiji>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
 
 <script>
 import Header from './components/Header'
-// import Shuifei from './components/Shuifei'
+import Shuifeiji from './components/Shuifeiji'
 import Shishi from './components/Shishi'
 import Kongzhi from './components/Kongzhi'
 import Shangqing from './components/Shangqing'
@@ -25,6 +25,7 @@ export default {
   name: 'App',
   components: {
     Header,
+    Shuifeiji,
     Shishi,
     Kongzhi,
     Shangqing
@@ -72,8 +73,9 @@ li {
     position: relative;
 }
 .center {
-    width: calc(100% - 350px);
-    margin-left: 350px;
+    /* width: calc(100% - 350px);
+    margin-left: 350px; */
+    width: 100%;
     height: 100%;
     position: relative;
     padding: 15px;
