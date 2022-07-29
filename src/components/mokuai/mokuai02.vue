@@ -1,10 +1,18 @@
 <template>
-  <div class="bg2">模块2</div>
+  <div class="bg2">
+    <tiaojiefa></tiaojiefa>
+    <yalichuanganqi></yalichuanganqi>
+  </div>
 </template>
 
 <script>
+import tiaojiefa from './tiaojiefa.vue'
+import yalichuanganqi from './yalichuanganqi.vue'
 export default {
-
+  components: { 
+    tiaojiefa,
+    yalichuanganqi
+  }
 }
 </script>
 
@@ -14,5 +22,6 @@ export default {
     width: 100%;
     height: 100%;
     background-size: 100% 100%;
+    position: relative;
 }
 </style>
