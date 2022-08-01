@@ -1,10 +1,18 @@
 <template>
-  <div class="bg1">模块1</div>
+  <div class="bg1">
+    <zengyabeng></zengyabeng>
+    <guolvqi></guolvqi>
+  </div>
 </template>
 
 <script>
+import zengyabeng from './zengyabeng.vue'
+import guolvqi from './guolvqi.vue'
 export default {
-
+  components: { 
+    zengyabeng,
+    guolvqi
+  }
 }
 </script>
 
@@ -14,5 +22,6 @@ export default {
     width: 100%;
     height: 100%;
     background-size: 100% 100%;
+    position: relative;
 }
 </style>

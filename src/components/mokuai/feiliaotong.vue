@@ -89,7 +89,31 @@ export default {
                 }
             ]
         }
-    }
+    },
+	methods:{
+		// 控制按钮开关
+        btnClick(e){
+            console.log(e.target)
+            var targetBtn = e.currentTarget
+            this.doubleControl(targetBtn)
+        },
+        // 具体控制逻辑，为了能双向按钮控制
+        doubleControl(targetBtn){
+            // 用事件总线把对应按钮的数字传到控制面板组件
+            var code = targetBtn.getAttribute("code");
+            // this.$bus.$emit('code',code)
+            if(targetBtn.getAttribute("class").includes("btn_off")){
+                targetBtn.classList.add("btn_on")
+                targetBtn.classList.remove("btn_off")
+            }
+            else{
+                targetBtn.classList.add("btn_off")
+                targetBtn.classList.remove("btn_on")
+            }
+            // 调整水流，包括水流动画与喷水器动画
+            // this.tiaozhengshuiliu()
+        },
+	}
 }
 </script>
 
@@ -250,6 +274,71 @@ export default {
 
 .water_top8 {
 	height: 65px;
+}
+
+/* 肥料桶控制开关按钮 */
+.btn_s {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+	z-index:1;
+	background-size: cover;
+}
+
+.btn_on {
+	background-image: url(../../assets/images/shuifeiji/on.png);
+}
+
+.btn_off {
+	background-image: url(../../assets/images/shuifeiji/off.png);
+}
+
+.switch_1 {
+	right: 31%;
+	bottom: 5%;
+	position: absolute;
+}
+
+.switch_2 {
+	right: 31%;
+	bottom: 12%;
+	position: absolute;
+}
+
+.switch_3 {
+	right: 31%;
+	bottom: 12%;
+	position: absolute;
+}
+
+.switch_4 {
+	right: 31%;
+	bottom: 12%;
+	position: absolute;
+}
+
+.switch_5 {
+	right: 31%;
+	bottom: 12%;
+	position: absolute;
+}
+
+.switch_6 {
+	right: 31%;
+	bottom: 12%;
+	position: absolute;
+}
+
+.switch_7 {
+	right: 31%;
+	bottom: 12%;
+	position: absolute;
+}
+
+.switch_8 {
+	right: 31%;
+	bottom: 12%;
+	position: absolute;
 }
 
 /* 响应式媒体查询 */

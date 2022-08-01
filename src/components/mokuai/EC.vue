@@ -1,6 +1,6 @@
 <template>
-  <div class="ph">
-    <div class="device-name">PH传感器</div>
+  <div class="ec">
+    <div class="device-name">EC传感器</div>
     <div class="device-bg"></div>
   </div>
 </template>
@@ -10,17 +10,17 @@ export default {};
 </script>
 
 <style scoped>
-.ph {
+.ec {
   display: flex;
   width: 110px;
   justify-content: space-between;
 }
-.ph .device-name {
+.ec .device-name {
   writing-mode: tb-rl;
   text-align: center;
 }
-.ph .device-bg {
-  background: url(../../assets/images/shuifeiji/PH传感器.png) no-repeat;
+.ec .device-bg {
+  background: url(../../assets/images/shuifeiji/EC传感器.png) no-repeat;
   width: 89px;
   height: 61px;
   background-size: 100% 100%;

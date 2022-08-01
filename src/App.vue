@@ -40,7 +40,7 @@ html,body{
     margin: 0;
     color: #fff;
     font-size: 12px;
-    min-width: 1200px;
+    min-width: 1440px;
 }
 /*重置*/
 body,

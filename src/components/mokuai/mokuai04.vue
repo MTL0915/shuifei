@@ -1,17 +1,20 @@
 <template>
   <div class="bg4">
-    <PH></PH>
-    <pressureFertilization></pressureFertilization>
+    <PH class="phComponent"></PH>
+    <EC class="ecComponent"></EC>
+    <jiayashifeibeng class="jiayaComponent"></jiayashifeibeng>
   </div>
 </template>
 
 <script>
 import PH from './PH.vue'
-import pressureFertilization from './pressureFertilization.vue'
+import EC from './EC.vue'
+import jiayashifeibeng from './jiayashifeibeng.vue'
 export default {
   components:{
     PH,
-    pressureFertilization
+    EC,
+    jiayashifeibeng
   }
 }
 </script>
@@ -23,5 +26,20 @@ export default {
     height: 100%; 
     background-size: 100% 100%;
     position: relative;
+}
+.phComponent{
+  position: absolute;
+  top: 60%;
+  right: 18%;
+}
+.ecComponent{
+  position: absolute;
+  top: 70%;
+  right: 18%;
+}
+.jiayaComponent{
+    position: absolute;
+    top: 15.5%;
+    left: 0;
 }
 </style>

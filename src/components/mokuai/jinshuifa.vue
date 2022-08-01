@@ -1,15 +1,15 @@
 <template>
-  <div class="tiaojiefa">
-    <div class="device-name">调节阀</div>
+  <div class="jinshuifa"> 
     <div class="device-bg">
-      <i @click="btnClick($event)" code="4" shuiliu="8" class="btn_s btn_off"></i>
+      <i @click="btnClick($event)" class="btn_s btn_off"></i>
     </div>
+    <div class="device-name">进水阀</div>
   </div>
 </template>
 
 <script>
 export default {
-	methods:{
+  	methods:{
 		// 控制按钮开关
     btnClick(e){
         console.log(e.target)
@@ -33,25 +33,24 @@ export default {
         // this.tiaozhengshuiliu()
     },
 	}
-}
+};
 </script>
 
 <style scoped>
-.tiaojiefa{
+.jinshuifa {
   display: flex;
-  flex-direction: column;
+  width: 110px;
   justify-content: space-between;
-  width: 74px;
-  height: 80px;
 }
-.tiaojiefa .device-name{
+.jinshuifa .device-name {
+  writing-mode: tb-rl;
   text-align: center;
 }
-.tiaojiefa .device-bg{
-    background: url(../../assets/images/shuifeiji/调节阀.png) no-repeat;
-    width: 74px;
-    height: 57px; 
-    background-size: 100% 100%;
+.jinshuifa .device-bg {
+  background: url(../../assets/images/shuifeiji/进水阀.png) no-repeat;
+  width: 75px;
+  height: 73px;
+  background-size: 100% 100%;
 }
 .btn_s {
 	width: 25px;
@@ -60,15 +59,12 @@ export default {
 	z-index:1;
 	background-size: cover;
   position: absolute;
-  bottom: 4%;
-  left: 50%;
-  margin-left: -12.5px;
+  bottom: 30%;
+  left: 7%;
 }
-
 .btn_on {
 	background-image: url(../../assets/images/shuifeiji/on.png);
 }
-
 .btn_off {
 	background-image: url(../../assets/images/shuifeiji/off.png);
 }
