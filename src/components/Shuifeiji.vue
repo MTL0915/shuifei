@@ -19,6 +19,7 @@
     <div class="shuifeiji-right">
         <mokuai05></mokuai05>
     </div>
+    <shuiliu class="shuiliuComponent"></shuiliu>
   </div>
 </template>
 
@@ -28,13 +29,15 @@ import mokuai02 from './mokuai/mokuai02.vue'
 import mokuai03 from './mokuai/mokuai03.vue'
 import mokuai04 from './mokuai/mokuai04.vue'
 import mokuai05 from './mokuai/mokuai05.vue'
+import shuiliu from './mokuai/shuiliu.vue'
 export default {
     components:{
         mokuai01,
         mokuai02,
         mokuai03,
         mokuai04,
-        mokuai05
+        mokuai05,
+        shuiliu
     }
 }
 </script>
@@ -44,6 +47,7 @@ export default {
     display: flex;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 .shuifeiji-left{
     width: 58.36%;
@@ -72,5 +76,12 @@ export default {
 }
 .shuifeiji-left-bottom02{
     flex-grow: 1;
+}
+.shuiliuComponent{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div class="bg1">
-    <zengyabeng></zengyabeng>
-    <guolvqi></guolvqi>
+    <div class="bg1-name">清水入口</div>
+    <zengyabeng class="zengyabengComponent"></zengyabeng>
+    <guolvqi class="guolvqiComponent"></guolvqi>
   </div>
 </template>
 
@@ -23,5 +24,22 @@ export default {
     height: 100%;
     background-size: 100% 100%;
     position: relative;
+}
+.bg1-name{
+  position: absolute;
+  top:-5%;
+  left:5%;
+  color:yellow;
+  font-size: 16px;
+}
+.zengyabengComponent{
+  position: absolute;
+  left:7%;
+  top: 50%;
+}
+.guolvqiComponent{
+  position: absolute;
+  left:55%;
+  bottom: 7.5%;
 }
 </style>
