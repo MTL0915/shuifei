@@ -2,24 +2,24 @@
     <!-- 水流标签 -->
     <div>
         <!-- <div class='shuiliu shuiliu1 shuiliuAnimateR' where='1'></div> -->
-        <div class="shuiliu shuiliu1" where="1" style="position:absolute;height:14px;width:60px;overflow: hidden;">
+        <div class="shuiliu shuiliu1" where="1">
             <div class="shuiliu_r" style="width: 200px;">
                 <img style="height:50%;margin: 0px 43px;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
                 <img style="height:50%;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
             </div>
         </div>
-        <!-- <div class='shuiliu shuiliu2 shuiliuAnimateR' where='1'></div> -->
-        <div class="shuiliu shuiliu2" where="1" style="">
-            <div class="shuiliu_r" style="width: 200px;">
-                <img style="height:50%;margin: 0px 43px;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
-                <img style="height:50%;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
-            </div>
-        </div>
-        <!-- <div class='shuiliu shuiliu3 shuiliuAnimateT' where='1'></div> -->
-        <div class="shuiliu shuiliu3" where="1" style="position:absolute;height:60px;overflow: hidden;">
+        <!-- <div class='shuiliu shuiliu2 shuiliuAnimateT' where='1'></div> -->
+        <div class="shuiliu shuiliu2" where="1" style="position:absolute;height:60px;overflow: hidden;">
             <div class="shuiliuT" style="">
                 <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
                 <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
+            </div>
+        </div>
+        <!-- <div class='shuiliu shuiliu3 shuiliuAnimateR' where='1'></div> -->
+        <div class="shuiliu shuiliu3" where="1">
+            <div class="shuiliu_r" style="width: 200px;">
+                <img style="height:50%;margin: 0px 43px;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
+                <img style="height:50%;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
             </div>
         </div>
         <!-- <div class='shuiliu shuiliu4 shuiliuAnimateR' where='1,2'></div> -->
@@ -116,7 +116,7 @@
                 <img style="height:50%;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
             </div>
         </div>
-        <div class="shuiliu shuiliu20" where="1,2" or="4,5,6,7,8,9,10,11" where1="1,3">
+        <!-- <div class="shuiliu shuiliu20" where="1,2" or="4,5,6,7,8,9,10,11" where1="1,3">
             <div class="shuiliuT" style="">
                 <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
                 <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
@@ -181,13 +181,101 @@
             <div class="shuiliuB" style="">
                 <img style="display:block;height:50%;margin: 0 0" class="" src="../../assets/images/shuifeiji/shuiliu_b.png">
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
 export default {
+    mounted(){
+        this.$bus.$on('getCode',(code)=>{ // 这里一定要用箭头函数
+            console.log(code)
+            this.tiaozhengshuiliu(code)
+        })
+    },
+    data(){
+        return{
+            // 打开的按钮
+            openKey:[]
+        }
+    },
+    methods:{
+        tiaozhengshuiliu(code){
+            // 获取所有流水
+	        var shuiliuBox = document.getElementsByClassName('shuiliu')
+            // 获取目前开关的情况，有则删除，无则添加
+            const index = this.openKey.indexOf(code)
+            // console.log(index)
+            if (index === -1) {
+                this.openKey.push(code)
+            } else {
+                this.openKey.splice(index, 1)
+            }
+            // console.log(this.openKey)
 
+            // 调整水流的逻辑
+            for( var i = 0 ; i < shuiliuBox.length ; i++ ){
+                var openKey = this.openKey
+                var shuiliuItem = shuiliuBox[i];
+                var where = shuiliuItem.getAttribute("where");
+                if( !where ) continue;
+                where = where.split(",");
+                var or = shuiliuItem.getAttribute("or");
+                if( or ) or = or.split(",");
+                var bool = true;
+                for( var ii in where ){
+                    if( openKey.indexOf(where[ii]) === -1 ){
+                        bool = false;
+                        break;
+                    }
+                } 
+                if( or && bool ){
+                    bool = false;
+                    for( var ii in or ){
+                        if( openKey.indexOf(or[ii]) !== -1 ){
+                            bool = true;
+                            break;
+                        }
+                    }
+                }
+                var bool1 = true;
+                var where1 = shuiliuItem.getAttribute("where1");
+                if( !where1 ) {
+                    bool1=false;
+                }else{
+                    where1 = where1.split(",");
+                    var or1 = shuiliuItem.getAttribute("or1");
+                    if( or1 ) or1 = or1.split(",");
+                    for( var ii in where1 ){
+                        if( openKey.indexOf(where1[ii]) === -1 ){
+                            bool1 = false;
+                            break;
+                        }
+                    }
+                    if( or1 && bool1 ){
+                        bool1 = false;
+                        for( var ii in or1 ){
+                            if( openKey.indexOf(or1[ii]) !== -1 ){
+                                bool1 = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if( bool || bool1 ){
+                    shuiliuItem.style.display = 'block'
+                    // shuiliuItem.show();
+                }else{
+                    shuiliuItem.style.display = 'none'
+                    // shuiliuItem.hide();
+                }
+            }
+
+            // 也会影响到喷灌阀的喷水
+            this.$bus.$emit('penguanfaGetOpenKey',this.openKey)
+
+        }
+    }
 }
 </script>
 
@@ -196,8 +284,8 @@ export default {
 	position: absolute;
 	width:50px;
 	height: 13px;
-	/* display: none; */
-	z-index: 9;
+	display: none;
+	z-index: 2;
 	overflow: hidden;
 }
 
@@ -224,26 +312,26 @@ export default {
 }
 
 .shuiliu2 {
+    left: 12.7%;
+	top: 88%;
+	height: 47px;
+	width: 13px;
+	/* background: url(images/shuiliu_t.png); */
+}
+
+
+.shuiliu3 {
 	left: 24%;
-	top: 96.5%;
+	top: 98%;
 	position: absolute;
 	height: 14px;
 	width: 60px;
 	overflow: hidden;
 }
 
-
-.shuiliu3 {
-	left: 19.4%;
-	top: 81%;
-	height: 47px;
-	width: 13px;
-	/* background: url(images/shuiliu_t.png); */
-}
-
 .shuiliu4 {
 	left: 30%;
-	top: 75.96%;
+	top: 77%;
 	height: 13px;
 	/* background: url(images/shuiliu_r.png); */
 	width: 47px;

@@ -34,12 +34,16 @@ export default {
 }
 .zengyabengComponent{
   position: absolute;
-  left:7%;
+  left:6%;
   top: 50%;
+  width: 34%;
+  height: 30%;
 }
 .guolvqiComponent{
   position: absolute;
   left:55%;
   bottom: 7.5%;
+  width: 45%;
+  height: 62%;
 }
 </style>

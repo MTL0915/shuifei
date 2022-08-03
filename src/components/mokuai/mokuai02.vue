@@ -30,16 +30,22 @@ export default {
 .yaliComponent{
   position: absolute;
   left:30%;
-  top: -3%;
+  top: 0%;
+  width: 15%;
+  height: 38%;
 }
 .tiaojieComponent{
   position: absolute;
   left: 40%;
   bottom: -2%;
+  width: 18%;
+  height: 28%;
 }
 .jinshuifaComponent{
   position: absolute;
   left: 3%;
   top: 50%;
+  width: 18%;
+  height: 28%;
 }
 </style>

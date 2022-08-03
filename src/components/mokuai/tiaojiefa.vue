@@ -2,7 +2,7 @@
   <div class="tiaojiefa">
     <div class="device-name">调节阀</div>
     <div class="device-bg">
-      <i @click="btnClick($event)" code="4" shuiliu="8" class="btn_s btn_off"></i>
+      <i @click="btnClick($event)" code="3" shuiliu="19,20,21,22,23,24,25,26,27,28,29,30,31" class="btn_s btn_off"></i>
     </div>
   </div>
 </template>
@@ -16,11 +16,8 @@ export default {
         var targetBtn = e.currentTarget
         this.doubleControl(targetBtn)
     },
-    // 具体控制逻辑，为了能双向按钮控制
+    // 具体控制逻辑，为了能双向按钮控制(以后可能要用到)
     doubleControl(targetBtn){
-        // 用事件总线把对应按钮的数字传到控制面板组件
-        var code = targetBtn.getAttribute("code");
-        // this.$bus.$emit('code',code)
         if(targetBtn.getAttribute("class").includes("btn_off")){
             targetBtn.classList.add("btn_on")
             targetBtn.classList.remove("btn_off")
@@ -29,8 +26,9 @@ export default {
             targetBtn.classList.add("btn_off")
             targetBtn.classList.remove("btn_on")
         }
-        // 调整水流，包括水流动画与喷水器动画
-        // this.tiaozhengshuiliu()
+        // 用事件总线给水流组件传入对应的按钮值
+        var code = targetBtn.getAttribute("code");
+        this.$bus.$emit('getCode',code)
     },
 	}
 }
@@ -41,17 +39,17 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 74px;
-  height: 80px;
+  /* width: 74px;
+  height: 80px; */
 }
 .tiaojiefa .device-name{
   text-align: center;
 }
 .tiaojiefa .device-bg{
     background: url(../../assets/images/shuifeiji/调节阀.png) no-repeat;
-    width: 74px;
-    height: 57px; 
     background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
 }
 .btn_s {
 	width: 25px;

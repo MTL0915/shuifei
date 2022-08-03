@@ -247,6 +247,81 @@ export default {
             document.getElementsByClassName(pgValve)[0].style.backgroundImage = "url(" + require(`../../assets/images/shuifeiji/5-${bgNum}.png`) + ")"
             document.getElementsByClassName(pgValve)[0].style.width = listWidth
         }
+        
+        // 事件总线，调整喷水器
+        this.$bus.$on('penguanfaGetOpenKey',(openKey)=>{ // 这里一定要用箭头函数
+            console.log(openKey)
+            this.tiaozhengpenguanfa(openKey)
+        })
+    },
+    methods:{
+        tiaozhengpenguanfa(openKey){
+            // 所有的噴水器
+            var penshui = document.getElementsByClassName('penshui1')
+            var penshuiBox = Array.prototype.slice.apply(penshui);
+
+            for( var i = 0 ; i < penshuiBox.length ; i++ ){
+                var penshuiItem = penshuiBox[i];
+                var where = penshuiItem.getAttribute("where");
+                if( !where ) continue;
+                where = where.split(",");
+                var or = penshuiItem.getAttribute("or");
+                if( or ) or = or.split(",");
+                var bool = true;
+                for( var ii in where ){
+                    if( openKey.indexOf(where[ii]) === -1 ){
+                        bool = false;
+                        break;
+                    }
+                } 
+                if( or && bool ){
+                    bool = false;
+                    for( var ii in or ){
+                        if( openKey.indexOf(or[ii]) !== -1 ){						
+                            bool = true;
+                            break;
+                        }
+                    }
+                }
+                
+                var bool1 = true;
+                var where1 = penshuiItem.getAttribute("where1");
+                if( !where1 ) {
+                    bool1=false;
+                }else{
+                    where1 = where1.split(",");
+                    var or1 = penshuiItem.getAttribute("or1");
+                    if( or1 ) or1 = or1.split(",");		
+                    for( var ii in where1 ){
+                        if( openKey.indexOf(where1[ii]) === -1 ){
+                            bool1 = false;
+                            break;
+                        }
+                    }
+                    if( or1 && bool1 ){
+                        bool1 = false;
+                        for( var ii in or1 ){
+                            if( openKey.indexOf(or1[ii]) !== -1 ){						
+                                bool1 = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                if( bool || bool1 ){
+                    penshuiItem.style.display = 'block'
+                    // ndcqg(null,true)
+                    // phcqg(null,true)
+                    // sq(null, true)
+                }else{
+                    penshuiItem.style.display = 'none'
+                    // ndcqg(null,false)
+                    // phcqg(null,false)
+                    // sq(null, false)
+                }
+            }
+        }
     }
 }
 </script>
@@ -346,4 +421,21 @@ export default {
 .pg_valve4 .valve_icon {
 	background-image: url(../assets/images/shuifei/05-3valve_no.png);
 } */
+.penshui1 {
+	left: calc(100% - 9px);
+	top: 0;
+	width: 19px;
+	height: 35px;
+	background: url(../../assets/images/shuifeiji/penshui.png);
+	/* transform: rotateZ(90deg); */
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	animation: penshuiAnimate 1.5s infinite linear;
+	position: absolute;
+	display: none;
+}
+@keyframes penshuiAnimate{
+	from{ background-position: -32px 0px ; }
+	to{ background-position: 0px 0px; }
+}
 </style>

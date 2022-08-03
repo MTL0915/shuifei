@@ -1,7 +1,7 @@
 <template>
   <div class="jinshuifa"> 
     <div class="device-bg">
-      <i @click="btnClick($event)" class="btn_s btn_off"></i>
+      <i @click="btnClick($event)" code="2" shuiliu="4,5,6,7" class="btn_s btn_off"></i>
     </div>
     <div class="device-name">进水阀</div>
   </div>
@@ -16,11 +16,8 @@ export default {
         var targetBtn = e.currentTarget
         this.doubleControl(targetBtn)
     },
-    // 具体控制逻辑，为了能双向按钮控制
+    // 具体控制逻辑，为了能双向按钮控制(以后可能要用到)
     doubleControl(targetBtn){
-        // 用事件总线把对应按钮的数字传到控制面板组件
-        var code = targetBtn.getAttribute("code");
-        // this.$bus.$emit('code',code)
         if(targetBtn.getAttribute("class").includes("btn_off")){
             targetBtn.classList.add("btn_on")
             targetBtn.classList.remove("btn_off")
@@ -29,8 +26,9 @@ export default {
             targetBtn.classList.add("btn_off")
             targetBtn.classList.remove("btn_on")
         }
-        // 调整水流，包括水流动画与喷水器动画
-        // this.tiaozhengshuiliu()
+        // 用事件总线给水流组件传入对应的按钮值
+        var code = targetBtn.getAttribute("code");
+        this.$bus.$emit('getCode',code)
     },
 	}
 };
@@ -39,7 +37,7 @@ export default {
 <style scoped>
 .jinshuifa {
   display: flex;
-  width: 110px;
+  /* width: 110px; */
   justify-content: space-between;
 }
 .jinshuifa .device-name {
@@ -48,8 +46,8 @@ export default {
 }
 .jinshuifa .device-bg {
   background: url(../../assets/images/shuifeiji/进水阀.png) no-repeat;
-  width: 75px;
-  height: 73px;
+  width: 100%;
+  height: 100%;
   background-size: 100% 100%;
 }
 .btn_s {

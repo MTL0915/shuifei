@@ -41,16 +41,16 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 102px;
-  height: 110px;
+  /* width: 55%;
+  height: 13%; */
 }
 .jiayashifeibeng .device-name{
   text-align: center;
 }
 .jiayashifeibeng .device-bg{
     background: url(../../assets/images/shuifeiji/加压施肥泵.png) no-repeat;
-    width: 102px;
-    height: 89px; 
+    width: 100%;
+    height: 100%; 
     background-size: 100% 100%;
 }
 .btn_s {
