@@ -1,7 +1,7 @@
 <template>
   <div class="jinshuifa"> 
     <div class="device-bg">
-      <i @click="btnClick($event)" code="2" shuiliu="4,5,6,7" class="btn_s btn_off"></i>
+      <i @click="btnClick($event)" code="2" class="btn_s btn_off"></i>
     </div>
     <div class="device-name">进水阀</div>
   </div>

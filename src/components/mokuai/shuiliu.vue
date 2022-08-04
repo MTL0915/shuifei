@@ -109,6 +109,15 @@
                 <img style="height:50%;" class="" src="../../assets/images/shuifeiji/shuiliu_r.png">
             </div>
         </div>
+        <!-- 肥水混合 -->
+        <div class="hunheji" where="1,2,12" or="4,5,6,7,8,9,10,11" style="display:none;position:absolute;height:10%;overflow: hidden;">
+            <div class="luoxuan" style="">
+                <img style="display:block;height:100%" class="" src="../../assets/images/shuifeiji/luoxuan1.png">
+                <img style="display:block;height:100%" class="" src="../../assets/images/shuifeiji/luoxuan1.png">
+                <img style="display:block;height:100%" class="" src="../../assets/images/shuifeiji/luoxuan1.png">
+                <img style="height:100%" class="" src="../../assets/images/shuifeiji/luoxuan1.png">
+            </div>
+        </div>
         <!-- <div class='shuiliu shuiliu18 shuiliuAnimateB' style='display:none;'  where='1,2' or='4,5,6,7,8,9,10,11'></div> -->
         <div class="shuiliu shuiliu19" where="1,3">
             <div class="shuiliu_r" style="width: 200px;">
@@ -203,6 +212,11 @@ export default {
         tiaozhengshuiliu(code){
             // 获取所有流水
 	        var shuiliuBox = document.getElementsByClassName('shuiliu')
+            shuiliuBox = Array.prototype.slice.apply(shuiliuBox);
+            // 获取肥水混合剂,加到流水里一起
+            var hunheji = document.getElementsByClassName('hunheji')
+            hunheji = Array.prototype.slice.apply(hunheji);
+            var shuiliuBox = shuiliuBox.concat(hunheji)
             // 获取目前开关的情况，有则删除，无则添加
             const index = this.openKey.indexOf(code)
             // console.log(index)
@@ -294,8 +308,8 @@ export default {
 }
 
 .hunheji {
-	left: 66.2%!important;
-	top: 37.5%!important;
+	left: 60.2%!important;
+	top: 57.5%!important;
 	width: 36px;
 	z-index: 2;
 	height: 85px;

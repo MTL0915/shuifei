@@ -1,11 +1,11 @@
 <template>
     <div class="penguanfa">
         <ul class="pg_valve" :class="item.name" v-for="item in penguanArr" :key="item.name">
-            <li v-for="liItem in item.list" :key="liItem.number">
+            <li v-for="liItem in item.list" :key="liItem.number" @click="penshuiControl">
                 <span class="valve_icon"></span>
                 <a>{{liItem.dikuaiName}}</a>
                 <a>{{liItem.dichifaName}}</a>
-                <div class="penshui1" where="1,2" or="4,5,6,7,8,9,10,11" where1="1,3" style="display: none;"></div>
+                <div class="penshui1" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3" style="display: none;"></div>
             </li>
         </ul>
     </div>
@@ -201,52 +201,55 @@ export default {
         }
     },
     mounted(){
-        let bgArr = []
-        let len = this.penguanArr.length
-        // 获取背景图标识
-        if(len <= 2){
-            bgArr = [1,4]
-        };
-        if(len == 3){
-            bgArr = [1,2,5] 
-        };
-        if(len == 4){
-            bgArr = [1,2,3,4] 
-        };
-        if(len == 5){
-            bgArr = [1,2,3,2,5] 
-        };
-        if(len == 6){
-            bgArr = [1,2,3,2,3,4] 
-        };
-        if(len == 7){
-            bgArr = [1,2,3,2,3,2,5] 
-        };
-        if(len == 8){
-            bgArr = [1,2,3,2,3,2,3,4] 
-        };
-        if(len == 9){
-            bgArr = [1,2,3,2,3,2,3,2,5] 
-        };
-        if(len == 10){
-            bgArr = [1,2,3,2,3,2,3,2,3,4] 
-        };
-        // 每一列宽度
-        var listWidth = ''
-        if(len <= 3){
-            var listWidth = '33.33%'
-        }else{
-            listWidth = (100/bgArr.length) + '%'
-        }
-        for(var i=0;i<bgArr.length;i++){
-            // 因为上面的标识是从1开始，所以要+1，为了获取到对应得dom
-            var n = i+1
-            var pgValve = 'pg_valve' + n
-            var bgNum = bgArr[i]
-            // 动态设置对应dom的背景图，宽度   
-            document.getElementsByClassName(pgValve)[0].style.backgroundImage = "url(" + require(`../../assets/images/shuifeiji/5-${bgNum}.png`) + ")"
-            document.getElementsByClassName(pgValve)[0].style.width = listWidth
-        }
+        // let bgArr = []
+        // let len = this.penguanArr.length
+        // // 获取背景图标识
+        // if(len <= 2){
+        //     bgArr = [1,4]
+        // };
+        // if(len == 3){
+        //     bgArr = [1,2,5] 
+        // };
+        // if(len == 4){
+        //     bgArr = [1,2,3,4] 
+        // };
+        // if(len == 5){
+        //     bgArr = [1,2,3,2,5] 
+        // };
+        // if(len == 6){
+        //     bgArr = [1,2,3,2,3,4] 
+        // };
+        // if(len == 7){
+        //     bgArr = [1,2,3,2,3,2,5] 
+        // };
+        // if(len == 8){
+        //     bgArr = [1,2,3,2,3,2,3,4] 
+        // };
+        // if(len == 9){
+        //     bgArr = [1,2,3,2,3,2,3,2,5] 
+        // };
+        // if(len == 10){
+        //     bgArr = [1,2,3,2,3,2,3,2,3,4] 
+        // };
+        // // 每一列宽度
+        // var listWidth = ''
+        // if(len <= 3){
+        //     var listWidth = '33.33%'
+        // }else{
+        //     listWidth = (100/bgArr.length) + '%'
+        // }
+        // for(var i=0;i<bgArr.length;i++){
+        //     // 因为上面的标识是从1开始，所以要+1，为了获取到对应得dom
+        //     var n = i+1
+        //     var pgValve = 'pg_valve' + n
+        //     var bgNum = bgArr[i]
+        //     // 动态设置对应dom的背景图，宽度   
+        //     document.getElementsByClassName(pgValve)[0].style.backgroundImage = "url(" + require(`../../assets/images/shuifeiji/5-${bgNum}.png`) + ")"
+        //     document.getElementsByClassName(pgValve)[0].style.width = listWidth
+        // }
+
+        // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
+        this.$emit('getMessage',this.penguanArr.length)
         
         // 事件总线，调整喷水器
         this.$bus.$on('penguanfaGetOpenKey',(openKey)=>{ // 这里一定要用箭头函数
@@ -255,6 +258,9 @@ export default {
         })
     },
     methods:{
+        penshuiControl(){
+            
+        },
         tiaozhengpenguanfa(openKey){
             // 所有的噴水器
             var penshui = document.getElementsByClassName('penshui1')
@@ -372,6 +378,11 @@ export default {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height:100%;
+    width: 100px;
+    background-image: url(../../assets/images/shuifeiji/5-a.png);
+}
+.pg_valve:last-child{
+    background-image: url(../../assets/images/shuifeiji/5-b.png);
 }
 
 .pg_valve li {
@@ -379,18 +390,18 @@ export default {
 	margin-bottom: 15px;
 	height: 60px;
 	position: relative;
-    padding-left: 38%;
+    padding-left: 20%;
     box-sizing: border-box;
 }
 
-.pg_valve1 li {
-	/* overflow: hidden; */
+/* .pg_valve1 li {
+	overflow: hidden;
 	margin-bottom: 15px;
 	height: 60px;
 	position: relative;
     padding-left: 36%;
     box-sizing: border-box;
-}
+} */
 
 .pg_valve li * {
 	float: left;
@@ -422,7 +433,8 @@ export default {
 	background-image: url(../assets/images/shuifei/05-3valve_no.png);
 } */
 .penshui1 {
-	left: calc(100% - 9px);
+	/* left: calc(100% - 9px); */
+	left: 65px;
 	top: 0;
 	width: 19px;
 	height: 35px;

@@ -1,9 +1,9 @@
 <template>
-  <div class="jiayashifeibeng">
+  <div class="famen"> 
     <div class="device-bg">
-      <i @click="btnClick($event)" code="12" class="btn_s btn_off"></i>
+      <i @click="btnClick($event)" code="13" class="btn_s btn_off"></i>
     </div>
-    <div class="device-name">加压施肥泵</div>
+    <div class="device-name">阀门</div>
   </div>
 </template>
 
@@ -35,21 +35,20 @@ export default {
 </script>
 
 <style scoped>
-.jiayashifeibeng{
+.famen {
   display: flex;
+  /* width: 110px; */
   justify-content: space-between;
-  /* width: 55%;
-  height: 13%; */
 }
-.jiayashifeibeng .device-name{
+.famen .device-name {
   writing-mode: tb-rl;
   text-align: center;
 }
-.jiayashifeibeng .device-bg{
-    background: url(../../assets/images/shuifeiji/加压施肥泵.png) no-repeat;
-    width: 100%;
-    height: 100%; 
-    background-size: 100% 100%;
+.famen .device-bg {
+  background: url(../../assets/images/shuifeiji/阀门.png) no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
 }
 .btn_s {
 	width: 25px;
@@ -58,14 +57,12 @@ export default {
 	z-index:1;
 	background-size: cover;
   position: absolute;
-  bottom: 37%;
-  left: 7%;
+  bottom: 30%;
+  left: 30%;
 }
-
 .btn_on {
 	background-image: url(../../assets/images/shuifeiji/on.png);
 }
-
 .btn_off {
 	background-image: url(../../assets/images/shuifeiji/off.png);
 }
