@@ -37,7 +37,8 @@ export default {
 <style scoped>
 .jinshuifa {
   display: flex;
-  /* width: 110px; */
+  width: 80px;
+  height: 73px;
   justify-content: space-between;
 }
 .jinshuifa .device-name {
@@ -46,8 +47,8 @@ export default {
 }
 .jinshuifa .device-bg {
   background: url(../../assets/images/shuifeiji/进水阀.png) no-repeat;
-  width: 100%;
-  height: 100%;
+  width: 75px;
+  height: 73px;
   background-size: 100% 100%;
 }
 .btn_s {

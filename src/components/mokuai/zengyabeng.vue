@@ -37,8 +37,8 @@ export default {
 <style scoped>
 .zengyabeng {
   display: flex;
-  /* width: 127px;
-  height: 80px; */
+  width: 127px;
+  height: 83px;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -47,9 +47,10 @@ export default {
 }
 .zengyabeng .device-bg {
   background: url(../../assets/images/shuifeiji/增压泵.png) no-repeat;
-  width: 100%;
-  height: 100%;
+  width: 127px;
+  height: 63px;
   background-size: 100% 100%;
+  position: relative;
 }
 .btn_s {
 	width: 25px;
@@ -59,8 +60,8 @@ export default {
 	background-size: cover;
   position: absolute;
   top: 50%;
-  left: 5%;
-  margin-top: -5px;
+  left: 6px;
+  margin-top: -12.5px;
 }
 
 .btn_on {

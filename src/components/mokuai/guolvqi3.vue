@@ -14,14 +14,16 @@ export default {};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 95px;
+    height: 55px;
 }
 .guolvqi3 .device-name {
   text-align: center;
 }
 .guolvqi3 .device-bg {
   background: url(../../assets/images/shuifeiji/过滤器3.png) no-repeat;
-  width: 100%;
-  height: 100%;
+  width: 95px;
+  height: 35px;
   background-size: 100% 100%;
   position: relative;
 }

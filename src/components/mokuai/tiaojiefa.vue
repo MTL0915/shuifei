@@ -39,8 +39,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* width: 74px;
-  height: 80px; */
+  width: 74px;
+  height: 77px;
 }
 .tiaojiefa .device-name{
   text-align: center;
@@ -48,8 +48,9 @@ export default {
 .tiaojiefa .device-bg{
     background: url(../../assets/images/shuifeiji/调节阀.png) no-repeat;
     background-size: 100% 100%;
-    width: 100%;
-    height: 100%;
+    width: 74px;
+    height: 57px;
+    position: relative;
 }
 .btn_s {
 	width: 25px;
@@ -58,7 +59,7 @@ export default {
 	z-index:1;
 	background-size: cover;
   position: absolute;
-  bottom: 4%;
+  bottom: 5px;
   left: 50%;
   margin-left: -12.5px;
 }

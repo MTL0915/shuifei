@@ -14,7 +14,8 @@ export default {
 <style scoped>
 .feishuihunheqi {
   display: flex;
-  /* width: 110px; */
+  width: 66px;
+  height: 176px;
   justify-content: space-between;
 }
 .feishuihunheqi .device-name {
@@ -23,8 +24,8 @@ export default {
 }
 .feishuihunheqi .device-bg {
   background: url(../../assets/images/shuifeiji/肥水混合器.png) no-repeat;
-  width: 100%;
-  height: 100%;
+  width: 61px;
+  height: 176px;
   background-size: 100% 100%;
 }
 </style>

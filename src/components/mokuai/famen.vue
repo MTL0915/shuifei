@@ -37,7 +37,8 @@ export default {
 <style scoped>
 .famen {
   display: flex;
-  /* width: 110px; */
+  width: 56px;
+  height: 63px;
   justify-content: space-between;
 }
 .famen .device-name {
@@ -46,9 +47,10 @@ export default {
 }
 .famen .device-bg {
   background: url(../../assets/images/shuifeiji/阀门.png) no-repeat;
-  width: 100%;
-  height: 100%;
+  width: 51px;
+  height: 63px;
   background-size: 100% 100%;
+  position: relative;
 }
 .btn_s {
 	width: 25px;
@@ -57,8 +59,9 @@ export default {
 	z-index:1;
 	background-size: cover;
   position: absolute;
-  bottom: 30%;
-  left: 30%;
+  top: 50%;
+  margin-top: -12.5px;
+  left: 32%;
 }
 .btn_on {
 	background-image: url(../../assets/images/shuifeiji/on.png);

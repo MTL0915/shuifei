@@ -118,12 +118,9 @@ export default {
 <style>
 /*施肥桶样式*/
 .pot_cont {
-	position: absolute;
-	top: 0;
-	left: 0;
 	z-index: 1;
-	height: 100%;
-	width:100%;
+	width: 830px;
+    height: 485px;
 }
 
 .pot_box {
@@ -131,7 +128,7 @@ export default {
 	left: 0;
 	top: 0px;
 	width: 14.5%;
-	height: 90.5%;
+	height: 100%;
 	background-image: url(../../assets/images/shuifeiji/pot.png);
 	background-position: top;
 	background-repeat: no-repeat;
@@ -197,7 +194,7 @@ export default {
 }
 .pot_box1 {
     background-image: url(../../assets/images/shuifeiji/pot1.png);
-    height: 83.5%;
+    height: 448px;
 }
 
 .water_top1 {
@@ -292,49 +289,49 @@ export default {
 }
 
 .switch_1 {
-	right: 31%;
+	right: 29%;
 	bottom: 5%;
 	position: absolute;
 }
 
 .switch_2 {
-	right: 31%;
+	right: 29%;
 	bottom: 12%;
 	position: absolute;
 }
 
 .switch_3 {
-	right: 31%;
+	right: 29%;
 	bottom: 12%;
 	position: absolute;
 }
 
 .switch_4 {
-	right: 31%;
+	right: 29%;
 	bottom: 12%;
 	position: absolute;
 }
 
 .switch_5 {
-	right: 31%;
+	right: 29%;
 	bottom: 12%;
 	position: absolute;
 }
 
 .switch_6 {
-	right: 31%;
+	right: 29%;
 	bottom: 12%;
 	position: absolute;
 }
 
 .switch_7 {
-	right: 31%;
+	right: 29%;
 	bottom: 12%;
 	position: absolute;
 }
 
 .switch_8 {
-	right: 31%;
+	right: 29%;
 	bottom: 12%;
 	position: absolute;
 }

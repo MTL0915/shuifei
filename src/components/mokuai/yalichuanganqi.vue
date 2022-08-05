@@ -18,16 +18,16 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* width: 81px;
-    height: 110px; */
+    width: 81px;
+    height: 109px;
 }
 .yalichuanganqi .device-name{
     text-align: center;
 }
 .yalichuanganqi .device-bg{
     background: url(../../assets/images/shuifeiji/压力传感器.png) no-repeat;
-    width: 100%;
-    height: 100%; 
+    width: 81px;
+    height: 89px;
     background-size: 100% 100%;
     position: relative;
 }

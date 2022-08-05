@@ -38,8 +38,8 @@ export default {
 .jiayashifeibeng{
   display: flex;
   justify-content: space-between;
-  /* width: 55%;
-  height: 13%; */
+  width: 95px;
+  height: 103px; 
 }
 .jiayashifeibeng .device-name{
   writing-mode: tb-rl;
@@ -47,9 +47,10 @@ export default {
 }
 .jiayashifeibeng .device-bg{
     background: url(../../assets/images/shuifeiji/加压施肥泵.png) no-repeat;
-    width: 100%;
-    height: 100%; 
+    width: 90px;
+    height: 103px; 
     background-size: 100% 100%;
+    position: relative;
 }
 .btn_s {
 	width: 25px;
@@ -58,8 +59,9 @@ export default {
 	z-index:1;
 	background-size: cover;
   position: absolute;
-  bottom: 37%;
-  left: 7%;
+  top: 50%;
+  margin-top: -12.5px;
+  left: 3%;
 }
 
 .btn_on {

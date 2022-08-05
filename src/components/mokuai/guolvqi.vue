@@ -6,28 +6,24 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-.guolvqi{
+.guolvqi {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* width: 160px;
-  height: 160px; */
+  width: 160px;
+  height: 167px;
 }
-.guolvqi .device-name{
+.guolvqi .device-name {
   text-align: center;
 }
-.guolvqi .device-bg{
-    background: url(../../assets/images/shuifeiji/过滤器2.png) no-repeat;
-    /* width: 160px;
-    height: 147px;  */
-    width: 100%;
-    height: 100%;
-    background-size: 100% 100%;
+.guolvqi .device-bg {
+  background: url(../../assets/images/shuifeiji/过滤器2.png) no-repeat;
+  width: 160px;
+  height: 147px;
+  background-size: 100% 100%;
 }
 </style>
