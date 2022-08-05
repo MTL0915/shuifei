@@ -377,7 +377,7 @@ export default {
     padding-top: 20px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height:100%;
+    height: calc(100% + 3px);
     width: 100px;
     background-image: url(../../assets/images/shuifeiji/5-a.png);
 }

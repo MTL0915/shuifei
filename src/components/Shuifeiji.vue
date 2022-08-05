@@ -66,27 +66,21 @@ export default {
     overflow-x: scroll;
     overflow-y: hidden;
     z-index: 1;
+    padding-bottom: 3px;
 }
 /* 滚动条 */
 ::-webkit-scrollbar{
     width:16px;
-    height:5px;
+    height:3px;
     background-color:rgba(0,0,0,.1);
 }
-/*定义滚动条轨道
-
-内阴影+圆角*/
-
+/*定义滚动条轨道,内阴影+圆角*/
 ::-webkit-scrollbar-track{
     -webkit-box-shadow:inset 0 0 1px rgba(0,0,0,0.3);
     border-radius:10px;
-    background-color:#0889b0;
+    /* background-color:#0889b0; */
 }
-
-/*定义滑块
-
-内阴影+圆角*/
-
+/*定义滑块,内阴影+圆角*/
 ::-webkit-scrollbar-thumb{
     border-radius:10px;
     -webkit-box-shadow:inset 0 0 1px rgba(0,0,0,.3);
