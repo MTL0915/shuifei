@@ -110,7 +110,7 @@
             </div>
         </div>
         <!-- 肥水混合 -->
-        <div class="hunheji" where="1,2,12" or="4,5,6,7,8,9,10,11" style="display:none;position:absolute;height:10%;overflow: hidden;">
+        <div class="hunheji" where="1,2,12" or="4,5,6,7,8,9,10,11">
             <div class="luoxuan" style="">
                 <img style="display:block;height:100%" class="" src="../../assets/images/shuifeiji/luoxuan1.png">
                 <img style="display:block;height:100%" class="" src="../../assets/images/shuifeiji/luoxuan1.png">
@@ -197,6 +197,7 @@
 <script>
 export default {
     mounted(){
+        // this.tiaozhengshuiliu()
         this.$bus.$on('getCode',(code)=>{ // 这里一定要用箭头函数
             console.log(code)
             this.tiaozhengshuiliu(code)
@@ -308,17 +309,20 @@ export default {
 }
 
 .hunheji {
-	left: 60.2%!important;
-	top: 57.5%!important;
+	left: 880px;
+	top: 451px;
 	width: 36px;
 	z-index: 2;
-	height: 85px;
+	height: 110px;
 	/* background: url(images/luoxuan.png); */
+    display:none;
+    position:absolute;
+    overflow: hidden;
 }
 
 .shuiliu1 {
-    left: 5%;
-    top: 98%;
+    left: 90px;
+    top: 782px;
 	position: absolute;
 	height: 14px;
 	width: 60px;
@@ -326,8 +330,8 @@ export default {
 }
 
 .shuiliu2 {
-    left: 12.7%;
-	top: 88%;
+    left: 184px;
+	top: 690px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
@@ -335,8 +339,8 @@ export default {
 
 
 .shuiliu3 {
-	left: 24%;
-	top: 98%;
+	left: 350px;
+	top: 782px;
 	position: absolute;
 	height: 14px;
 	width: 60px;
@@ -344,121 +348,121 @@ export default {
 }
 
 .shuiliu4 {
-	left: 30%;
-	top: 77%;
+	left: 450px;
+	top: 618px;
 	height: 13px;
 	/* background: url(images/shuiliu_r.png); */
 	width: 47px;
 }
 
 .shuiliu5 {
-	left: 55%;
-	top: 67%;
+	left: 800px;
+	top: 540px;
 	width: 13px;
 	/* background: url(images/shuiliu_T.png); */
 	height: 47px;
 }
 
 .shuiliu6 {
-	left: 44%;
-	top: 61.5%;
+	left: 616px;
+	top: 495px;
 	width: 47px;
 	/* background: url(images/shuiliu_l.png); */
 }
 
 .shuiliu7 {
-	left: 20%;
-	top: 61.5%;
+	left: 240px;
+	top: 495px;
 	width: 47px;
 	/* background: url(images/shuiliu_l.png); */
 }
 
 .shuiliu8 {
-	left: 4.5%;
-	top: 41%;
+	left: 65.5px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu9 {
-	left: 11%;
-	top: 41%;
+	left: 158px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu10 {
-	left: 17.5%;
-	top: 41%;
+	left: 249px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu11 {
-	left: 24%;
-	top: 41%;
+	left: 339px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu12 {
-	left: 30.5%;
-	top: 41%;
+	left: 432px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu13 {
-	left: 37%;
-	top: 41%;
+	left: 523px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu14 {
-	left: 43.5%;
-	top: 41%;
+	left: 614.5px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu15 {
-	left: 50%;
-	top: 41%;
+	left: 704px;
+	top: 333px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu16 {
-	left: 18%;
-	top: 25.8%;
+	left: 240px;
+	top: 213px;
 	width: 47px;
 	/* background: url(images/shuiliu_R.png); */
 }
 
 .shuiliu17 {
-	left: 54%;
-	top: 25.8%;
+	left: 616px;
+	top: 213px;
 	width: 47px;
 	/* background: url(images/shuiliu_R.png); */
 }
 
-.shuiliu18 {
+/* .shuiliu18 {
 	left: 817px;
 	top: 203px;
 	width: 13px;
 	height: 47px;
-	/* background: url(images/shuiliu_B.png); */
-}
+	background: url(images/shuiliu_B.png);
+} */
 
 .shuiliu19 {
-	left: 58%;
-	top: 98%;
+	left: 768px;
+	top: 782px;
 	width: 47px;
 	/* background: url(images/shuiliu_r.png); */
 }

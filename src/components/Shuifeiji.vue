@@ -4,18 +4,20 @@
         <bgLeft></bgLeft>
     </div>
     <div class="shuifeiji-right">
-
+        <bgRight></bgRight>
     </div>
-    <!-- <shuiliu class="shuiliuComponent"></shuiliu> -->
+    <shuiliu class="shuiliuComponent"></shuiliu>
   </div>
 </template>
 
 <script>
 import bgLeft from './mokuai/bgLeft.vue'
+import bgRight from './mokuai/bgRight.vue'
 import shuiliu from './mokuai/shuiliu.vue'
 export default {
     components:{
         bgLeft,
+        bgRight,
         shuiliu
     }
 }
@@ -27,6 +29,10 @@ export default {
     width: 1600px;
     height: 800px;
     position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 30px;
+    margin:0 auto;
 }
 .shuifeiji-left{
     width: 75%;

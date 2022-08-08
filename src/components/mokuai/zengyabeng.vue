@@ -2,13 +2,18 @@
   <div class="zengyabeng"> 
     <div class="device-name">增压泵</div>
     <div class="device-bg">
-      <i @click="btnClick($event)" code="1" shuiliu="1,2,3" class="btn_s btn_off"></i>
+      <i @click="btnClick($event)" code="1" shuiliu="1,2,3" class="btn_s"  :class="[btnStatus?'btn_on':'btn_off']"></i>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      btnStatus:0
+    }
+  },
 	methods:{
 		// 控制按钮开关
     btnClick(e){
@@ -18,13 +23,11 @@ export default {
     },
     // 具体控制逻辑，为了能双向按钮控制(以后可能要用到)
     doubleControl(targetBtn){       
-        if(targetBtn.getAttribute("class").includes("btn_off")){
-            targetBtn.classList.add("btn_on")
-            targetBtn.classList.remove("btn_off")
+        if(this.btnStatus == 0){
+          this.btnStatus = 1
         }
         else{
-            targetBtn.classList.add("btn_off")
-            targetBtn.classList.remove("btn_on")
+          this.btnStatus = 0
         }
         // 用事件总线给水流组件传入对应的按钮值
         var code = targetBtn.getAttribute("code");

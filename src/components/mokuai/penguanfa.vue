@@ -7,6 +7,24 @@
                 <a>{{liItem.dichifaName}}</a>
                 <div class="penshui1" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3" style="display: none;"></div>
             </li>
+            <div class="shuiliu shuiliu20" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3">
+                <div class="shuiliuT" style="">
+                    <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
+                    <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
+                </div>
+            </div>
+            <div class="shuiliu shuiliu21" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3">
+                <div class="shuiliuT" style="">
+                    <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
+                    <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
+                </div>
+            </div>
+            <div class="shuiliu shuiliu22" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3">
+                <div class="shuiliuT" style="">
+                    <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
+                    <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
+                </div>
+            </div>
         </ul>
     </div>
 </template>
@@ -249,7 +267,7 @@ export default {
         // }
 
         // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
-        this.$emit('getMessage',this.penguanArr.length)
+        this.$emit('getWidth',this.penguanArr.length)
         
         // 事件总线，调整喷水器
         this.$bus.$on('penguanfaGetOpenKey',(openKey)=>{ // 这里一定要用箭头函数
@@ -377,9 +395,10 @@ export default {
     padding-top: 20px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: calc(100% + 3px);
+    height: 100%;
     width: 100px;
     background-image: url(../../assets/images/shuifeiji/5-a.png);
+    position: relative;
 }
 .pg_valve:last-child{
     background-image: url(../../assets/images/shuifeiji/5-b.png);
@@ -449,5 +468,57 @@ export default {
 @keyframes penshuiAnimate{
 	from{ background-position: -32px 0px ; }
 	to{ background-position: 0px 0px; }
+}
+
+/* 水流 */
+.shuiliu {
+	position: absolute;
+	width:50px;
+	height: 13px;
+	display: none;
+	z-index: 2;
+	overflow: hidden;
+}
+.shuiliu20 {
+	left: 10px;
+	top: 650px;
+	width: 13px;
+	height: 47px;
+	/* background: url(images/shuiliu_t.png); */
+}
+.shuiliu21 {
+	left: 10px;
+	top: 400px;
+	width: 13px;
+	height: 47px;
+	/* background: url(images/shuiliu_t.png); */
+}
+.shuiliu22 {
+	left: 10px;
+	top: 150px;
+	width: 13px;
+	height: 47px;
+	/* background: url(images/shuiliu_t.png); */
+}
+.shuiliuAnimateT {
+	animation: slt 0.75s infinite;
+}
+@keyframes slt{
+	from{ transform: translateY(0); }
+	to{ transform: translateY(-50%); }
+}
+
+@keyframes shuiliuT {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-220px);
+    }
+}
+
+.shuiliuT {
+    animation: shuiliuT 3s linear infinite;
 }
 </style>

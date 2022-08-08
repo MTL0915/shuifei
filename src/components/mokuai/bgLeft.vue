@@ -77,7 +77,7 @@ export default {
 .yalichuanganqiComponent{
     position: absolute;
     top: 532px;
-    left: 500px;
+    left: 550px;
 }
 .tiaojiefaComponent{
     position: absolute;
