@@ -11,7 +11,7 @@
     <famen class="famenComponent"></famen>
     <PH class="phComponent"></PH>
     <EC class="ecComponent"></EC>
-    <guolvqi3 class="guolviqi3Component"></guolvqi3>
+    <diepianguolvqi class="diepianguolvqiComponent"></diepianguolvqi>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ import feishuihunheqi from './feishuihunheqi.vue'
 import famen from './famen.vue'
 import PH from './PH.vue'
 import EC from './EC.vue'
-import guolvqi3 from './guolvqi3.vue'
+import diepianguolvqi from './diepianguolvqi.vue'
 export default {
   components:{
     feiliaotong,
@@ -41,7 +41,7 @@ export default {
     famen,
     PH,
     EC,
-    guolvqi3
+    diepianguolvqi
   }
 }
 </script>
@@ -87,31 +87,31 @@ export default {
 .jiayashifeibengComponent{
     position: absolute;
     top: 260px;
-    left: 879px;
+    left: 874px;
 }
 .feishuihunheqiComponent{
     position: absolute;
-    top: 415px;
-    left: 869px;
+    top: 400px;
+    left: 864px;
 }
 .famenComponent{
     position: absolute;
-    top: 640px;
-    left: 868px;
+    top: 620px;
+    left: 863px;
 }
 .phComponent{
     position: absolute;
     top: 695px;
-    left: 920px;
+    left: 908px;
 }
 .ecComponent{
     position: absolute;
     top: 695px;
-    left: 1000px;
+    left: 986px;
 }
-.guolviqi3Component{
+.diepianguolvqiComponent{
     position: absolute;
-    top: 751px;
-    left: 1090px;
+    top: 678px;
+    left: 1107px;
 }
 </style>

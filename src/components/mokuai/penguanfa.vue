@@ -2,7 +2,7 @@
     <div class="penguanfa">
         <ul class="pg_valve" :class="item.name" v-for="item in penguanArr" :key="item.name">
             <li v-for="liItem in item.list" :key="liItem.number" @click="penshuiControl">
-                <span class="valve_icon"></span>
+                <span class="valve_icon" :class="[liItem.status?'btn_on':'btn_off']"></span>
                 <a>{{liItem.dikuaiName}}</a>
                 <a>{{liItem.dichifaName}}</a>
                 <div class="penshui1" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3" style="display: none;"></div>
@@ -42,7 +42,8 @@ export default {
                         {
                             number: 1,
                             dikuaiName: '#1地块',
-                            dichifaName: '电池阀A'
+                            dichifaName: '电池阀A',
+                            status:1
                         },
                         {
                             number: 2,
@@ -392,7 +393,7 @@ export default {
 	justify-content: space-evenly;
     box-sizing: border-box;
     padding-bottom: 100px;
-    padding-top: 20px;
+    padding-top: 60px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 100%;
@@ -409,7 +410,7 @@ export default {
 	margin-bottom: 15px;
 	height: 60px;
 	position: relative;
-    padding-left: 20%;
+    padding-left: 27px;
     box-sizing: border-box;
 }
 
@@ -430,9 +431,17 @@ export default {
 .valve_icon {
 	width: 48px;
 	height: 30px;
-	background-image: url(../../assets/images/shuifeiji/电磁阀.png);
+	/* background-image: url(../../assets/images/shuifeiji/电磁阀.png); */
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+.btn_on {
+	background-image: url(../../assets/images/shuifeiji/电磁阀.png);
+}
+
+.btn_off {
+	background-image: url(../../assets/images/shuifeiji/电磁阀off.png);
 }
 
 .pg_valve li a {
@@ -453,7 +462,7 @@ export default {
 } */
 .penshui1 {
 	/* left: calc(100% - 9px); */
-	left: 65px;
+	left: 72px;
 	top: 0;
 	width: 19px;
 	height: 35px;
@@ -480,21 +489,21 @@ export default {
 	overflow: hidden;
 }
 .shuiliu20 {
-	left: 10px;
+	left: 15px;
 	top: 650px;
 	width: 13px;
 	height: 47px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu21 {
-	left: 10px;
+	left: 15px;
 	top: 400px;
 	width: 13px;
 	height: 47px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu22 {
-	left: 10px;
+	left: 15px;
 	top: 150px;
 	width: 13px;
 	height: 47px;
@@ -521,4 +530,5 @@ export default {
 .shuiliuT {
     animation: shuiliuT 3s linear infinite;
 }
+
 </style>

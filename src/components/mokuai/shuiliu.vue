@@ -309,8 +309,8 @@ export default {
 }
 
 .hunheji {
-	left: 880px;
-	top: 451px;
+	left: 875px;
+	top: 436px;
 	width: 36px;
 	z-index: 2;
 	height: 110px;
@@ -364,16 +364,16 @@ export default {
 }
 
 .shuiliu6 {
-	left: 616px;
+	left: 500px;
 	top: 495px;
-	width: 47px;
+	width: 150px;
 	/* background: url(images/shuiliu_l.png); */
 }
 
 .shuiliu7 {
 	left: 240px;
 	top: 495px;
-	width: 47px;
+	width: 150px;
 	/* background: url(images/shuiliu_l.png); */
 }
 
