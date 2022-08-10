@@ -2,7 +2,7 @@
   <div class="zengyabeng"> 
     <div class="device-name">增压泵</div>
     <div class="device-bg">
-      <i @click="btnClick($event)" code="1" shuiliu="1,2,3" class="btn_s"  :class="[btnStatus?'btn_on':'btn_off']"></i>
+      <i @click="btnClick($event)" code="1" class="btn_s"  :class="[btnStatus?'btn_on':'btn_off']"></i>
     </div>
   </div>
 </template>
