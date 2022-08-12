@@ -6,19 +6,16 @@
     <div class="shuifeiji-right">
         <bgRight></bgRight>
     </div>
-    <shuiliu class="shuiliuComponent"></shuiliu>
   </div>
 </template>
 
 <script>
 import bgLeft from './mokuai/bgLeft.vue'
 import bgRight from './mokuai/bgRight.vue'
-import shuiliu from './mokuai/shuiliu.vue'
 export default {
     components:{
         bgLeft,
-        bgRight,
-        shuiliu
+        bgRight
     }
 }
 </script>
@@ -26,21 +23,23 @@ export default {
 <style scoped>
 .shuifeiji{
     display: flex;
-    width: 1600px;
-    height: 800px;
+    width: 1800px;
+    height: 950px;
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 30px;
-    margin:0 auto;
 }
 .shuifeiji-left{
-    width: 75%;
-    height: 100%;
+    /* width: 75%;
+    height: 100%; */
+    padding-top:150px;
+    padding-left:200px;
 }
 .shuifeiji-right{
-    height: 100%;
-    width: 25%;
+    /* height: 100%;
+    width: 25%; */
+    padding-top:150px;
     /* overflow-x: scroll;
     overflow-y: hidden;
     z-index: 1;
@@ -63,11 +62,5 @@ export default {
     -webkit-box-shadow:inset 0 0 1px rgba(0,0,0,.3);
     background-color:#555;
 } */
-.shuiliuComponent{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top:0;
-    left:0;
-}
+
 </style>

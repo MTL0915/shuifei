@@ -121,6 +121,7 @@ export default {
 	z-index: 1;
 	width: 830px;
     height: 485px;
+	/* position: relative; */
 }
 
 .pot_box {
@@ -129,6 +130,7 @@ export default {
 	top: 0px;
 	width: 14.5%;
 	height: 100%;
+	/* height:600px; */
 	background-image: url(../../assets/images/shuifeiji/pot.png);
 	background-position: top;
 	background-repeat: no-repeat;

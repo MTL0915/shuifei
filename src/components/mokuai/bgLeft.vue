@@ -12,6 +12,7 @@
     <PH class="phComponent"></PH>
     <EC class="ecComponent"></EC>
     <diepianguolvqi class="diepianguolvqiComponent"></diepianguolvqi>
+    <shuiliu class="shuiliuComponent"></shuiliu>
   </div>
 </template>
 
@@ -28,6 +29,7 @@ import famen from './famen.vue'
 import PH from './PH.vue'
 import EC from './EC.vue'
 import diepianguolvqi from './diepianguolvqi.vue'
+import shuiliu from './shuiliu.vue'
 export default {
   components:{
     feiliaotong,
@@ -41,7 +43,8 @@ export default {
     famen,
     PH,
     EC,
-    diepianguolvqi
+    diepianguolvqi,
+    shuiliu
   }
 }
 </script>
@@ -113,5 +116,12 @@ export default {
     position: absolute;
     top: 678px;
     left: 1107px;
+}
+.shuiliuComponent{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
 }
 </style>

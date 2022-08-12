@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <!-- <Header></Header> -->
     <div class="content">
       <!-- <div class="left">
         <Shishi></Shishi>
@@ -65,21 +65,26 @@ li {
 }
 #app {
     background:url('./assets/images/底图.png');
-    height: 100%;
+    width:1920px;
+    height:1080px;
+    /* height: 100%; */
 }
 .content{
-    height: calc(100% - 75px);
+    /* height: calc(100% - 75px);
     margin-top: 6px;
-    position: relative;
+    position: relative; */
 }
 .center {
     /* width: calc(100% - 350px);
     margin-left: 350px; */
-    width: 100%;
-    height: 100%;
+    width: 1860px;
+    height: 1040px;
     position: relative;
-    padding: 15px;
+    padding: 30px;
     box-sizing: border-box;
+    background-color: rgba(0, 0, 0, .4);
+    border: 1px solid #2192f1;
+    margin:0 auto;
 }
 .left{
     position: absolute;
