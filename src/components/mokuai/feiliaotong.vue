@@ -1,6 +1,7 @@
 <template>
     <!--施肥桶-->
     <div class="pot_cont">
+		<div class="pot_entry"></div>
         <!--循环遍历每一个桶-->
         <div class="pot_box" v-for="item in pots" :key="item.tag" :class="`pot_box${item.num}`">
             <a><span>{{item.tag}}&nbsp;-&nbsp;</span><span class="boxL">{{item.volume}}L</span></a>
@@ -119,29 +120,46 @@ export default {
 /*施肥桶样式*/
 .pot_cont {
 	z-index: 1;
-	width: 830px;
-    height: 485px;
+	width: 822px;
+    height: 608px;
 	/* position: relative; */
 }
-
-.pot_box {
-	position: absolute;
-	left: 0;
-	top: 0px;
-	width: 14.5%;
-	height: 100%;
-	/* height:600px; */
-	background-image: url(../../assets/images/shuifeiji/pot.png);
+.pot_entry{
+	width:196px;
+	height:363px;
+	background-image: url(../../assets/images/shuifeiji/pot_01.png);
 	background-position: top;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	position: absolute;
+	left: -196px;
+	top: -50px;
+}
+.pot_box {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 120px;
+	/* height: 100%; */
+	height:608px;
+	background-image: url(../../assets/images/shuifeiji/pot_09.png);
+	background-position: top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.pot_box:last-child{
+	background-image: url(../../assets/images/shuifeiji/pot_10.png);
+}
+.pot_box1 {
+    background-image: url(../../assets/images/shuifeiji/pot_08.png);
+    /* height: 448px; */
 }
 
 /*施肥桶顶部文字描述+容量*/
 .pot_box a {
 	position: relative;
-	left: 8px;
-	top: 20px;
+    left: 14px;
+    top: 130px;
 	color: #e5596b;
 	font-weight: bold;
 }
@@ -152,14 +170,14 @@ export default {
 }
 
 /*施肥桶填充水*/
-/* .pot_water {
-	width: 62px;
-	height: 93px;
-	position: relative;
-	left: 9px;
-	top: 8px;
-	overflow: hidden
-} */
+.pot_water {
+    width: 69px;
+    height: 93px;
+    position: relative;
+    left: 7px;
+    top: 148px;
+    overflow: hidden;
+}
 
 .water_bg {
 	position: absolute;
@@ -194,17 +212,14 @@ export default {
 	background-image: url(../../assets/images/shuifeiji/03scale.png);
 	background-repeat: no-repeat;
 }
-.pot_box1 {
-    background-image: url(../../assets/images/shuifeiji/pot1.png);
-    height: 448px;
-}
+
 
 .water_top1 {
 	height: 65px;
 }
 
 .pot_box2 {
-	left: 11%;
+	left: 12%;
 	/* background-image: url(../../assets/images/shuifeiji/pot.png);
 	height: 60.5%; */
 }
@@ -214,7 +229,7 @@ export default {
 }
 
 .pot_box3 {
-	left: 22%;
+	left: 24%;
 	/* background-image: url(../../assets/images/shuifeiji/pot.png);
 	height: 60.5%; */
 }
@@ -224,7 +239,7 @@ export default {
 }
 
 .pot_box4 {
-	left: 33%;
+	left: 36%;
     /* background-image: url(../../assets/images/shuifeiji/pot.png);
 	height: 60.5%; */
 }
@@ -234,7 +249,7 @@ export default {
 }
 
 .pot_box5 {
-	left: 44%;
+	left: 48%;
 	/* background-image: url(../../assets/images/shuifeiji/pot.png);
 	height: 60.5%; */
 }
@@ -244,7 +259,7 @@ export default {
 }
 
 .pot_box6 {
-    left: 55%;
+    left: 60%;
     /* background-image: url(../../assets/images/shuifeiji/pot.png);
 	height: 60.5%; */
 }
@@ -254,7 +269,7 @@ export default {
 }
 
 .pot_box7 {
-    left: 66%;
+    left: 72%;
     /* background-image: url(../../assets/images/shuifeiji/pot.png);
 	height: 60.5%; */
 }
@@ -264,7 +279,7 @@ export default {
 }
 
 .pot_box8 {
-    left: 77%;
+    left: 84%;
     /* background-image: url(../../assets/images/shuifeiji/pot.png);
 	height: 60.5%; */
 }
@@ -292,7 +307,7 @@ export default {
 
 .switch_1 {
 	right: 29%;
-	bottom: 5%;
+	bottom: 12%;
 	position: absolute;
 }
 
@@ -338,62 +353,9 @@ export default {
 	position: absolute;
 }
 
-/* 响应式媒体查询 */
-@media screen and (min-width: 1800px) {
-	.pot_water {
-		width: 62%;
-		height: 26%;
-		position: relative;
-		left: 3%;
-		/* top: 8px; */
-		overflow: hidden;
-	}
-	
-	.pot_water.pot_water_one {
-		height: 28.5%;
-	}
-	
-	.pot_box a {
-		top : 8px;
-		left: 16px;
-	}
-	
-}
 
-@media (min-width: 1467px) and (max-width: 1799px) {
-	.pot_water {
-		width: 62%;
-		height: 26%;
-		position: relative;
-		left: 3%;
-		/* top: 8px; */
-		overflow: hidden;
-	}
-	.pot_water.pot_water_one {
-		height: 28.5%;
-	}
-}
 
-@media screen and (max-width: 1466px) {
-	.pot_box a {
-		top : 20px;
-		left: 2px;
-	}
-	.pot_water {
-		width: 62%;
-		height: 26%;
-		position: relative;
-		left: 3%;
-		/* top: 8px; */
-		overflow: hidden;
-	}
-	.pot_water.pot_water_one {
-		height: 28.5%;
-	}
 
-}
 
-@media (min-width: 1399px) and (max-width: 1599px) {
 
-}
 </style>

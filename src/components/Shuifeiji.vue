@@ -33,13 +33,13 @@ export default {
 .shuifeiji-left{
     /* width: 75%;
     height: 100%; */
-    padding-top:150px;
+    padding-top:170px;
     padding-left:200px;
 }
 .shuifeiji-right{
     /* height: 100%;
     width: 25%; */
-    padding-top:150px;
+    padding-top:170px;
     /* overflow-x: scroll;
     overflow-y: hidden;
     z-index: 1;

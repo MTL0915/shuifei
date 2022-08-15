@@ -59,7 +59,7 @@ export default {
 }
 .feiliaotongComponent{
     position: absolute;
-	top: 8px;
+	top: -115px;
 	left: 0;
 }
 .zengyabengComponent{
