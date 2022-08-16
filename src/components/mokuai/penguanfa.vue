@@ -684,7 +684,7 @@ export default {
 }
 
 .btn_on {
-	background-image: url(../../assets/images/shuifeiji/电磁阀.png);
+	background-image: url(../../assets/images/shuifeiji/电磁阀on.png);
 }
 
 .btn_off {

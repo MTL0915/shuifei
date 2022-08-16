@@ -379,74 +379,74 @@ export default {
 
 .shuiliu8 {
 	left: 65.5px;
-	top: 333px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu9 {
-	left: 158px;
-	top: 333px;
+	left: 164px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu10 {
-	left: 249px;
-	top: 333px;
+	left: 262px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu11 {
-	left: 339px;
-	top: 333px;
+	left: 361px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu12 {
-	left: 432px;
-	top: 333px;
+	left: 460px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 .shuiliu13 {
-	left: 523px;
-	top: 333px;
+	left: 558px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu14 {
-	left: 614.5px;
-	top: 333px;
+	left: 656.5px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu15 {
-	left: 704px;
-	top: 333px;
+	left: 754px;
+	top: 326px;
 	height: 47px;
 	width: 13px;
 	/* background: url(images/shuiliu_t.png); */
 }
 
 .shuiliu16 {
-	left: 240px;
+	left: 264px;
 	top: 213px;
 	width: 47px;
 	/* background: url(images/shuiliu_R.png); */
 }
 
 .shuiliu17 {
-	left: 616px;
+	left: 565px;
 	top: 213px;
 	width: 47px;
 	/* background: url(images/shuiliu_R.png); */
