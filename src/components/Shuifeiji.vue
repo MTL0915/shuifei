@@ -28,7 +28,7 @@ export default {
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
 .shuifeiji-left{
     /* width: 75%;
