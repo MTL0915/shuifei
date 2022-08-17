@@ -5,84 +5,164 @@
 		<div class="pot_entry"></div>
 		<!-- 小水流 -->
 		<div class="smallWater-box">
-			<div class="smallWater smallWater1" where="" or="">
+			<div class="smallWater smallWater1" where="10001" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
         	</div>
-			<div class="smallWater smallWater2" where="" or="">
+			<div class="smallWater smallWater2" where="10001" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater3" where="" or="">
+			<div class="smallWater smallWater3" where="10002" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater4" where="" or="">
+			<div class="smallWater smallWater4" where="10002" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater5" where="" or="">
+			<div class="smallWater smallWater5" where="10003" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater6" where="" or="">
+			<div class="smallWater smallWater6" where="10003" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater7" where="" or="">
+			<div class="smallWater smallWater7" where="10004" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater8" where="" or="">
+			<div class="smallWater smallWater8" where="10004" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater9" where="" or="">
+			<div class="smallWater smallWater9" where="10005" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater10" where="" or="">
+			<div class="smallWater smallWater10" where="10005" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater11" where="" or="">
+			<div class="smallWater smallWater11" where="10006" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater12" where="" or="">
+			<div class="smallWater smallWater12" where="10006" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater13" where="" or="">
+			<div class="smallWater smallWater13" where="10007" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater14" where="" or="">
+			<div class="smallWater smallWater14" where="10007" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater15" where="" or="">
+			<div class="smallWater smallWater15" where="10008" or="">
 				<div class="shuiliu_r">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
 				</div>
 			</div>
-			<div class="smallWater smallWater16" where="" or="">
+			<div class="smallWater smallWater16" where="10008" or="">
 				<div class="shuiliuB">
 					<img class="" src="../../assets/images/shuifeiji/smallWater_b.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater17" where="20001" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+        	</div>
+			<div class="smallWater smallWater18" where="20002" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater19" where="20003" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater20" where="20004" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater21" where="20005" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater22" where="20006" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater23" where="20007" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater24" where="20008" or="">
+				<div class="shuiliu_r">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_r.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater25" where="30001" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
+				</div>
+        	</div>
+			<div class="smallWater smallWater26" where="30002" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater27" where="30003" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater28" where="30004" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater29" where="30005" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater30" where="30006" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater31" where="30007" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
+				</div>
+			</div>
+			<div class="smallWater smallWater32" where="30008" or="">
+				<div class="shuiliu_l">
+					<img class="" src="../../assets/images/shuifeiji/smallWater_l.png">
 				</div>
 			</div>
 		</div>
@@ -99,11 +179,11 @@
             </div>
             <i @click="btnClick($event)" class="btn_s btn_off" :class="`switch_${item.num}`" :code="`${item.code}`"></i>
 			<!--注水阀按钮-->
-			<i @click="zhushuiBtnClick($event,index)" class="zhushuiBtn" :class="[item.zhushuifa.value?'smallBtn_on':'smallBtn_off']" :code="`${item.zhushuifa.channel}`"></i>
+			<i @click="zhushuiBtnClick($event,index)" class="zhushuiBtn" :class="[item.zhushuifa.value?'smallBtn_on':'smallBtn_off']" :code="`${10001+index}`"></i>
 			<!--注肥阀按钮-->
-			<i @click="zhufeiBtnClick($event,index)" class="zhufeiBtn" :class="[item.zhufeifa.value?'smallBtn_on':'smallBtn_off']" :code="`${item.zhufeifa.channel}`"></i>
+			<i @click="zhufeiBtnClick($event,index)" class="zhufeiBtn" :class="[item.zhufeifa.value?'smallBtn_on':'smallBtn_off']" :code="`${20001+index}`"></i>
 			<!--排水阀按钮-->
-			<i @click="paishuiBtnClick($event,index)" class="paishuiBtn" :class="[item.paishuifa.value?'smallBtn_on':'smallBtn_off']" :code="`${item.paishuifa.channel}`"></i>
+			<i @click="paishuiBtnClick($event,index)" class="paishuiBtn" :class="[item.paishuifa.value?'smallBtn_on':'smallBtn_off']" :code="`${30001+index}`"></i>
         </div>
     </div>
 </template>
@@ -921,7 +1001,8 @@ export default {
 					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
 					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
 				}
-			]
+			],
+			smallOpenKey:[]
         }
     },
 	methods:{
@@ -949,6 +1030,8 @@ export default {
 		// 注水阀小按钮控制开关
 		zhushuiBtnClick(e,index){
 			console.log(e.target)
+			var targetBtn = e.currentTarget
+			var code = targetBtn.getAttribute("code");
 			// 小按钮开关的切换    
             if(this.pots[index].zhushuifa.value == 0){
                 this.pots[index].zhushuifa.value = 1
@@ -956,11 +1039,14 @@ export default {
             else{
                 this.pots[index].zhushuifa.value = 0
             }
+			this.tiaozhengSmallWater(code)
 		},
 
 		// 注肥阀小按钮控制开关
 		zhufeiBtnClick(e,index){
 			console.log(e.target)
+			var targetBtn = e.currentTarget
+			var code = targetBtn.getAttribute("code");
 			// 小按钮开关的切换    
             if(this.pots[index].zhufeifa.value == 0){
                 this.pots[index].zhufeifa.value = 1
@@ -968,11 +1054,14 @@ export default {
             else{
                 this.pots[index].zhufeifa.value = 0
             }
+			this.tiaozhengSmallWater(code)
 		},
 
 		// 排水阀小按钮控制开关
 		paishuiBtnClick(e,index){
 			console.log(e.target)
+			var targetBtn = e.currentTarget
+			var code = targetBtn.getAttribute("code");
 			// 小按钮开关的切换    
             if(this.pots[index].paishuifa.value == 0){
                 this.pots[index].paishuifa.value = 1
@@ -980,6 +1069,64 @@ export default {
             else{
                 this.pots[index].paishuifa.value = 0
             }
+			this.tiaozhengSmallWater(code)
+		},
+
+		// 控制小流水显示隐藏
+		tiaozhengSmallWater(code){
+            // 所有的噴水器
+            var smallWater = document.getElementsByClassName('smallWater')
+            var smallWaterBox = Array.prototype.slice.apply(smallWater);
+			// 获取目前小开关的情况，有则删除，无则添加
+            const index = this.smallOpenKey.indexOf(code)
+            // console.log(index)
+            if (index === -1) {
+                this.smallOpenKey.push(code)
+            } else {
+                this.smallOpenKey.splice(index, 1)
+            }
+
+            for( var i = 0 ; i < smallWaterBox.length ; i++ ){
+                var smallWaterItem = smallWaterBox[i];
+                var where = smallWaterItem.getAttribute("where");
+                if( !where ) continue;
+                where = where.split(",");
+                var or = smallWaterItem.getAttribute("or");
+                if( or ) or = or.split(",");
+                var bool = true;
+                for( var ii in where ){
+                    if( this.smallOpenKey.indexOf(where[ii]) === -1 ){
+                        bool = false;
+                        break;
+                    }
+                } 
+                if( or && bool ){
+                    bool = false;
+                    for( var ii in or ){
+                        if( this.smallOpenKey.indexOf(or[ii]) !== -1 ){						
+                            bool = true;
+                            break;
+                        }
+                    }
+                }
+            
+                
+                if(bool){
+                    smallWaterItem.style.display = 'block'
+                }else{
+                    smallWaterItem.style.display = 'none'
+                }
+            }
+        }
+	},
+	mounted(){
+		if(this.pots.length == 0){
+			var potEntry = document.getElementsByClassName('pot_entry')[0]
+			potEntry.style.backgroundImage = "none"
+		}
+		if(this.pots.length == 1){
+			var onlyPot = document.getElementsByClassName('pot_box')[0]
+			onlyPot.style.backgroundImage = "url(" + require("../../assets/images/shuifeiji/pot_11.png") + ")"
 		}
 	}
 }
@@ -1273,7 +1420,7 @@ export default {
 }
 .smallWater{
 	position: absolute;
-    /* display: none; */
+    display: none;
     z-index: 1;
     overflow: hidden;
 }
@@ -1373,6 +1520,102 @@ export default {
 	width: 9px;
     height: 29px;
 }
+.smallWater17{
+	top: 65px;
+	left: -30px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater18{
+	top: 65px;
+	left: 70px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater19{
+	top: 65px;
+	left: 170px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater20{
+	top: 65px;
+	left: 270px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater21{
+	top: 65px;
+	left: 370px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater22{
+	top: 65px;
+	left: 470px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater23{
+	top: 65px;
+	left: 570px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater24{
+	top: 65px;
+	left: 670px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater25{
+	top: 303px;
+	left: 25px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater26{
+	top: 303px;
+	left: 125px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater27{
+	top: 303px;
+	left: 225px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater28{
+	top: 303px;
+	left: 325px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater29{
+	top: 303px;
+	left: 425px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater30{
+	top: 303px;
+	left: 525px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater31{
+	top: 303px;
+	left: 625px;
+	width: 29px;
+    height: 9px;
+}
+.smallWater32{
+	top: 303px;
+	left: 725px;
+	width: 29px;
+    height: 9px;
+}
 
 /* 小水流动画 */
 
@@ -1382,11 +1625,11 @@ export default {
 
 @keyframes shuiliuT {
     from {
-        transform: translateY(0px);
+        transform: translateY(25px);
     }
 
     to {
-        transform: translateY(-220px);
+        transform: translateY(-25px);
     }
 }
 
@@ -1410,11 +1653,11 @@ export default {
 
 @keyframes shuiliu_l {
     from {
-        transform: translateX(50px);
+        transform: translateX(25px);
     }
 
     to {
-        transform: translateX(-150px);
+        transform: translateX(-25px);
     }
 }
 
