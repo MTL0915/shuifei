@@ -17,6 +17,9 @@
 </template>
 
 <script>
+import { getToken } from '@/api/login'
+import { getShebei } from '@/api/getShebei'
+
 import feiliaotong from './feiliaotong.vue'
 import zengyabeng from './zengyabeng.vue'
 import guolvqi from './guolvqi.vue'
@@ -45,6 +48,24 @@ export default {
     EC,
     diepianguolvqi,
     shuiliu
+  },
+  mounted(){
+    // 获取token
+    const data = {
+        "expires_in": 0,
+        "password": "Matianle0915",
+        "username": "18923236683"
+    }
+    getToken(data).then(res => {
+        console.log(res)
+    })
+    // 获取设备
+    const msg = {
+        "device_id": "PK01B-2110014"
+    }
+    getShebei(msg).then(res => {
+        console.log(res)
+    })
   }
 }
 </script>

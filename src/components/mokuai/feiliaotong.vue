@@ -1,6 +1,22 @@
 <template>
     <!--施肥桶-->
     <div class="pot_cont">
+		<button style="z-index:2;position:relative;" @click="show">点击弹框</button>
+		<el-dialog
+			title="通道配置"
+			:visible.sync="isShow"    
+			>
+			<common-form
+				:formLabel="operateFormLabel"
+				:form="operateForm"
+				:inline="true"
+				ref="form"
+			></common-form>
+			<div slot="footer" class="dialog-footer">
+				<el-button @click="isShow = false">取消</el-button>
+				<el-button type="primary" @click="confirm">确定</el-button>
+			</div>
+		</el-dialog>
 		<!--入口背景-->
 		<div class="pot_entry"></div>
 		<!-- 小水流 -->
@@ -189,8 +205,12 @@
 </template>
 
 <script>
+import commonForm from '@/components/commonForm.vue'
 export default {
     name:'shuifei',
+	components:{
+    	commonForm
+  	},
     data(){
         return{
             // 肥料桶
@@ -708,301 +728,45 @@ export default {
 					}
                 }
             ],
-			// 注水阀
-			zhushuifaArr:[
+			smallOpenKey:[],
+
+			isShow:false,
+			operateFormLabel: [
 				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217b402ab",
-					"name": "肥桶1注水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 23,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
+				model:'name',
+				label:'名称',
+				type:'input'
 				},
 				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217bb02ac",
-					"name": "肥桶2注水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 24,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
+				model:'type',
+				label:'通道类型',
+				type:'input'
 				},
 				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217c102ad",
-					"name": "肥桶3注水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 25,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217c902ae",
-					"name": "肥桶4注水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 26,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217d102af",
-					"name": "肥桶5注水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 27,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
+				model:'channel',
+				label:'通道号',
+				type:'select',
+				opts:[
+					{
+					label:'1',
+					value:1
+					},
+					{
+					label:'2',
+					value:2
+					},
+					{
+					label:'3',
+					value:3
+					}
+				]
 				}
 			],
-			// 注肥阀
-			zhufeifaArr:[
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c22178e02a6",
-					"name": "肥桶1注肥阀",
-					"device_id": "PK01B-2110014",
-					"channel": 18,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c22179702a7",
-					"name": "肥桶2注肥阀",
-					"device_id": "PK01B-2110014",
-					"channel": 19,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c22179f02a8",
-					"name": "肥桶3注肥阀",
-					"device_id": "PK01B-2110014",
-					"channel": 20,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217a702a9",
-					"name": "肥桶4注肥阀",
-					"device_id": "PK01B-2110014",
-					"channel": 21,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217ad02aa",
-					"name": "肥桶5注肥阀",
-					"device_id": "PK01B-2110014",
-					"channel": 22,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				}
-			],
-			// 排水阀
-			paishuifaArr:[
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217d902b0",
-					"name": "肥桶1排水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 28,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217e502b1",
-					"name": "肥桶2排水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 29,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217ed02b2",
-					"name": "肥桶3排水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 30,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217f502b3",
-					"name": "肥桶4排水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 31,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				},
-				{
-					"hd_device_sensor_id": "ff8080817d37c928017d4c2217fc02b4",
-					"name": "肥桶5排水阀",
-					"device_id": "PK01B-2110014",
-					"channel": 32,
-					"value": 0.0,
-					"unit": "",
-					"system_response_time": "2022-08-09 14:18:33",
-					"channelType": 1,
-					"hd_sensor_type_name": "二挡开关",
-					"hd_sensor_type_code": "101",
-					"subgroup_name": null,
-					"subgroup_code": null,
-					"category": "控制阀",
-					"category_code": "VALVE",
-					"sta": 1,
-					"hd_sensor_type_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/c97df452-f287-49f3-91bd-a7ae3dbe3bd9.png",
-					"hd_sensor_type_small_image_path": "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/dd1330c6-f70c-4a52-907e-8a30d82723b9.png"
-				}
-			],
-			smallOpenKey:[]
+			operateForm:{
+				name: '',
+				type: '',
+				channel: ''
+			},
         }
     },
 	methods:{
@@ -1117,7 +881,18 @@ export default {
                     smallWaterItem.style.display = 'none'
                 }
             }
-        }
+        },
+		show(){
+			this.isShow = true
+			this.operateForm = {
+				name: '',
+				channel: '',
+				type: ''
+      		}
+		},
+		confirm(){
+			console.log(4444)
+		},
 	},
 	mounted(){
 		if(this.pots.length == 0){
@@ -1135,7 +910,7 @@ export default {
 <style>
 /*施肥桶样式*/
 .pot_cont {
-	z-index: 1;
+	/* z-index: 1; */
 	width: 822px;
     height: 608px;
 	/* position: relative; */
