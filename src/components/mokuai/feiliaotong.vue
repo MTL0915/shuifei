@@ -1,22 +1,6 @@
 <template>
     <!--施肥桶-->
     <div class="pot_cont">
-		<button style="z-index:2;position:relative;" @click="show">点击弹框</button>
-		<el-dialog
-			title="通道配置"
-			:visible.sync="isShow"    
-			>
-			<common-form
-				:formLabel="operateFormLabel"
-				:form="operateForm"
-				:inline="true"
-				ref="form"
-			></common-form>
-			<div slot="footer" class="dialog-footer">
-				<el-button @click="isShow = false">取消</el-button>
-				<el-button type="primary" @click="confirm">确定</el-button>
-			</div>
-		</el-dialog>
 		<!--入口背景-->
 		<div class="pot_entry"></div>
 		<!-- 小水流 -->
@@ -728,45 +712,7 @@ export default {
 					}
                 }
             ],
-			smallOpenKey:[],
-
-			isShow:false,
-			operateFormLabel: [
-				{
-				model:'name',
-				label:'名称',
-				type:'input'
-				},
-				{
-				model:'type',
-				label:'通道类型',
-				type:'input'
-				},
-				{
-				model:'channel',
-				label:'通道号',
-				type:'select',
-				opts:[
-					{
-					label:'1',
-					value:1
-					},
-					{
-					label:'2',
-					value:2
-					},
-					{
-					label:'3',
-					value:3
-					}
-				]
-				}
-			],
-			operateForm:{
-				name: '',
-				type: '',
-				channel: ''
-			},
+			smallOpenKey:[]
         }
     },
 	methods:{
@@ -881,18 +827,7 @@ export default {
                     smallWaterItem.style.display = 'none'
                 }
             }
-        },
-		show(){
-			this.isShow = true
-			this.operateForm = {
-				name: '',
-				channel: '',
-				type: ''
-      		}
-		},
-		confirm(){
-			console.log(4444)
-		},
+        }
 	},
 	mounted(){
 		if(this.pots.length == 0){
@@ -1190,8 +1125,10 @@ export default {
 
 /* 小水流 */
 .smallWater-box{
-	position: relative;
+	position: absolute;
 	z-index: 1;
+	top: 0;
+	left: 0;
 }
 .smallWater{
 	position: absolute;

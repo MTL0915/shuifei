@@ -29,193 +29,11 @@
 </template>
 
 <script>
+import {getShebei} from '@/api/getShebei'
 export default {
     data(){
         return{
-            // 喷灌阀
-            penguanArr:[
-                {
-                    name: 'pg_valve1',
-                    num: 1,
-                    list:[
-                        {
-                            number: 1,
-                            dikuaiName: '#1地块',
-                            dichifaName: '电池阀A',
-                            status:1
-                        },
-                        {
-                            number: 2,
-                            dikuaiName: '#2地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 3,
-                            dikuaiName: '#3地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 4,
-                            dikuaiName: '#4地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 5,
-                            dikuaiName: '#5地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 6,
-                            dikuaiName: '#6地块',
-                            dichifaName: '电池阀A'
-                        }
-                    ]
-                },
-                {
-                    name: 'pg_valve2',
-                    num: 2,
-                    list:[
-                        {
-                            number: 7,
-                            dikuaiName: '#7地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 8,
-                            dikuaiName: '#8地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 9,
-                            dikuaiName: '#9地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 10,
-                            dikuaiName: '#10地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 11,
-                            dikuaiName: '#11地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 12,
-                            dikuaiName: '#12地块',
-                            dichifaName: '电池阀A'
-                        }
-                    ]
-                },
-                {
-                    name: 'pg_valve3',
-                    num: 3,
-                    list:[
-                        {
-                            number: 13,
-                            dikuaiName: '#13地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 14,
-                            dikuaiName: '#14地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 15,
-                            dikuaiName: '#15地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 16,
-                            dikuaiName: '#16地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 17,
-                            dikuaiName: '#17地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 18,
-                            dikuaiName: '#18地块',
-                            dichifaName: '电池阀A'
-                        }
-                    ]
-                },
-                {
-                    name: 'pg_valve4',
-                    num: 4,
-                    list:[
-                        {
-                            number: 19,
-                            dikuaiName: '#19地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 20,
-                            dikuaiName: '#20地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 21,
-                            dikuaiName: '#21地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 22,
-                            dikuaiName: '#22地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 23,
-                            dikuaiName: '#23地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 24,
-                            dikuaiName: '#24地块',
-                            dichifaName: '电池阀A'
-                        }
-                    ]
-                },
-                {
-                    name: 'pg_valve5',
-                    num: 5,
-                    list:[
-                        {
-                            number: 25,
-                            dikuaiName: '#25地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 26,
-                            dikuaiName: '#26地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 27,
-                            dikuaiName: '#27地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 28,
-                            dikuaiName: '#28地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 29,
-                            dikuaiName: '#29地块',
-                            dichifaName: '电池阀A'
-                        },
-                        {
-                            number: 30,
-                            dikuaiName: '#30地块',
-                            dichifaName: '电池阀A'
-                        }
-                    ]
-                }
-            ],
+            // 灌溉阀
             apiResult:[
                 {
                     "hd_device_sensor_id": "ff8080817d37c928017d4c2216ff0295",
@@ -526,14 +344,31 @@ export default {
         }
     },
     mounted(){
-        // 每六个一组
-        for(var i=0;i<this.apiResult.length;i+=6){
-            this.sixResult.push(this.apiResult.slice(i,i+6));
-        }
-        console.log(this.sixResult)
-        // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
-        // this.$emit('getWidth',this.penguanArr.length)
-        this.$emit('getWidth',this.sixResult.length)
+        // axios获取设备
+        const shebei = {
+            device_id: "PK01B-2110014",
+        };
+        getShebei(shebei).then((res) => {
+            console.log(res);
+            var shebeiArr = res.data.sensorInfos
+            var guangaifaArr = []
+            // 过滤出喷灌阀的数组
+            for( var i = 0 ; i < shebeiArr.length ; i++ ){
+                if(shebeiArr[i].name.indexOf('灌溉阀') != -1){
+                    guangaifaArr.push(shebeiArr[i])
+                }
+            }
+            console.log(guangaifaArr)
+            // 每六个一组
+            for(var i=0;i<guangaifaArr.length;i+=6){
+                this.sixResult.push(guangaifaArr.slice(i,i+6));
+            }
+            console.log(this.sixResult)
+            // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
+            this.$emit('getWidth',this.sixResult.length)
+        });
+        
+
         
         // 事件总线，调整喷水器
         this.$bus.$on('penguanfaGetOpenKey',(openKey)=>{ // 这里一定要用箭头函数

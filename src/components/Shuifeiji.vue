@@ -1,46 +1,82 @@
 <template>
   <div class="shuifeiji">
     <div class="shuifeiji-left">
-        <bgLeft></bgLeft>
+      <bgLeft></bgLeft>
     </div>
     <div class="shuifeiji-right">
-        <bgRight></bgRight>
+      <bgRight></bgRight>
     </div>
   </div>
 </template>
 
 <script>
-import bgLeft from './mokuai/bgLeft.vue'
-import bgRight from './mokuai/bgRight.vue'
+import {getToken} from '@/api/login'
+import {getShebei} from '@/api/getShebei'
+import {getChuanganqi} from '@/api/getChuanganqi'
+
+import bgLeft from "./mokuai/bgLeft.vue";
+import bgRight from "./mokuai/bgRight.vue";
 export default {
-    components:{
-        bgLeft,
-        bgRight
+  components: {
+    bgLeft,
+    bgRight,
+  },
+  mounted() {
+    // axios获取token
+    const data = {
+      expires_in: 0,
+      password: "Matianle0915",
+      username: "18923236683",
+    };
+    getToken(data).then((res) => {
+      console.log(res);
+    });
+    // axios获取设备
+    const shebei = {
+      device_id: "PK01B-2110014",
+    };
+    getShebei(shebei).then((res) => {
+      console.log(res)
+    });
+    // axios获取传感器
+    const chuanganqi = {
+      device_id: "PC01B-2110014",
+    };
+    getChuanganqi(chuanganqi).then((res) => {
+      console.log(res);
+      this.chuanganqiArr = res.data.sensorInfos
+    });
+  },
+  data(){
+    return{
+      shebeiArr:[],
+      chuanganqiArr:[]
     }
-}
+  },
+};
 </script>
 
 <style scoped>
-.shuifeiji{
-    display: flex;
-    width: 1800px;
-    height: 950px;
-    position: relative;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 50px;
+.shuifeiji {
+  display: flex;
+  width: 1800px;
+  height: 950px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 50px;
 }
-.shuifeiji-left{
-    /* width: 75%;
+.shuifeiji-left {
+  /* width: 75%;
     height: 100%; */
-    padding-top:170px;
-    padding-left:200px;
+  padding-top: 170px;
+  padding-left: 200px;
 }
-.shuifeiji-right{
-    /* height: 100%;
+.shuifeiji-right {
+  /* height: 100%;
     width: 25%; */
-    padding-top:170px;
-    /* overflow-x: scroll;
+  padding-top: 170px;
+  /* overflow-x: scroll;
     overflow-y: hidden;
     z-index: 1;
     padding-bottom: 3px; */
@@ -62,5 +98,4 @@ export default {
     -webkit-box-shadow:inset 0 0 1px rgba(0,0,0,.3);
     background-color:#555;
 } */
-
 </style>

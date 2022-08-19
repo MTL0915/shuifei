@@ -1,16 +1,16 @@
 <template>
   <div class="bg-right">
-    <penguanfa @getWidth="getWidth"></penguanfa>
+    <guangaifa @getWidth="getWidth"></guangaifa>
   </div>
 </template>
 
 <script>
-import penguanfa from './penguanfa.vue'
+import guangaifa from './guangaifa.vue'
 export default {
   components:{
-    penguanfa
+    guangaifa
   },
-methods:{
+  methods:{
     getWidth(length){
       var bgRight = document.getElementsByClassName('bg-right')[0]
       bgRight.style.width = 100 * length + 'px'
