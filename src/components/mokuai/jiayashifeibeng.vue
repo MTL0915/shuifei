@@ -1,86 +1,123 @@
 <template>
   <div class="jiayashifeibeng">
     <div class="device-bg">
-      <i @click="btnClick()" ref="btn" code="12" class="btn_s" :class="[btnStatus?'btn_on':'btn_off']"></i>
+      <i
+        @click="btnClick()"
+        ref="btn"
+        code="12"
+        class="btn_s"
+        :class="[btnStatus ? 'btn_on' : 'btn_off']"
+      ></i>
     </div>
     <div class="device-name">加压施肥泵</div>
   </div>
 </template>
 
 <script>
+import {
+  getSta,
+  getNowStatus,
+  openChannel,
+  closeChannel,
+} from "@/utils/websocket_util.js";
 export default {
-  data(){
-    return{
-      btnStatus:''
-    }
+  data() {
+    return {
+      btnStatus: "",
+    };
   },
-  mounted(){
+  mounted() {
     // 获取属性code
-    let code = this.$refs.btn.getAttribute("code")
+    let code = this.$refs.btn.getAttribute("code");
     // 转变成数字
-    code = Number(code)
+    code = Number(code);
     // 获取目前开关的情况
-    const index = this.$store.state.btn.openKey.indexOf(code)
+    const index = this.$store.state.btn.openKey.indexOf(code);
     if (index === -1) {
-      this.btnStatus = false
+      this.btnStatus = false;
     } else {
-      this.btnStatus = true
+      this.btnStatus = true;
     }
   },
-  computed:{
+  computed: {
     // 这里是拿到VueX的全局数据，打开的按钮
-    openKey(){
-      return this.$store.state.btn.openKey
-    }
+    openKey() {
+      return this.$store.state.btn.openKey;
+    },
   },
-	methods:{
-		// 控制按钮开关
-    btnClick(){
+  methods: {
+    // 控制按钮开关
+    btnClick() {
       // 获取属性code
-      let code = this.$refs.btn.getAttribute("code")
+      let code = this.$refs.btn.getAttribute("code");
       // 转变成数字
-      code = Number(code)
+      code = Number(code);
       // 获取目前开关的情况，根据情况切换，并保存到vuex里
-      const index = this.$store.state.btn.openKey.indexOf(code)
-      if (index === -1) {       
-        this.$store.commit('addCode',code)
-        this.btnStatus = true
+      const index = this.$store.state.btn.openKey.indexOf(code);
+      if (index === -1) {
+        this.$store.commit("addCode", code);
+        this.btnStatus = true;
       } else {
-        this.$store.commit('delCode',index)
-        this.btnStatus = false        
+        this.$store.commit("delCode", index);
+        this.btnStatus = false;
       }
       // console.log(this.$store.state.btn.openKey)
       // 事件总线触发流水事件
-      this.$bus.$emit('waterEvent')
-    }
-	}
-}
+      this.$bus.$emit("waterEvent");
+
+      // websocket操作硬件测试
+      // openChannel("ff80808180cbf2580180e02b8f451d91", this.$ws)
+      //   .then((res) => {
+      //     console.log("成功" + res);
+      //   })
+      //   .catch((err) => {
+      //     console.log("失败" + err);
+      //   });
+
+      // closeChannel("ff80808180cbf2580180e02b8ef01d82", this.$ws)
+      //   .then((res) => {
+      //     console.log("成功" + res);
+      //   })
+      //   .catch((err) => {
+      //     console.log("失败" + err);
+      //   });
+
+      getSta("ff80808180cbf2580180e02a37041d66", this.$ws)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log("失败" + err);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
-.jiayashifeibeng{
+.jiayashifeibeng {
   display: flex;
   justify-content: space-between;
   width: 95px;
-  height: 103px; 
+  height: 103px;
 }
-.jiayashifeibeng .device-name{
+.jiayashifeibeng .device-name {
   writing-mode: tb-rl;
   text-align: center;
 }
-.jiayashifeibeng .device-bg{
-    background: url(../../assets/images/shuifeiji/加压施肥泵.png) no-repeat;
-    width: 90px;
-    height: 103px; 
-    background-size: 100% 100%;
-    position: relative;
+.jiayashifeibeng .device-bg {
+  background: url(../../assets/images/shuifeiji/加压施肥泵.png) no-repeat;
+  width: 90px;
+  height: 103px;
+  background-size: 100% 100%;
+  position: relative;
 }
 .btn_s {
-	width: 25px;
-	height: 25px;
-	cursor: pointer;
-	z-index:1;
-	background-size: cover;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 1;
+  background-size: cover;
   position: absolute;
   top: 50%;
   margin-top: -12.5px;
@@ -88,10 +125,10 @@ export default {
 }
 
 .btn_on {
-	background-image: url(../../assets/images/shuifeiji/on.png);
+  background-image: url(../../assets/images/shuifeiji/on.png);
 }
 
 .btn_off {
-	background-image: url(../../assets/images/shuifeiji/off.png);
+  background-image: url(../../assets/images/shuifeiji/off.png);
 }
 </style>

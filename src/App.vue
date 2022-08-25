@@ -15,83 +15,107 @@
 </template>
 
 <script>
-import Header from './components/Header'
-import Shuifeiji from './components/Shuifeiji'
-import Shishi from './components/Shishi'
-import Kongzhi from './components/Kongzhi'
-import Shangqing from './components/Shangqing'
+import Vue from "vue";
+import MyWebSocket from "@/utils/MyWebSocket";
+import { getToken } from "@/utils/auth";
+
+import Header from "./components/Header";
+import Shuifeiji from "./components/Shuifeiji";
+import Shishi from "./components/Shishi";
+import Kongzhi from "./components/Kongzhi";
+import Shangqing from "./components/Shangqing";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
     Shuifeiji,
     Shishi,
     Kongzhi,
-    Shangqing
-  }
-}
+    Shangqing,
+  },
+  created() {
+    if (Vue.prototype.$ws) {
+      return;
+    }
+    console.log("APP.vue建立socket连接");
+    // let ws = new MyWebSocket(process.env.WEBSOCKET_URL, getToken());
+    let ws = new MyWebSocket(
+      "iot.joinken.cn/iotcs-websocket/socketServer",
+      getToken()
+    );
+    Vue.prototype.$ws = ws;
+    if (!window["GLOBAL_VARIABLE"]) window["GLOBAL_VARIABLE"] = {};
+    window["GLOBAL_VARIABLE"]["WEBSOCKET"] = ws;
+    this.$ws.open(this);
+    // 当浏览器界面关闭或刷新时触发该事件
+    window.addEventListener("beforeunload", (e) => {
+      this.$ws.close();
+    });
+  },
+};
 </script>
 
 <style>
-html,body{
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    color: #fff;
-    font-size: 12px;
-    min-width: 1440px;
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  font-size: 12px;
+  min-width: 1440px;
 }
 /*重置*/
 body,
 ul,
 p,
 br {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 img {
-	  display: block;
+  display: block;
 }
 
 li {
-	  list-style: none;
+  list-style: none;
 }
 
 * {
-    font-family: "微软雅黑";
-    font-size: 12px;
+  font-family: "微软雅黑";
+  font-size: 12px;
 }
 #app {
-    background:url('./assets/images/底图.png');
-    width:1920px;
-    height:1080px;
-    /* height: 100%; */
+  background: url("./assets/images/底图.png");
+  width: 1920px;
+  height: 1080px;
+  /* height: 100%; */
 }
-.content{
-    /* height: calc(100% - 75px);
+.content {
+  /* height: calc(100% - 75px);
     margin-top: 6px;
     position: relative; */
 }
 .center {
-    /* width: calc(100% - 350px);
+  /* width: calc(100% - 350px);
     margin-left: 350px; */
-    width: 1860px;
-    height: 1040px;
-    position: relative;
-    padding: 30px;
-    box-sizing: border-box;
-    background-color: rgba(0, 0, 0, .4);
-    border: 1px solid #2192f1;
-    margin:0 auto;
+  width: 1860px;
+  height: 1040px;
+  position: relative;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid #2192f1;
+  margin: 0 auto;
 }
-.left{
-    position: absolute;
-    left: 0;
-    width: 350px;
-    height: 100%;
-    padding: 15px;
-    box-sizing: border-box;
+.left {
+  position: absolute;
+  left: 0;
+  width: 350px;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
 }
 </style>

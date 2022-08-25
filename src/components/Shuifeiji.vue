@@ -39,7 +39,8 @@ export default {
     });
     // axios获取设备
     const shebei = {
-      device_id: "PK01B-2110014",
+      // device_id: "PK01B-2110014",
+      device_id: "PK01B-2110019",
     };
     getShebei(shebei).then((res) => {
       console.log(res);
@@ -47,7 +48,8 @@ export default {
     });
     // axios获取传感器
     const chuanganqi = {
-      device_id: "PC01B-2110014",
+      // device_id: "PC01B-2110014",
+      device_id: "PC01B-2110019",
     };
     getChuanganqi(chuanganqi).then((res) => {
       console.log(res);
