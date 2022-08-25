@@ -218,9 +218,90 @@
 
 <script>
 export default {
-  name: "shuifei",
+  props: ["shebeiArr", "chuanganqiArr"],
+  watch: {
+    shebeiArr(shebeiArr) {
+      // console.log(shebeiArr);
+      // 过滤出注水阀的数组
+      var zhushuifaArr = [];
+      for (var i = 0; i < shebeiArr.length; i++) {
+        if (shebeiArr[i].name.indexOf("注水阀") != -1) {
+          zhushuifaArr.push(shebeiArr[i]);
+        }
+      }
+      // console.log(zhushuifaArr);
+      // 过滤出排水阀的数组
+      var paishuifaArr = [];
+      for (var i = 0; i < shebeiArr.length; i++) {
+        if (shebeiArr[i].name.indexOf("排水阀") != -1) {
+          paishuifaArr.push(shebeiArr[i]);
+        }
+      }
+      // console.log(paishuifaArr);
+      // 过滤出注肥阀的数组
+      var zhufeifaArr = [];
+      for (var i = 0; i < shebeiArr.length; i++) {
+        if (shebeiArr[i].name.indexOf("注肥阀") != -1) {
+          zhufeifaArr.push(shebeiArr[i]);
+        }
+      }
+      // console.log(zhufeifaArr);
+      // 把各数组的值，合并成数组对象，方便for循环
+      var potsArr = [];
+      for (let i = 0; i < zhushuifaArr.length; i++) {
+        // 构建对象
+        let obj = {};
+        obj.name = "肥料桶" + (i + 1);
+        obj.zhushuifa = zhushuifaArr[i];
+        obj.paishuifa = paishuifaArr[i];
+        obj.zhufeifa = zhufeifaArr[i];
+        // 对象推进数组
+        this.potsBtn.push(obj);
+      }
+      console.log(this.potsBtn);
+      this.potsArr = this.potsData.map((item, index) => {
+        return { ...item, ...this.potsBtn[index] };
+      });
+      console.log(this.potsArr);
+    },
+    chuanganqiArr(chuanganqiArr) {
+      // console.log(chuanganqiArr);
+      // 过滤出肥桶容量
+      var rongliangArr = [];
+      for (var i = 0; i < chuanganqiArr.length; i++) {
+        if (chuanganqiArr[i].name.indexOf("当前容量") != -1) {
+          rongliangArr.push(chuanganqiArr[i]);
+        }
+      }
+      // console.log(rongliangArr);
+      // 过滤出肥桶流量
+      var liuliangArr = [];
+      for (var i = 0; i < chuanganqiArr.length; i++) {
+        if (chuanganqiArr[i].name.indexOf("当前流量") != -1) {
+          liuliangArr.push(chuanganqiArr[i]);
+        }
+      }
+      // console.log(liuliangArr);
+      for (let i = 0; i < rongliangArr.length; i++) {
+        // 构建对象
+        let obj = {};
+        obj.rongliang = rongliangArr[i];
+        obj.liuliang = liuliangArr[i];
+        // 对象推进数组
+        this.potsData.push(obj);
+      }
+      console.log(this.potsData);
+      this.potsArr = this.potsBtn.map((item, index) => {
+        return { ...item, ...this.potsData[index] };
+      });
+      console.log(this.potsArr);
+    },
+  },
   data() {
     return {
+      potsBtn: [],
+      potsData: [],
+      potsArr: [],
       // 肥料桶
       pots: [
         {

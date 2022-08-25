@@ -1,28 +1,29 @@
 <template>
   <div class="bg-right">
-    <guangaifa @getWidth="getWidth"></guangaifa>
+    <guangaifa @getWidth="getWidth" :shebeiArr="shebeiArr"></guangaifa>
   </div>
 </template>
 
 <script>
-import guangaifa from './guangaifa.vue'
+import guangaifa from "./guangaifa.vue";
 export default {
-  components:{
-    guangaifa
+  props: ["shebeiArr"],
+  components: {
+    guangaifa,
   },
-  methods:{
-    getWidth(length){
-      var bgRight = document.getElementsByClassName('bg-right')[0]
-      bgRight.style.width = 100 * length + 'px'
-    }
-  }
-}
+  methods: {
+    getWidth(length) {
+      var bgRight = document.getElementsByClassName("bg-right")[0];
+      bgRight.style.width = 100 * length + "px";
+    },
+  },
+};
 </script>
 
 <style>
-.bg-right{
-    width: 400px;
-    height: 800px;
-    position: relative;
+.bg-right {
+  width: 400px;
+  height: 800px;
+  position: relative;
 }
 </style>

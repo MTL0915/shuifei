@@ -1,229 +1,258 @@
 <template>
-    <div class="guangaifa">
-        <ul class="pg_valve" v-for="(item,ulIndex) in sixResult" :key="ulIndex">
-            <li v-for="(liItem,liIndex) in item" :key="liItem.hd_device_sensor_id">
-                <span class="valve_icon" ref="iconBtn" @click="btnClick($event,ulIndex,liIndex)" :code="`${100+liItem.channel}`"></span>
-                <a>{{liItem.name}}</a>
-                <div class="penshui1" :where="`1,2,12,13,${100+liItem.channel}`" or="4,5,6,7,8,9,10,11" :where1="`1,3,${100+liItem.channel}`" style="display: none;"></div>
-            </li>
-            <div class="shuiliu shuiliu20" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3">
-                <div class="shuiliuT" style="">
-                    <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
-                    <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
-                </div>
-            </div>
-            <div class="shuiliu shuiliu21" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3">
-                <div class="shuiliuT" style="">
-                    <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
-                    <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
-                </div>
-            </div>
-            <div class="shuiliu shuiliu22" where="1,2,12,13" or="4,5,6,7,8,9,10,11" where1="1,3">
-                <div class="shuiliuT" style="">
-                    <img style="display:block;height:50%;margin: 55px 0" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
-                    <img style="height:50%;display:block;" class="" src="../../assets/images/shuifeiji/shuiliu_t.png">
-                </div>
-            </div>
-        </ul>
-    </div>
+  <div class="guangaifa">
+    <ul class="pg_valve" v-for="(item, ulIndex) in sixResult" :key="ulIndex">
+      <li v-for="(liItem, liIndex) in item" :key="liItem.hd_device_sensor_id">
+        <span
+          class="valve_icon"
+          ref="iconBtn"
+          @click="btnClick($event, ulIndex, liIndex)"
+          :code="`${100 + liItem.channel}`"
+        ></span>
+        <a>{{ liItem.name }}</a>
+        <div
+          class="penshui1"
+          :where="`1,2,12,13,${100 + liItem.channel}`"
+          or="4,5,6,7,8,9,10,11"
+          :where1="`1,3,${100 + liItem.channel}`"
+          style="display: none"
+        ></div>
+      </li>
+      <div
+        class="shuiliu shuiliu20"
+        where="1,2,12,13"
+        or="4,5,6,7,8,9,10,11"
+        where1="1,3"
+      >
+        <div class="shuiliuT" style="">
+          <img
+            style="display: block; height: 50%; margin: 55px 0"
+            class=""
+            src="../../assets/images/shuifeiji/shuiliu_t.png"
+          />
+          <img
+            style="height: 50%; display: block"
+            class=""
+            src="../../assets/images/shuifeiji/shuiliu_t.png"
+          />
+        </div>
+      </div>
+      <div
+        class="shuiliu shuiliu21"
+        where="1,2,12,13"
+        or="4,5,6,7,8,9,10,11"
+        where1="1,3"
+      >
+        <div class="shuiliuT" style="">
+          <img
+            style="display: block; height: 50%; margin: 55px 0"
+            class=""
+            src="../../assets/images/shuifeiji/shuiliu_t.png"
+          />
+          <img
+            style="height: 50%; display: block"
+            class=""
+            src="../../assets/images/shuifeiji/shuiliu_t.png"
+          />
+        </div>
+      </div>
+      <div
+        class="shuiliu shuiliu22"
+        where="1,2,12,13"
+        or="4,5,6,7,8,9,10,11"
+        where1="1,3"
+      >
+        <div class="shuiliuT" style="">
+          <img
+            style="display: block; height: 50%; margin: 55px 0"
+            class=""
+            src="../../assets/images/shuifeiji/shuiliu_t.png"
+          />
+          <img
+            style="height: 50%; display: block"
+            class=""
+            src="../../assets/images/shuifeiji/shuiliu_t.png"
+          />
+        </div>
+      </div>
+    </ul>
+  </div>
 </template>
 
 <script>
-import {getShebei} from '@/api/getShebei'
 export default {
-    data(){
-        return{
-            // 处理后的灌溉阀数组，六个一组
-            sixResult:[]
+  props: ["shebeiArr"],
+  data() {
+    return {
+      // 处理后的灌溉阀数组，六个一组
+      sixResult: [],
+    };
+  },
+  mounted() {
+    // 绑定事件总线，调整灌溉阀喷水器（事件在shuiliu组件中触发）
+    this.$bus.$on("guangaifaEvent", () => {
+      // 这里一定要用箭头函数
+      this.tiaozhengguangaifa();
+    });
+  },
+  watch: {
+    shebeiArr(shebeiArr) {
+      var guangaifaArr = [];
+      // 过滤出喷灌阀的数组
+      for (var i = 0; i < shebeiArr.length; i++) {
+        if (shebeiArr[i].name.indexOf("灌溉阀") != -1) {
+          guangaifaArr.push(shebeiArr[i]);
         }
+      }
+      // console.log(guangaifaArr)
+      // 每六个一组
+      for (var i = 0; i < guangaifaArr.length; i += 6) {
+        this.sixResult.push(guangaifaArr.slice(i, i + 6));
+      }
+      // console.log(this.sixResult)
+      // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
+      this.$emit("getWidth", this.sixResult.length);
     },
-    mounted(){
-        // 事件总线，调整灌溉阀喷水器（事件在shuiliu组件中触发）
-        this.$bus.$on('guangaifaEvent',()=>{ // 这里一定要用箭头函数
-            this.tiaozhengguangaifa()
-        })
-
-        // axios获取设备
-        const shebei = {
-            device_id: "PK01B-2110014",
-        };
-        getShebei(shebei).then((res) => {
-            console.log(res);
-            var shebeiArr = res.data.sensorInfos
-            var guangaifaArr = []
-            // 过滤出喷灌阀的数组
-            for( var i = 0 ; i < shebeiArr.length ; i++ ){
-                if(shebeiArr[i].name.indexOf('灌溉阀') != -1){
-                    guangaifaArr.push(shebeiArr[i])
-                }
-            }
-            console.log(guangaifaArr)
-            // 每六个一组
-            for(var i=0;i<guangaifaArr.length;i+=6){
-                this.sixResult.push(guangaifaArr.slice(i,i+6));
-            }
-            console.log(this.sixResult)
-            // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
-            this.$emit('getWidth',this.sixResult.length)
-        });
-
-
+    sixResult() {
+      // DOM还没更新
+      this.$nextTick(function () {
+        // DOM更新了,现在数据已经渲染完毕,通过事件总线调用shuiliu组件的waterEvent
+        this.$bus.$emit("waterEvent");
+        // 判断icon图标亮与不亮（开关有没开）
+        let iconBtnArr = this.$refs.iconBtn;
+        for (var i = 0; i < iconBtnArr.length; i++) {
+          let code = iconBtnArr[i].getAttribute("code");
+          code = Number(code);
+          let index = this.$store.state.btn.openKey.indexOf(code);
+          if (index === -1) {
+            iconBtnArr[i].classList.add("btn_off");
+          } else {
+            iconBtnArr[i].classList.add("btn_on");
+          }
+        }
+      });
     },
-    watch:{
-        sixResult: function() {
-            // DOM还没更新
-            this.$nextTick(function(){
-            // DOM更新了,现在数据已经渲染完毕,通过事件总线调用shuiliu组件的waterEvent
-            this.$bus.$emit('waterEvent')
-            // 判断icon图标亮与不亮（开关有没开）
-            let iconBtnArr = this.$refs.iconBtn
-            for(var i=0;i<iconBtnArr.length;i++){
-                let code = iconBtnArr[i].getAttribute("code")
-                code = Number(code)
-                let index = this.$store.state.btn.openKey.indexOf(code)
-                if (index === -1) {
-                    iconBtnArr[i].classList.add("btn_off")
-                } else {
-                    iconBtnArr[i].classList.add("btn_on")
-                }
+  },
+  methods: {
+    // 控制按钮开关
+    btnClick(e) {
+      console.log(e.target);
+      var targetBtn = e.currentTarget;
+      // 获取属性code
+      let code = targetBtn.getAttribute("code");
+      // 转变成数字
+      code = Number(code);
+      // 获取目前开关的情况，根据情况切换，并保存到vuex里
+      const index = this.$store.state.btn.openKey.indexOf(code);
+      if (index === -1) {
+        this.$store.commit("addCode", code);
+        targetBtn.classList.add("btn_on");
+        targetBtn.classList.remove("btn_off");
+      } else {
+        this.$store.commit("delCode", index);
+        targetBtn.classList.add("btn_off");
+        targetBtn.classList.remove("btn_on");
+      }
+      this.tiaozhengguangaifa();
+    },
+    tiaozhengguangaifa() {
+      // 所有的噴水器
+      var penshui = document.getElementsByClassName("penshui1");
+      var penshuiBox = Array.prototype.slice.apply(penshui);
+      // console.log(penshuiBox)
+      for (var i = 0; i < penshuiBox.length; i++) {
+        // 获取开着的按钮
+        var openKey = this.$store.state.btn.openKey;
+        var penshuiItem = penshuiBox[i];
+        var where = penshuiItem.getAttribute("where");
+        if (!where) continue;
+        where = where.split(",").map(Number);
+        var or = penshuiItem.getAttribute("or");
+        if (or) or = or.split(",").map(Number);
+        var bool = true;
+        for (var ii in where) {
+          if (openKey.indexOf(where[ii]) === -1) {
+            bool = false;
+            break;
+          }
+        }
+        if (or && bool) {
+          bool = false;
+          for (var ii in or) {
+            if (openKey.indexOf(or[ii]) !== -1) {
+              bool = true;
+              break;
             }
-        })
+          }
+        }
+
+        var bool1 = true;
+        var where1 = penshuiItem.getAttribute("where1");
+        if (!where1) {
+          bool1 = false;
+        } else {
+          where1 = where1.split(",").map(Number);
+          var or1 = penshuiItem.getAttribute("or1");
+          if (or1) or1 = or1.split(",").map(Number);
+          for (var ii in where1) {
+            if (openKey.indexOf(where1[ii]) === -1) {
+              bool1 = false;
+              break;
+            }
+          }
+          if (or1 && bool1) {
+            bool1 = false;
+            for (var ii in or1) {
+              if (openKey.indexOf(or1[ii]) !== -1) {
+                bool1 = true;
+                break;
+              }
+            }
+          }
+        }
+
+        if (bool || bool1) {
+          penshuiItem.style.display = "block";
+        } else {
+          penshuiItem.style.display = "none";
+        }
       }
     },
-    methods:{
-		// 控制按钮开关
-        btnClick(e){
-            console.log(e.target)
-            var targetBtn = e.currentTarget
-            // 获取属性code
-            let code = targetBtn.getAttribute("code")
-            // 转变成数字
-            code = Number(code)
-            // 获取目前开关的情况，根据情况切换，并保存到vuex里
-            const index = this.$store.state.btn.openKey.indexOf(code)
-            if (index === -1) {       
-                this.$store.commit('addCode',code)
-                targetBtn.classList.add("btn_on")
-                targetBtn.classList.remove("btn_off")
-            } else {
-                this.$store.commit('delCode',index)
-                targetBtn.classList.add("btn_off")
-                targetBtn.classList.remove("btn_on")          
-            }
-            this.tiaozhengguangaifa()
-        },
-        // 具体控制逻辑，为了能双向按钮控制(以后可能要用到)
-        doubleControl(targetBtn,ulIndex,liIndex){   
-            // 喷灌阀开关的切换    
-            if(this.sixResult[ulIndex][liIndex].value == 0){
-                this.sixResult[ulIndex][liIndex].value = 1
-            }
-            else{
-                this.sixResult[ulIndex][liIndex].value = 0
-            }
-            // 用事件总线给水流组件传入对应的按钮值
-            var code = targetBtn.getAttribute("code");
-            this.$bus.$emit('getCode',code)
-        },
-        tiaozhengguangaifa(){
-            // 所有的噴水器
-            var penshui = document.getElementsByClassName('penshui1')
-            var penshuiBox = Array.prototype.slice.apply(penshui);
-            // console.log(penshuiBox)
-            for( var i = 0 ; i < penshuiBox.length ; i++ ){
-                // 获取开着的按钮
-                var openKey = this.$store.state.btn.openKey
-                var penshuiItem = penshuiBox[i];
-                var where = penshuiItem.getAttribute("where");
-                if( !where ) continue;
-                where = where.split(",").map(Number);
-                var or = penshuiItem.getAttribute("or");
-                if( or ) or = or.split(",").map(Number);
-                var bool = true;
-                for( var ii in where ){
-                    if( openKey.indexOf(where[ii]) === -1 ){
-                        bool = false;
-                        break;
-                    }
-                } 
-                if( or && bool ){
-                    bool = false;
-                    for( var ii in or ){
-                        if( openKey.indexOf(or[ii]) !== -1 ){						
-                            bool = true;
-                            break;
-                        }
-                    }
-                }
-                
-                var bool1 = true;
-                var where1 = penshuiItem.getAttribute("where1");
-                if( !where1 ) {
-                    bool1=false;
-                }else{
-                    where1 = where1.split(",").map(Number);
-                    var or1 = penshuiItem.getAttribute("or1");
-                    if( or1 ) or1 = or1.split(",").map(Number);		
-                    for( var ii in where1 ){
-                        if( openKey.indexOf(where1[ii]) === -1 ){
-                            bool1 = false;
-                            break;
-                        }
-                    }
-                    if( or1 && bool1 ){
-                        bool1 = false;
-                        for( var ii in or1 ){
-                            if( openKey.indexOf(or1[ii]) !== -1 ){						
-                                bool1 = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                
-                if( bool || bool1 ){
-                    penshuiItem.style.display = 'block'
-                }else{
-                    penshuiItem.style.display = 'none'
-                }
-            }
-        }
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
-.guangaifa{
-    width: 100%;
-    height: 100%;
+.guangaifa {
+  width: 100%;
+  height: 100%;
 }
 .pg_valve {
-	float: left;
-	display: flex;
-	flex-direction: column;
-	/* justify-content: space-evenly; */
-    box-sizing: border-box;
-    padding-bottom: 100px;
-    padding-top: 60px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 100%;
-    width: 100px;
-    background-image: url(../../assets/images/shuifeiji/5-a.png);
-    position: relative;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+  box-sizing: border-box;
+  padding-bottom: 100px;
+  padding-top: 60px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 100px;
+  background-image: url(../../assets/images/shuifeiji/5-a.png);
+  position: relative;
 }
-.pg_valve:last-child{
-    background-image: url(../../assets/images/shuifeiji/5-b.png);
+.pg_valve:last-child {
+  background-image: url(../../assets/images/shuifeiji/5-b.png);
 }
 
 .pg_valve li {
-	/* overflow: hidden; */
-	margin: 22px 0;
-	height: 60px;
-	position: relative;
-    padding-left: 27px;
-    box-sizing: border-box;
-    z-index:1;
+  /* overflow: hidden; */
+  margin: 22px 0;
+  height: 60px;
+  position: relative;
+  padding-left: 27px;
+  box-sizing: border-box;
+  z-index: 1;
 }
 
 /* .pg_valve1 li {
@@ -236,34 +265,34 @@ export default {
 } */
 
 .pg_valve li * {
-	float: left;
-	clear: left;
+  float: left;
+  clear: left;
 }
 
 .valve_icon {
-	width: 48px;
-	height: 30px;
-	/* background-image: url(../../assets/images/shuifeiji/电磁阀.png); */
-	background-position: center;
-	background-repeat: no-repeat;
-    cursor: pointer;
+  width: 48px;
+  height: 30px;
+  /* background-image: url(../../assets/images/shuifeiji/电磁阀.png); */
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .btn_on {
-	background-image: url(../../assets/images/shuifeiji/电磁阀on.png);
+  background-image: url(../../assets/images/shuifeiji/电磁阀on.png);
 }
 
 .btn_off {
-	background-image: url(../../assets/images/shuifeiji/电磁阀off.png);
+  background-image: url(../../assets/images/shuifeiji/电磁阀off.png);
 }
 
 .pg_valve li a {
-	margin-left: 12px;
-	color: #7a8399;
+  margin-left: 12px;
+  color: #7a8399;
 }
 
 .margin_left {
-	/* margin-left: 39px; */
+  /* margin-left: 39px; */
 }
 
 /* .pg_valve3 .valve_icon {
@@ -274,74 +303,81 @@ export default {
 	background-image: url(../assets/images/shuifei/05-3valve_no.png);
 } */
 .penshui1 {
-	/* left: calc(100% - 9px); */
-	left: 72px;
-	top: 0;
-	width: 19px;
-	height: 35px;
-	background: url(../../assets/images/shuifeiji/penshui.png);
-	/* transform: rotateZ(90deg); */
-	background-position: 0px 0px;
-	background-repeat: no-repeat;
-	animation: penshuiAnimate 1.5s infinite linear;
-	position: absolute;
-	display: none;
+  /* left: calc(100% - 9px); */
+  left: 72px;
+  top: 0;
+  width: 19px;
+  height: 35px;
+  background: url(../../assets/images/shuifeiji/penshui.png);
+  /* transform: rotateZ(90deg); */
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  animation: penshuiAnimate 1.5s infinite linear;
+  position: absolute;
+  display: none;
 }
-@keyframes penshuiAnimate{
-	from{ background-position: -32px 0px ; }
-	to{ background-position: 0px 0px; }
+@keyframes penshuiAnimate {
+  from {
+    background-position: -32px 0px;
+  }
+  to {
+    background-position: 0px 0px;
+  }
 }
 
 /* 水流 */
 .shuiliu {
-	position: absolute;
-	width:50px;
-	height: 13px;
-	display: none;
-	z-index: 2;
-	overflow: hidden;
+  position: absolute;
+  width: 50px;
+  height: 13px;
+  display: none;
+  z-index: 2;
+  overflow: hidden;
 }
 .shuiliu20 {
-	left: 15px;
-	top: 650px;
-	width: 13px;
-	height: 47px;
-	/* background: url(images/shuiliu_t.png); */
+  left: 15px;
+  top: 650px;
+  width: 13px;
+  height: 47px;
+  /* background: url(images/shuiliu_t.png); */
 }
 .shuiliu21 {
-	left: 15px;
-	top: 400px;
-	width: 13px;
-	height: 47px;
-	/* background: url(images/shuiliu_t.png); */
+  left: 15px;
+  top: 400px;
+  width: 13px;
+  height: 47px;
+  /* background: url(images/shuiliu_t.png); */
 }
 .shuiliu22 {
-	left: 15px;
-	top: 150px;
-	width: 13px;
-	height: 47px;
-	/* background: url(images/shuiliu_t.png); */
+  left: 15px;
+  top: 150px;
+  width: 13px;
+  height: 47px;
+  /* background: url(images/shuiliu_t.png); */
 }
 .shuiliuAnimateT {
-	animation: slt 0.75s infinite;
+  animation: slt 0.75s infinite;
 }
-@keyframes slt{
-	from{ transform: translateY(0); }
-	to{ transform: translateY(-50%); }
+@keyframes slt {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes shuiliuT {
-    from {
-        transform: translateY(0px);
-    }
+  from {
+    transform: translateY(0px);
+  }
 
-    to {
-        transform: translateY(-220px);
-    }
+  to {
+    transform: translateY(-220px);
+  }
 }
 
 .shuiliuT {
-    animation: shuiliuT 3s linear infinite;
+  animation: shuiliuT 3s linear infinite;
 }
-
 </style>

@@ -1,27 +1,33 @@
 <template>
   <div class="shuifeiji">
     <div class="shuifeiji-left">
-      <bgLeft></bgLeft>
+      <bgLeft :shebeiArr="shebeiArr" :chuanganqiArr="chuanganqiArr"></bgLeft>
     </div>
     <div class="shuifeiji-right">
-      <bgRight></bgRight>
+      <bgRight :shebeiArr="shebeiArr"></bgRight>
     </div>
   </div>
 </template>
 
 <script>
-import {getToken} from '@/api/login'
-import {getShebei} from '@/api/getShebei'
-import {getChuanganqi} from '@/api/getChuanganqi'
+import { getToken } from "@/api/login";
+import { getShebei } from "@/api/getShebei";
+import { getChuanganqi } from "@/api/getChuanganqi";
 
 import bgLeft from "./mokuai/bgLeft.vue";
 import bgRight from "./mokuai/bgRight.vue";
 export default {
+  data() {
+    return {
+      shebeiArr: "",
+      chuanganqiArr: "",
+    };
+  },
   components: {
     bgLeft,
     bgRight,
   },
-  mounted() {
+  created() {
     // axios获取token
     const data = {
       expires_in: 0,
@@ -36,7 +42,8 @@ export default {
       device_id: "PK01B-2110014",
     };
     getShebei(shebei).then((res) => {
-      console.log(res)
+      console.log(res);
+      this.shebeiArr = res.data.sensorInfos;
     });
     // axios获取传感器
     const chuanganqi = {
@@ -44,14 +51,8 @@ export default {
     };
     getChuanganqi(chuanganqi).then((res) => {
       console.log(res);
-      this.chuanganqiArr = res.data.sensorInfos
+      this.chuanganqiArr = res.data.sensorInfos;
     });
-  },
-  data(){
-    return{
-      shebeiArr:[],
-      chuanganqiArr:[]
-    }
   },
 };
 </script>
