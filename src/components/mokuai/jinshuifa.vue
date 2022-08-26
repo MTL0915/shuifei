@@ -20,18 +20,21 @@ export default {
       btnStatus: "",
     };
   },
-  mounted() {
-    // 获取属性code
-    let code = this.$refs.btn.getAttribute("code");
-    // 转变成数字
-    code = Number(code);
-    // 获取目前开关的情况
-    const index = this.$store.state.btn.openKey.indexOf(code);
-    if (index === -1) {
-      this.btnStatus = false;
-    } else {
-      this.btnStatus = true;
-    }
+  watch: {
+    openKey() {
+      // 获取属性code
+      let code = this.$refs.btn.getAttribute("code");
+      // 转变成数字
+      code = Number(code);
+      // 获取目前开关的情况
+      console.log(this.$store.state.btn.openKey);
+      const index = this.$store.state.btn.openKey.indexOf(code);
+      if (index === -1) {
+        this.btnStatus = false;
+      } else {
+        this.btnStatus = true;
+      }
+    },
   },
   computed: {
     // 这里是拿到VueX的全局数据，打开的按钮

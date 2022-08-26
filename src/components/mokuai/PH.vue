@@ -9,7 +9,12 @@
 
 <script>
 export default {
-  props: ["chuanganqiArr"],
+  computed: {
+    // 这里是拿到VueX的装置数组数据
+    chuanganqiArr() {
+      return this.$store.state.pkpc.pcArr;
+    },
+  },
   watch: {
     chuanganqiArr(chuanganqiArr) {
       for (var i = 0; i < chuanganqiArr.length; i++) {
@@ -23,7 +28,7 @@ export default {
     return {
       PHValue: "未知",
     };
-  }
+  },
 };
 </script>
 

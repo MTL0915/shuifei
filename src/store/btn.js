@@ -3,6 +3,14 @@ export default{
 
   },
   mutations:{
+    // 循环所有设备，获得开启的channel
+    initCode(state,pkArr){
+      for(var i=0; i<pkArr.length; i++){
+        if(pkArr[i].value == 1){
+          state.openKey.push(pkArr[i].channel)
+        }
+      }
+    },
     addCode(state,code){
       state.openKey.push(code)
     },
@@ -11,6 +19,6 @@ export default{
     }
   },
   state:{
-    openKey:[1,3,101]
+    openKey:[]
   }
 }

@@ -80,7 +80,6 @@
 
 <script>
 export default {
-  props: ["shebeiArr"],
   data() {
     return {
       // 处理后的灌溉阀数组，六个一组
@@ -93,6 +92,12 @@ export default {
       // 这里一定要用箭头函数
       this.tiaozhengguangaifa();
     });
+  },
+  computed: {
+    // 这里是拿到VueX的装置数组数据
+    shebeiArr() {
+      return this.$store.state.pkpc.pkArr;
+    },
   },
   watch: {
     shebeiArr(shebeiArr) {

@@ -1,13 +1,12 @@
 <template>
   <div class="bg-right">
-    <guangaifa @getWidth="getWidth" :shebeiArr="shebeiArr"></guangaifa>
+    <guangaifa @getWidth="getWidth"></guangaifa>
   </div>
 </template>
 
 <script>
 import guangaifa from "./guangaifa.vue";
 export default {
-  props: ["shebeiArr"],
   components: {
     guangaifa,
   },

@@ -258,11 +258,11 @@ export default {
         // 对象推进数组
         this.potsBtn.push(obj);
       }
-      console.log(this.potsBtn);
+      // console.log(this.potsBtn);
       this.potsArr = this.potsData.map((item, index) => {
         return { ...item, ...this.potsBtn[index] };
       });
-      console.log(this.potsArr);
+      // console.log(this.potsArr);
     },
     chuanganqiArr(chuanganqiArr) {
       // console.log(chuanganqiArr);
@@ -290,11 +290,11 @@ export default {
         // 对象推进数组
         this.potsData.push(obj);
       }
-      console.log(this.potsData);
+      // console.log(this.potsData);
       this.potsArr = this.potsBtn.map((item, index) => {
         return { ...item, ...this.potsData[index] };
       });
-      console.log(this.potsArr);
+      // console.log(this.potsArr);
     },
   },
   data() {

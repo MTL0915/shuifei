@@ -4,7 +4,7 @@
       <bgLeft :shebeiArr="shebeiArr" :chuanganqiArr="chuanganqiArr"></bgLeft>
     </div>
     <div class="shuifeiji-right">
-      <bgRight :shebeiArr="shebeiArr"></bgRight>
+      <bgRight></bgRight>
     </div>
   </div>
 </template>
@@ -43,8 +43,11 @@ export default {
       device_id: "PK01B-2110019",
     };
     getShebei(shebei).then((res) => {
+      this.$store.commit("setShebeiData", res.data.sensor);
+      this.$store.commit("initCode", res.data.sensor);
       console.log(res);
-      this.shebeiArr = res.data.sensorInfos;
+      console.log(this.$store.state.pkpc.pkArr);
+      this.shebeiArr = res.data.sensor;
     });
     // axios获取传感器
     const chuanganqi = {
@@ -52,8 +55,10 @@ export default {
       device_id: "PC01B-2110019",
     };
     getChuanganqi(chuanganqi).then((res) => {
+      this.$store.commit("setChuanganqiData", res.data.sensor);
+      // console.log(this.$store.state.pkpc.pcArr);
       console.log(res);
-      this.chuanganqiArr = res.data.sensorInfos;
+      this.chuanganqiArr = res.data.sensor;
     });
   },
 };

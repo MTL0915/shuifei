@@ -68,7 +68,7 @@ class MyWebSocket {
             // 主动上报设备更新数据
             this.upgradeUpload && this.upgradeUpload(data.data)
           } else if (data.code === 210) { // 消息日志主动上报
-            console.log(data.data)
+            // console.log(data.data)
             this.logUpload && this.logUpload(data.data)
           } else if (data.code === 402) {
             // token值失效
