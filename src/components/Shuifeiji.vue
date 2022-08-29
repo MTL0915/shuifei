@@ -1,7 +1,7 @@
 <template>
   <div class="shuifeiji">
     <div class="shuifeiji-left">
-      <bgLeft :shebeiArr="shebeiArr" :chuanganqiArr="chuanganqiArr"></bgLeft>
+      <bgLeft></bgLeft>
     </div>
     <div class="shuifeiji-right">
       <bgRight></bgRight>
@@ -19,8 +19,7 @@ import bgRight from "./mokuai/bgRight.vue";
 export default {
   data() {
     return {
-      shebeiArr: "",
-      chuanganqiArr: "",
+
     };
   },
   components: {

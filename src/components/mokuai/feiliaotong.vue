@@ -1,6 +1,8 @@
 <template>
   <!--施肥桶-->
   <div class="pot_cont">
+    <!--操作装置等待-->
+    <loading ref="loading" />
     <!--入口背景-->
     <div class="pot_entry"></div>
     <!-- 小水流 -->
@@ -170,39 +172,54 @@
     <!--循环遍历每一个桶-->
     <div
       class="pot_box"
-      v-for="(item, index) in pots"
-      :key="item.tag"
+      v-for="(item, index) in potsArr"
+      :key="item.num"
       :class="`pot_box${item.num}`"
     >
       <a
-        ><span>{{ item.tag }}&nbsp;-&nbsp;</span
-        ><span class="boxL">{{ item.volume }}L</span></a
+        ><span>{{ item.num }}&nbsp;-&nbsp;</span
+        ><span class="boxL">{{ item.rongliang.value }}L</span></a
       >
-      <div class="pot_water" :class="`pot_water_${item.EnglishNum}`">
+      <div class="pot_water" :class="`pot_water_${item.num}`">
         <ul class="water_bg">
           <li class="water_top" :class="`water_top${item.num}`"></li>
           <li class="water_bottom"></li>
         </ul>
         <div class="water_scale"></div>
       </div>
+      <!--大按钮，注肥阀按钮-->
       <i
-        @click="btnClick($event)"
-        class="btn_s btn_off"
-        :class="`switch_${item.num}`"
-        :code="`${item.code}`"
+        @click="
+          btnClick(
+            $event,
+            index,
+            item.zhufeifa.hd_device_sensor_id,
+            item.zhufeifa.value
+          )
+        "
+        class="btn_s"
+        :class="[item.zhufeifa.value ? 'btn_on' : 'btn_off']"
+        :code="`${item.zhufeifa.channel}`"
       ></i>
       <!--注水阀按钮-->
       <i
-        @click="zhushuiBtnClick($event, index)"
+        @click="
+          zhushuiBtnClick(
+            $event,
+            index,
+            item.zhushuifa.hd_device_sensor_id,
+            item.zhushuifa.value
+          )
+        "
         class="zhushuiBtn"
         :class="[item.zhushuifa.value ? 'smallBtn_on' : 'smallBtn_off']"
         :code="`${10001 + index}`"
       ></i>
-      <!--注肥阀按钮-->
+      <!--进肥阀按钮-->
       <i
-        @click="zhufeiBtnClick($event, index)"
-        class="zhufeiBtn"
-        :class="[item.zhufeifa.value ? 'smallBtn_on' : 'smallBtn_off']"
+        @click="jinfeiBtnClick($event, index)"
+        class="jinfeiBtn"
+        :class="[item.jinfeifa.value ? 'smallBtn_on' : 'smallBtn_off']"
         :code="`${20001 + index}`"
       ></i>
       <!--排水阀按钮-->
@@ -217,8 +234,21 @@
 </template>
 
 <script>
+import { openOrCloseChannel } from "@/utils/websocket_util.js";
+import loading from "@/components/loading";
 export default {
-  props: ["shebeiArr", "chuanganqiArr"],
+  components: {
+    loading,
+  },
+  computed: {
+    // 这里是拿到VueX的装置数组数据
+    shebeiArr() {
+      return this.$store.state.pkpc.pkArr;
+    },
+    chuanganqiArr() {
+      return this.$store.state.pkpc.pcArr;
+    },
+  },
   watch: {
     shebeiArr(shebeiArr) {
       // console.log(shebeiArr);
@@ -230,6 +260,14 @@ export default {
         }
       }
       // console.log(zhushuifaArr);
+      // 过滤出进肥阀的数组
+      var jinfeifaArr = [];
+      for (var i = 0; i < shebeiArr.length; i++) {
+        if (shebeiArr[i].name.indexOf("进肥阀") != -1) {
+          jinfeifaArr.push(shebeiArr[i]);
+        }
+      }
+      // console.log(jinfeifaArr);
       // 过滤出排水阀的数组
       var paishuifaArr = [];
       for (var i = 0; i < shebeiArr.length; i++) {
@@ -251,8 +289,10 @@ export default {
       for (let i = 0; i < zhushuifaArr.length; i++) {
         // 构建对象
         let obj = {};
+        obj.num = i + 1;
         obj.name = "肥料桶" + (i + 1);
         obj.zhushuifa = zhushuifaArr[i];
+        obj.jinfeifa = jinfeifaArr[i];
         obj.paishuifa = paishuifaArr[i];
         obj.zhufeifa = zhufeifaArr[i];
         // 对象推进数组
@@ -262,7 +302,7 @@ export default {
       this.potsArr = this.potsData.map((item, index) => {
         return { ...item, ...this.potsBtn[index] };
       });
-      // console.log(this.potsArr);
+      console.log(this.potsArr);
     },
     chuanganqiArr(chuanganqiArr) {
       // console.log(chuanganqiArr);
@@ -294,7 +334,7 @@ export default {
       this.potsArr = this.potsBtn.map((item, index) => {
         return { ...item, ...this.potsData[index] };
       });
-      // console.log(this.potsArr);
+      console.log(this.potsArr);
     },
   },
   data() {
@@ -870,41 +910,75 @@ export default {
   },
   methods: {
     // 控制按钮开关
-    btnClick(e) {
-      console.log(e.target);
+    btnClick(e, i, id, value) {
       var targetBtn = e.currentTarget;
-      this.doubleControl(targetBtn);
-    },
-    // 具体控制逻辑，为了能双向按钮控制(以后可能要用到)
-    doubleControl(targetBtn) {
-      if (targetBtn.getAttribute("class").includes("btn_off")) {
-        targetBtn.classList.add("btn_on");
-        targetBtn.classList.remove("btn_off");
-      } else {
-        targetBtn.classList.add("btn_off");
-        targetBtn.classList.remove("btn_on");
-      }
-      // 用事件总线给水流组件传入对应的按钮值
       var code = targetBtn.getAttribute("code");
-      this.$bus.$emit("getCode", code);
+      code = Number(code); // 转变成数字
+
+      var hd_sensor_id = id;
+      var oldValue = value;
+      this.$refs.loading.openLoadInstance();
+      var newValue = oldValue == "0" ? 1 : 0;
+
+      openOrCloseChannel(hd_sensor_id, newValue, this.$ws)
+        .then((res) => {
+          console.log(res);
+          this.potsArr[i].zhufeifa.value = newValue;
+          this.$refs.loading.closeLoadInstance();
+          // 异步完成之后对vuex进行操作，改变按钮与水流
+          // 获取目前开关的情况，根据情况切换，并保存到vuex里
+          const index = this.$store.state.btn.openKey.indexOf(code);
+          if (index === -1) {
+            this.$store.commit("addCode", code);
+          } else {
+            this.$store.commit("delCode", index);
+          }
+          // 事件总线触发流水事件
+          this.$bus.$emit("waterEvent");
+        })
+        .catch((err) => {
+          this.$message.error(err.msg);
+          this.potsArr[i].zhufeifa.value = oldValue;
+          this.$refs.loading.closeLoadInstance();
+        });
     },
 
     // 注水阀小按钮控制开关
-    zhushuiBtnClick(e, index) {
-      console.log(e.target);
+    zhushuiBtnClick(e, i, id, value) {
       var targetBtn = e.currentTarget;
       var code = targetBtn.getAttribute("code");
-      // 小按钮开关的切换
-      if (this.pots[index].zhushuifa.value == 0) {
-        this.pots[index].zhushuifa.value = 1;
-      } else {
-        this.pots[index].zhushuifa.value = 0;
-      }
-      this.tiaozhengSmallWater(code);
+      code = Number(code); // 转变成数字
+
+      var hd_sensor_id = id;
+      var oldValue = value;
+      this.$refs.loading.openLoadInstance();
+      var newValue = oldValue == "0" ? 1 : 0;
+
+      openOrCloseChannel(hd_sensor_id, newValue, this.$ws)
+        .then((res) => {
+          console.log(res);
+          this.potsArr[i].zhushuifa.value = newValue;
+          this.$refs.loading.closeLoadInstance();
+          // 异步完成之后对vuex进行操作，改变按钮与水流
+          // 获取目前开关的情况，根据情况切换，并保存到vuex里
+          const index = this.$store.state.btn.openKey.indexOf(code);
+          if (index === -1) {
+            this.$store.commit("addCode", code);
+          } else {
+            this.$store.commit("delCode", index);
+          }
+          console.log(code)
+          this.tiaozhengSmallWater(code);
+        })
+        .catch((err) => {
+          this.$message.error(err.msg);
+          this.potsArr[i].zhufeifa.value = oldValue;
+          this.$refs.loading.closeLoadInstance();
+        });
     },
 
-    // 注肥阀小按钮控制开关
-    zhufeiBtnClick(e, index) {
+    // 进肥阀小按钮控制开关
+    jinfeiBtnClick(e, index) {
       console.log(e.target);
       var targetBtn = e.currentTarget;
       var code = targetBtn.getAttribute("code");
@@ -1169,6 +1243,9 @@ export default {
   cursor: pointer;
   z-index: 1;
   background-size: cover;
+  right: 30%;
+  bottom: 11%;
+  position: absolute;
 }
 
 .btn_on {
@@ -1177,54 +1254,6 @@ export default {
 
 .btn_off {
   background-image: url(../../assets/images/shuifeiji/off.png);
-}
-
-.switch_1 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
-}
-
-.switch_2 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
-}
-
-.switch_3 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
-}
-
-.switch_4 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
-}
-
-.switch_5 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
-}
-
-.switch_6 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
-}
-
-.switch_7 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
-}
-
-.switch_8 {
-  right: 30%;
-  bottom: 11%;
-  position: absolute;
 }
 
 /* 注水阀 */
@@ -1239,8 +1268,8 @@ export default {
   background-size: cover;
 }
 
-/* 注肥阀 */
-.zhufeiBtn {
+/* 进肥阀 */
+.jinfeiBtn {
   top: 92px;
   left: 21px;
   position: absolute;

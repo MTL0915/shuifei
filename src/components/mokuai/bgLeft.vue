@@ -1,10 +1,6 @@
 <template>
   <div class="bg-left">
-    <feiliaotong
-      :shebeiArr="shebeiArr"
-      :chuanganqiArr="chuanganqiArr"
-      class="feiliaotongComponent"
-    ></feiliaotong>
+    <feiliaotong class="feiliaotongComponent"></feiliaotong>
     <zengyabeng class="zengyabengComponent"></zengyabeng>
     <guolvqi class="guolvqiComponent"></guolvqi>
     <jinshuifa class="jinshuifaComponent"></jinshuifa>
@@ -13,7 +9,7 @@
     <jiayashifeibeng class="jiayashifeibengComponent"></jiayashifeibeng>
     <feishuihunheqi class="feishuihunheqiComponent"></feishuihunheqi>
     <famen class="famenComponent"></famen>
-    <PH :chuanganqiArr="chuanganqiArr" class="phComponent"></PH>
+    <PH class="phComponent"></PH>
     <EC class="ecComponent"></EC>
     <diepianguolvqi class="diepianguolvqiComponent"></diepianguolvqi>
     <shuiliu class="shuiliuComponent"></shuiliu>
@@ -35,7 +31,6 @@ import EC from "./EC.vue";
 import diepianguolvqi from "./diepianguolvqi.vue";
 import shuiliu from "./shuiliu.vue";
 export default {
-  props: ["shebeiArr", "chuanganqiArr"],
   components: {
     feiliaotong,
     zengyabeng,
