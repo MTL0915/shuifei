@@ -1,59 +1,15 @@
 <template>
   <div class="famen"> 
     <div class="device-bg">
-      <i @click="btnClick()" ref="btn" code="13" class="btn_s" :class="[btnStatus?'btn_on':'btn_off']"></i>
+      <!-- <i @click="btnClick()" ref="btn" code="13" class="btn_s" :class="[btnStatus?'btn_on':'btn_off']"></i> -->
     </div>
-    <div class="device-name">阀门</div>
+    <div class="device-name">单向阀</div>
   </div>
 </template>
 
 <script>
 export default {
-  data(){
-    return{
-      btnStatus:''
-    }
-  },
-  mounted(){
-    // 获取属性code
-    let code = this.$refs.btn.getAttribute("code")
-    // 转变成数字
-    code = Number(code)
-    // 获取目前开关的情况
-    const index = this.$store.state.btn.openKey.indexOf(code)
-    if (index === -1) {
-      this.btnStatus = false
-    } else {
-      this.btnStatus = true
-    }
-  },
-  computed:{
-    // 这里是拿到VueX的全局数据，打开的按钮
-    openKey(){
-      return this.$store.state.btn.openKey
-    }
-  },
-	methods:{
-		// 控制按钮开关
-    btnClick(){
-      // 获取属性code
-      let code = this.$refs.btn.getAttribute("code")
-      // 转变成数字
-      code = Number(code)
-      // 获取目前开关的情况，根据情况切换，并保存到vuex里
-      const index = this.$store.state.btn.openKey.indexOf(code)
-      if (index === -1) {       
-        this.$store.commit('addCode',code)
-        this.btnStatus = true
-      } else {
-        this.$store.commit('delCode',index)
-        this.btnStatus = false        
-      }
-      // console.log(this.$store.state.btn.openKey)
-      // 事件总线触发流水事件
-      this.$bus.$emit('waterEvent')
-    }
-	}
+
 }
 </script>
 

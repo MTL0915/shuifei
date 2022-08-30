@@ -1,66 +1,84 @@
 <template>
   <div class="zengyabeng">
+    <!--操作装置等待-->
+    <loading ref="loading" />
     <div class="device-name">增压泵</div>
     <div class="device-bg">
       <i
-        @click="btnClick()"
+        @click="
+          btnClick($event, shebeiData.hd_device_sensor_id, shebeiData.value)
+        "
         ref="btn"
-        code="1"
+        :code="shebeiData.channel"
         class="btn_s"
-        :class="[btnStatus ? 'btn_on' : 'btn_off']"
+        :class="[shebeiData.value ? 'btn_on' : 'btn_off']"
       ></i>
     </div>
   </div>
 </template>
 
 <script>
+import { openOrCloseChannel } from "@/utils/websocket_util.js";
+import loading from "@/components/loading";
 export default {
   data() {
     return {
-      btnStatus: "",
+      shebeiData: "",
     };
   },
-  watch: {
-    openKey() {
-      // 获取属性code
-      let code = this.$refs.btn.getAttribute("code");
-      // 转变成数字
-      code = Number(code);
-      // 获取目前开关的情况
-      console.log(this.$store.state.btn.openKey);
-      const index = this.$store.state.btn.openKey.indexOf(code);
-      if (index === -1) {
-        this.btnStatus = false;
-      } else {
-        this.btnStatus = true;
-      }
-    },
+  components: {
+    loading,
   },
   computed: {
-    // 这里是拿到VueX的全局数据，打开的按钮
-    openKey() {
-      return this.$store.state.btn.openKey;
+    // 这里是拿到VueX的装置数组数据
+    shebeiArr() {
+      return this.$store.state.pkpc.pkArr;
+    },
+  },
+  watch: {
+    shebeiArr(shebeiArr) {
+      // 过滤出增压泵
+      for (var i = 0; i < shebeiArr.length; i++) {
+        if (shebeiArr[i].name.indexOf("主（增压）水泵") != -1) {
+          this.shebeiData = shebeiArr[i];
+        }
+      }
     },
   },
   methods: {
     // 控制按钮开关
-    btnClick() {
-      // 获取属性code
-      let code = this.$refs.btn.getAttribute("code");
-      // 转变成数字
-      code = Number(code);
-      // 获取目前开关的情况，根据情况切换，并保存到vuex里
-      const index = this.$store.state.btn.openKey.indexOf(code);
-      if (index === -1) {
-        this.$store.commit("addCode", code);
-        this.btnStatus = true;
-      } else {
-        this.$store.commit("delCode", index);
-        this.btnStatus = false;
-      }
-      // console.log(this.$store.state.btn.openKey)
-      // 事件总线触发流水事件
-      this.$bus.$emit("waterEvent");
+    // 注肥阀控制按钮开关
+    btnClick(e, id, value) {
+      var targetBtn = e.currentTarget;
+      var code = targetBtn.getAttribute("code");
+      code = Number(code); // 转变成数字
+
+      var hd_sensor_id = id;
+      var oldValue = value;
+      this.$refs.loading.openLoadInstance();
+      var newValue = oldValue == "0" ? 1 : 0;
+
+      openOrCloseChannel(hd_sensor_id, newValue, this.$ws)
+        .then((res) => {
+          console.log(res);
+          this.shebeiData.value = newValue;
+          this.$refs.loading.closeLoadInstance();
+          // 异步完成之后对vuex进行操作，改变按钮与水流
+          // 获取目前开关的情况，根据情况切换，并保存到vuex里
+          const index = this.$store.state.btn.openKey.indexOf(code);
+          if (index === -1) {
+            this.$store.commit("addCode", code);
+          } else {
+            this.$store.commit("delCode", index);
+          }
+          // 事件总线触发流水事件
+          this.$bus.$emit("waterEvent");
+        })
+        .catch((err) => {
+          this.$message.error(err.msg);
+          this.shebeiData.value = oldValue;
+          this.$refs.loading.closeLoadInstance();
+        });
     },
   },
 };

@@ -1,27 +1,38 @@
 <template>
   <div class="guangaifa">
+    <!--操作装置等待-->
+    <loading ref="loading" />
     <ul class="pg_valve" v-for="(item, ulIndex) in sixResult" :key="ulIndex">
       <li v-for="(liItem, liIndex) in item" :key="liItem.hd_device_sensor_id">
         <span
           class="valve_icon"
           ref="iconBtn"
-          @click="btnClick($event, ulIndex, liIndex)"
-          :code="`${100 + liItem.channel}`"
+          @click="
+            btnClick(
+              $event,
+              ulIndex,
+              liIndex,
+              liItem.hd_device_sensor_id,
+              liItem.value
+            )
+          "
+          :code="`${liItem.channel}`"
+          :class="[liItem.value ? 'btn_on' : 'btn_off']"
         ></span>
         <a>{{ liItem.name }}</a>
         <div
           class="penshui1"
-          :where="`1,2,12,13,${100 + liItem.channel}`"
-          or="4,5,6,7,8,9,10,11"
-          :where1="`1,3,${100 + liItem.channel}`"
+          :where="`41,45,42,${liItem.channel}`"
+          or="9,10,11,12,13,14,15,16"
+          :where1="`41,${liItem.channel}`"
           style="display: none"
         ></div>
       </li>
       <div
         class="shuiliu shuiliu20"
-        where="1,2,12,13"
-        or="4,5,6,7,8,9,10,11"
-        where1="1,3"
+        where="41,45,42"
+        or="9,10,11,12,13,14,15,16"
+        where1="41"
       >
         <div class="shuiliuT" style="">
           <img
@@ -38,9 +49,9 @@
       </div>
       <div
         class="shuiliu shuiliu21"
-        where="1,2,12,13"
-        or="4,5,6,7,8,9,10,11"
-        where1="1,3"
+        where="41,45,42"
+        or="9,10,11,12,13,14,15,16"
+        where1="41"
       >
         <div class="shuiliuT" style="">
           <img
@@ -57,9 +68,9 @@
       </div>
       <div
         class="shuiliu shuiliu22"
-        where="1,2,12,13"
-        or="4,5,6,7,8,9,10,11"
-        where1="1,3"
+        where="41,45,42"
+        or="9,10,11,12,13,14,15,16"
+        where1="41"
       >
         <div class="shuiliuT" style="">
           <img
@@ -79,7 +90,12 @@
 </template>
 
 <script>
+import { openOrCloseChannel } from "@/utils/websocket_util.js";
+import loading from "@/components/loading";
 export default {
+  components: {
+    loading,
+  },
   data() {
     return {
       // 处理后的灌溉阀数组，六个一组
@@ -113,7 +129,7 @@ export default {
       for (var i = 0; i < guangaifaArr.length; i += 6) {
         this.sixResult.push(guangaifaArr.slice(i, i + 6));
       }
-      // console.log(this.sixResult)
+      console.log(this.sixResult);
       // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
       this.$emit("getWidth", this.sixResult.length);
     },
@@ -123,24 +139,23 @@ export default {
         // DOM更新了,现在数据已经渲染完毕,通过事件总线调用shuiliu组件的waterEvent
         this.$bus.$emit("waterEvent");
         // 判断icon图标亮与不亮（开关有没开）
-        let iconBtnArr = this.$refs.iconBtn;
-        for (var i = 0; i < iconBtnArr.length; i++) {
-          let code = iconBtnArr[i].getAttribute("code");
-          code = Number(code);
-          let index = this.$store.state.btn.openKey.indexOf(code);
-          if (index === -1) {
-            iconBtnArr[i].classList.add("btn_off");
-          } else {
-            iconBtnArr[i].classList.add("btn_on");
-          }
-        }
+        // let iconBtnArr = this.$refs.iconBtn;
+        // for (var i = 0; i < iconBtnArr.length; i++) {
+        //   let code = iconBtnArr[i].getAttribute("code");
+        //   code = Number(code);
+        //   let index = this.$store.state.btn.openKey.indexOf(code);
+        //   if (index === -1) {
+        //     iconBtnArr[i].classList.add("btn_off");
+        //   } else {
+        //     iconBtnArr[i].classList.add("btn_on");
+        //   }
+        // }
       });
     },
   },
   methods: {
     // 控制按钮开关
-    btnClick(e) {
-      console.log(e.target);
+    btnClick(e, ulIndex, liIndex, id, value) {
       var targetBtn = e.currentTarget;
       // 获取属性code
       let code = targetBtn.getAttribute("code");
@@ -148,15 +163,34 @@ export default {
       code = Number(code);
       // 获取目前开关的情况，根据情况切换，并保存到vuex里
       const index = this.$store.state.btn.openKey.indexOf(code);
-      if (index === -1) {
-        this.$store.commit("addCode", code);
-        targetBtn.classList.add("btn_on");
-        targetBtn.classList.remove("btn_off");
-      } else {
-        this.$store.commit("delCode", index);
-        targetBtn.classList.add("btn_off");
-        targetBtn.classList.remove("btn_on");
-      }
+
+      var hd_sensor_id = id;
+      var oldValue = value;
+      this.$refs.loading.openLoadInstance();
+      var newValue = oldValue == "0" ? 1 : 0;
+
+      openOrCloseChannel(hd_sensor_id, newValue, this.$ws)
+        .then((res) => {
+          console.log(res);
+          this.sixResult[ulIndex][liIndex].value = newValue;
+          this.$refs.loading.closeLoadInstance();
+          // 异步完成之后对vuex进行操作，改变按钮与水流
+          // 获取目前开关的情况，根据情况切换，并保存到vuex里
+          const index = this.$store.state.btn.openKey.indexOf(code);
+          if (index === -1) {
+            this.$store.commit("addCode", code);
+          } else {
+            this.$store.commit("delCode", index);
+          }
+          // 事件总线触发流水事件
+          this.$bus.$emit("waterEvent");
+        })
+        .catch((err) => {
+          this.$message.error(err.msg);
+          this.sixResult[ulIndex][liIndex].value = oldValue;
+          this.$refs.loading.closeLoadInstance();
+        });
+
       this.tiaozhengguangaifa();
     },
     tiaozhengguangaifa() {
