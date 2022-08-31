@@ -10,21 +10,52 @@
 </template>
 
 <script>
-import { getToken } from "@/api/login";
-import { getShebei } from "@/api/getShebei";
-import { getChuanganqi } from "@/api/getChuanganqi";
+import Vue from "vue";
+import MyWebSocket from "@/utils/MyWebSocket";
+import { getToken } from "@/utils/auth";
+
+import { getTokenMethod } from "@/api/login";
+import { getPK } from "@/api/getPK";
+import { getPC } from "@/api/getPC";
 
 import bgLeft from "./mokuai/bgLeft.vue";
 import bgRight from "./mokuai/bgRight.vue";
 export default {
   data() {
     return {
-
+      PKArr: [],
+      PCArr: [],
     };
   },
   components: {
     bgLeft,
     bgRight,
+  },
+  methods: {
+    getWebsocketInfo(data) {
+      // 只改变一个按钮的情况
+      if (data.device_id == "PK01B-2110019" && data.channelValue == null) {
+        console.log(data.sensorInfos);
+        for (var i = 0; i < this.PKArr.length; i++) {
+          if (this.PKArr[i].channel == data.sensorInfos[0].channel) {
+            this.PKArr[i].value = data.sensorInfos[0].value;
+            this.$store.commit("setShebeiData", this.PKArr);
+            this.$store.commit("initCode", this.PKArr);
+          }
+        }
+      }
+      if (data.device_id == "PK01B-2110019" && data.channelValue != null) {
+        this.PKArr = data.sensorInfos;
+        this.$store.commit("setShebeiData", data.sensorInfos);
+        this.$store.commit("initCode", data.sensorInfos);
+        console.log(data.sensorInfos);
+      }
+      if (data.device_id == "PC01B-2110019") {
+        this.PCArr = data.sensorInfos;
+        this.$store.commit("setChuanganqiData", data.sensorInfos);
+        console.log(data.sensorInfos);
+      }
+    },
   },
   created() {
     // axios获取token
@@ -33,31 +64,50 @@ export default {
       password: "Matianle0915",
       username: "18923236683",
     };
-    getToken(data).then((res) => {
+    getTokenMethod(data).then((res) => {
       console.log(res);
     });
     // axios获取设备
-    const shebei = {
+    const PKid = {
       // device_id: "PK01B-2110014",
       device_id: "PK01B-2110019",
     };
-    getShebei(shebei).then((res) => {
+    getPK(PKid).then((res) => {
       this.$store.commit("setShebeiData", res.data.sensor);
       this.$store.commit("initCode", res.data.sensor);
       console.log(res);
       console.log(this.$store.state.pkpc.pkArr);
-      this.shebeiArr = res.data.sensor;
+      this.PKArr = res.data.sensor;
     });
     // axios获取传感器
-    const chuanganqi = {
+    const PCid = {
       // device_id: "PC01B-2110014",
       device_id: "PC01B-2110019",
     };
-    getChuanganqi(chuanganqi).then((res) => {
+    getPC(PCid).then((res) => {
       this.$store.commit("setChuanganqiData", res.data.sensor);
       // console.log(this.$store.state.pkpc.pcArr);
       console.log(res);
-      this.chuanganqiArr = res.data.sensor;
+      this.PCArr = res.data.sensor;
+    });
+
+    // websocket相关
+    if (Vue.prototype.$ws) {
+      return;
+    }
+    console.log("水肥建立socket连接");
+    // let ws = new MyWebSocket(process.env.WEBSOCKET_URL, getToken());
+    let ws = new MyWebSocket(
+      "iot.joinken.cn/iotcs-websocket/socketServer",
+      getToken()
+    );
+    Vue.prototype.$ws = ws;
+    if (!window["GLOBAL_VARIABLE"]) window["GLOBAL_VARIABLE"] = {};
+    window["GLOBAL_VARIABLE"]["WEBSOCKET"] = ws;
+    this.$ws.open(this);
+    // 当浏览器界面关闭或刷新时触发该事件
+    window.addEventListener("beforeunload", (e) => {
+      this.$ws.close();
     });
   },
 };

@@ -299,7 +299,7 @@ export default {
       }
       // console.log(zhufeifaArr);
       // 把各数组的值，合并成数组对象，方便for循环
-      var potsArr = [];
+      this.potsBtn = [];
       for (let i = 0; i < zhushuifaArr.length; i++) {
         // 构建对象
         let obj = {};
@@ -336,6 +336,7 @@ export default {
         }
       }
       // console.log(liuliangArr);
+      this.potsData = [];
       for (let i = 0; i < rongliangArr.length; i++) {
         // 构建对象
         let obj = {};

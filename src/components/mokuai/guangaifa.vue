@@ -126,10 +126,11 @@ export default {
       }
       // console.log(guangaifaArr)
       // 每六个一组
+      this.sixResult = [];
       for (var i = 0; i < guangaifaArr.length; i += 6) {
         this.sixResult.push(guangaifaArr.slice(i, i + 6));
       }
-      console.log(this.sixResult);
+      // console.log(this.sixResult);
       // 子向父传值，告诉父有数组有多少个数据,从而控制宽度
       this.$emit("getWidth", this.sixResult.length);
     },

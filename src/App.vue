@@ -15,10 +15,6 @@
 </template>
 
 <script>
-import Vue from "vue";
-import MyWebSocket from "@/utils/MyWebSocket";
-import { getToken } from "@/utils/auth";
-
 import Header from "./components/Header";
 import Shuifeiji from "./components/Shuifeiji";
 import Shishi from "./components/Shishi";
@@ -34,25 +30,11 @@ export default {
     Kongzhi,
     Shangqing,
   },
-  created() {
-    if (Vue.prototype.$ws) {
-      return;
-    }
-    console.log("APP.vue建立socket连接");
-    // let ws = new MyWebSocket(process.env.WEBSOCKET_URL, getToken());
-    let ws = new MyWebSocket(
-      "iot.joinken.cn/iotcs-websocket/socketServer",
-      getToken()
-    );
-    Vue.prototype.$ws = ws;
-    if (!window["GLOBAL_VARIABLE"]) window["GLOBAL_VARIABLE"] = {};
-    window["GLOBAL_VARIABLE"]["WEBSOCKET"] = ws;
-    this.$ws.open(this);
-    // 当浏览器界面关闭或刷新时触发该事件
-    window.addEventListener("beforeunload", (e) => {
-      this.$ws.close();
-    });
-  },
+  data() {
+    return {
+
+    };
+  }
 };
 </script>
 
