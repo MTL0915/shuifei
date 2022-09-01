@@ -2,38 +2,35 @@
   <div class="yalichuanganqi">
     <div class="device-name">压力传感器</div>
     <div class="device-bg">
-      <span class="device-data">{{acceptData.value}}{{acceptData.unit}}</span>
+      <span class="device-data">{{ pressureValue }}{{ pressureUnit }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    // 这里是拿到VueX的装置数组数据
+    chuanganqiArr() {
+      return this.$store.state.pkpc.pcArr;
+    },
+  },
+  watch: {
+    chuanganqiArr(chuanganqiArr) {
+      for (var i = 0; i < chuanganqiArr.length; i++) {
+        if (chuanganqiArr[i].name == "出水口水压") {
+          this.pressureValue = chuanganqiArr[i].value;
+          this.pressureUnit = chuanganqiArr[i].unit;
+        }
+      }
+    },
+  },
   data() {
     return {
-      acceptData: {
-        hd_device_sensor_id: "ff8080817ed201fe017ed74f40d70015",
-        name: "出水口水压",
-        device_id: "PC01B-2110014",
-        channel: 1,
-        value: "0.0",
-        unit: "MPa",
-        system_response_time: "2022-08-09 11:47:35",
-        channelType: 5,
-        hd_sensor_type_name: "水压",
-        hd_sensor_type_code: "73",
-        subgroup_name: null,
-        subgroup_code: null,
-        category: "水质",
-        category_code: "WATER",
-        sta: 1,
-        hd_sensor_type_image_path:
-          "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/023515fc-9a6e-44e9-8ce8-6983bcde5a0a.png",
-        hd_sensor_type_small_image_path:
-          "https://iot.joinken.cn/picture/iot/upload/sensor/2020-03-21/978b7bfd-353b-49e8-a632-cb0cc567e29c.png",
-      },
+      pressureValue: "未知",
+      pressureUnit: "",
     };
-  }
+  },
 };
 </script>
 

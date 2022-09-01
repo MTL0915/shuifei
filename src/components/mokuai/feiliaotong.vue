@@ -221,8 +221,8 @@
           jinfeiBtnClick(
             $event,
             index,
-            item.zhushuifa.hd_device_sensor_id,
-            item.zhushuifa.value
+            item.jinfeifa.hd_device_sensor_id,
+            item.jinfeifa.value
           )
         "
         class="jinfeiBtn"
@@ -235,8 +235,8 @@
           paishuiBtnClick(
             $event,
             index,
-            item.zhushuifa.hd_device_sensor_id,
-            item.zhushuifa.value
+            item.paishuifa.hd_device_sensor_id,
+            item.paishuifa.value
           )
         "
         class="paishuiBtn"
@@ -267,6 +267,7 @@ export default {
     shebeiArr(shebeiArr) {
       // console.log(shebeiArr);
       // 过滤出注水阀的数组
+      console.log("感受到变化");
       var zhushuifaArr = [];
       for (var i = 0; i < shebeiArr.length; i++) {
         if (shebeiArr[i].name.indexOf("注水阀") != -1) {

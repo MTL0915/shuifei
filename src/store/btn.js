@@ -11,12 +11,15 @@ export default{
           state.openKey.push(pkArr[i].channel)
         }
       }
+      console.log(state.openKey)
     },
     addCode(state,code){
       state.openKey.push(code)
+      console.log(state.openKey)
     },
     delCode(state,index){
       state.openKey.splice(index, 1)
+      console.log(state.openKey)
     }
   },
   state:{

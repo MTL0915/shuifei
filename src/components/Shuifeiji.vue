@@ -34,16 +34,17 @@ export default {
   methods: {
     getWebsocketInfo(data) {
       // 只改变一个按钮的情况
-      if (data.device_id == "PK01B-2110019" && data.channelValue == null) {
-        console.log(data.sensorInfos);
-        for (var i = 0; i < this.PKArr.length; i++) {
-          if (this.PKArr[i].channel == data.sensorInfos[0].channel) {
-            this.PKArr[i].value = data.sensorInfos[0].value;
-            this.$store.commit("setShebeiData", this.PKArr);
-            this.$store.commit("initCode", this.PKArr);
-          }
-        }
-      }
+      // if (data.device_id == "PK01B-2110019" && data.channelValue == null) {
+      //   console.log("WebSocket" + "上报了");
+      //   console.log(data.sensorInfos);
+      //   for (var i = 0; i < this.PKArr.length; i++) {
+      //     if (this.PKArr[i].channel == data.sensorInfos[0].channel) {
+      //       this.PKArr[i].value = data.sensorInfos[0].value;
+      //       this.$store.commit("setShebeiData", this.PKArr);
+      //       this.$store.commit("initCode", this.PKArr);
+      //     }
+      //   }
+      // }
       if (data.device_id == "PK01B-2110019" && data.channelValue != null) {
         this.PKArr = data.sensorInfos;
         this.$store.commit("setShebeiData", data.sensorInfos);
@@ -76,7 +77,7 @@ export default {
       this.$store.commit("setShebeiData", res.data.sensor);
       this.$store.commit("initCode", res.data.sensor);
       console.log(res);
-      console.log(this.$store.state.pkpc.pkArr);
+      // console.log(this.$store.state.pkpc.pkArr);
       this.PKArr = res.data.sensor;
     });
     // axios获取传感器

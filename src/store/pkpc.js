@@ -4,8 +4,9 @@ export default{
   },
   mutations:{
     setShebeiData(state,pkArr){
+      state.pkArr = []
       state.pkArr = pkArr
-      console.log(state.pkArr)
+      // console.log(state.pkArr)
     },
     setChuanganqiData(state,pcArr){
       state.pcArr = pcArr
