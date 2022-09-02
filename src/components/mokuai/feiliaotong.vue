@@ -298,21 +298,72 @@ export default {
           zhufeifaArr.push(shebeiArr[i]);
         }
       }
+      // 获取最大长度
+      var maxLength = Math.max(
+        zhushuifaArr.length,
+        jinfeifaArr.length,
+        paishuifaArr.length,
+        zhufeifaArr.length
+      );
+
       // console.log(zhufeifaArr);
       // 把各数组的值，合并成数组对象，方便for循环
       this.potsBtn = [];
-      for (let i = 0; i < zhushuifaArr.length; i++) {
+      // for (let i = 0; i < maxLength; i++) {
+      //   // 构建对象
+      //   let obj = {};
+      //   obj.num = i + 1;
+      //   obj.name = "肥料桶" + (i + 1);
+      //   obj.zhushuifa = zhushuifaArr[i];
+      //   obj.jinfeifa = jinfeifaArr[i];
+      //   obj.paishuifa = paishuifaArr[i];
+      //   obj.zhufeifa = zhufeifaArr[i];
+      //   // 对象推进数组
+      //   this.potsBtn.push(obj);
+      // }
+      for (let i = 0; i < maxLength; i++) {
         // 构建对象
-        let obj = {};
-        obj.num = i + 1;
-        obj.name = "肥料桶" + (i + 1);
-        obj.zhushuifa = zhushuifaArr[i];
-        obj.jinfeifa = jinfeifaArr[i];
-        obj.paishuifa = paishuifaArr[i];
-        obj.zhufeifa = zhufeifaArr[i];
+        var realNum = i + 1;
+        var obj = {};
+        obj.num = realNum;
+        obj.name = "肥料桶" + realNum;
+        for (var j = 0; j < zhushuifaArr.length; j++) {
+          obj.zhushuifa = "";
+          if (zhushuifaArr[j].ord == realNum) {
+            obj.zhushuifa = zhushuifaArr[j];
+            break;
+          }
+        }
+        for (var j = 0; j < jinfeifaArr.length; j++) {
+          obj.jinfeifa = "";
+          if (jinfeifaArr[j].ord == realNum) {
+            obj.jinfeifa = jinfeifaArr[j];
+            break;
+          }
+        }
+        for (var j = 0; j < paishuifaArr.length; j++) {
+          obj.paishuifa = "";
+          if (paishuifaArr[j].ord == realNum) {
+            obj.paishuifa = paishuifaArr[j];
+            break;
+          }
+        }
+        for (var j = 0; j < zhufeifaArr.length; j++) {
+          obj.zhufeifa = "";
+          if (zhufeifaArr[j].ord == realNum) {
+            obj.zhufeifa = zhufeifaArr[j];
+            break;
+          }
+        }
+        // obj.zhushuifa = zhushuifaArr[i];
+        // obj.jinfeifa = jinfeifaArr[i];
+        // obj.paishuifa = paishuifaArr[i];
+        // obj.zhufeifa = zhufeifaArr[i];
         // 对象推进数组
+        console.log(obj);
         this.potsBtn.push(obj);
       }
+
       // console.log(this.potsBtn);
       this.potsArr = this.potsData.map((item, index) => {
         return { ...item, ...this.potsBtn[index] };

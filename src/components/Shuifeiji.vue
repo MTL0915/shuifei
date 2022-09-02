@@ -49,12 +49,12 @@ export default {
         this.PKArr = data.sensorInfos;
         this.$store.commit("setShebeiData", data.sensorInfos);
         this.$store.commit("initCode", data.sensorInfos);
-        console.log(data.sensorInfos);
+        // console.log(data.sensorInfos);
       }
       if (data.device_id == "PC01B-2110019") {
         this.PCArr = data.sensorInfos;
         this.$store.commit("setChuanganqiData", data.sensorInfos);
-        console.log(data.sensorInfos);
+        // console.log(data.sensorInfos);
       }
     },
   },
