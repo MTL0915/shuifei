@@ -22,10 +22,7 @@ import bgLeft from "./mokuai/bgLeft.vue";
 import bgRight from "./mokuai/bgRight.vue";
 export default {
   data() {
-    return {
-      PKArr: [],
-      PCArr: [],
-    };
+    return {};
   },
   components: {
     bgLeft,
@@ -33,28 +30,17 @@ export default {
   },
   methods: {
     getWebsocketInfo(data) {
-      // 只改变一个按钮的情况
-      // if (data.device_id == "PK01B-2110019" && data.channelValue == null) {
-      //   console.log("WebSocket" + "上报了");
-      //   console.log(data.sensorInfos);
-      //   for (var i = 0; i < this.PKArr.length; i++) {
-      //     if (this.PKArr[i].channel == data.sensorInfos[0].channel) {
-      //       this.PKArr[i].value = data.sensorInfos[0].value;
-      //       this.$store.commit("setShebeiData", this.PKArr);
-      //       this.$store.commit("initCode", this.PKArr);
-      //     }
-      //   }
-      // }
+      // console.log("WebSocket" + "上报了");
       if (data.device_id == "PK01B-2110019" && data.channelValue != null) {
-        this.PKArr = data.sensorInfos;
         this.$store.commit("setShebeiData", data.sensorInfos);
         this.$store.commit("initCode", data.sensorInfos);
         // console.log(data.sensorInfos);
+        console.log("装置设备上报");
       }
       if (data.device_id == "PC01B-2110019") {
-        this.PCArr = data.sensorInfos;
         this.$store.commit("setChuanganqiData", data.sensorInfos);
         // console.log(data.sensorInfos);
+        console.log("传感器上报");
       }
     },
   },
@@ -68,28 +54,16 @@ export default {
     getTokenMethod(data).then((res) => {
       console.log(res);
     });
+
     // axios获取设备
-    const PKid = {
-      // device_id: "PK01B-2110014",
-      device_id: "PK01B-2110019",
-    };
-    getPK(PKid).then((res) => {
-      this.$store.commit("setShebeiData", res.data.sensor);
-      this.$store.commit("initCode", res.data.sensor);
-      console.log(res);
-      // console.log(this.$store.state.pkpc.pkArr);
-      this.PKArr = res.data.sensor;
-    });
+    const PKid = "PK01B-2110019";
     // axios获取传感器
-    const PCid = {
-      // device_id: "PC01B-2110014",
-      device_id: "PC01B-2110019",
-    };
-    getPC(PCid).then((res) => {
-      this.$store.commit("setChuanganqiData", res.data.sensor);
-      // console.log(this.$store.state.pkpc.pcArr);
-      console.log(res);
-      this.PCArr = res.data.sensor;
+    const PCid = "PC01B-2110019";
+
+    Promise.all([getPK(PKid), getPC(PCid)]).then(([res1, res2]) => {
+      this.$store.commit("setShebeiData", res1.data.sensor);
+      this.$store.commit("initCode", res1.data.sensor);
+      this.$store.commit("setChuanganqiData", res2.data.sensor);
     });
 
     // websocket相关
