@@ -185,11 +185,23 @@
           <li
             class="water_top"
             :class="`water_top${item.num}`"
-            :style="{ height: (item.rongliang.value / 300) * 65 + 'px' }"
+            :style="{ height: (item.rongliang.value / 500) * 65 + 'px' }"
           ></li>
           <li class="water_bottom"></li>
         </ul>
-        <div class="water_scale"></div>
+        <div id="burbujas">
+          <span class="b0"></span>
+          <span class="b1"></span>
+          <span class="b2"></span>
+          <span class="b3"></span>
+          <span class="b4"></span>
+          <span class="b5"></span>
+          <span class="b6"></span>
+          <span class="b7"></span>
+          <span class="b8"></span>
+          <span class="b9"></span>
+        </div>
+        <!-- <div class="water_scale"></div> -->
       </div>
       <!--大按钮，注肥阀按钮-->
       <i
@@ -1128,5 +1140,142 @@ export default {
 
 .shuiliuB {
   animation: shuiliuB 1s linear infinite;
+}
+
+/* 肥桶冒泡泡 */
+#burbujas {
+  position: absolute;
+  z-index: 3;
+  width: 70px;
+  height: 94px;
+  top: 0;
+}
+#burbujas span {
+  display: block;
+  position: absolute;
+  bottom: -12px;
+  left: 33%;
+  height: 0;
+  width: 0;
+  border: 12px solid #c8edff;
+  border-radius: 3.5em;
+  opacity: 0;
+  transform: scale(0.2);
+}
+@-webkit-keyframes burbujasL {
+  0% {
+    -ms-transform: scale(0.2) translate(0, 0);
+    -webkit-transform: scale(0.2) translate(0, 0);
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    -ms-transform: scale(0.2) translate(0, -5px);
+    -webkit-transform: scale(0.2) translate(0, -5px);
+    transform: scale(0.2) translate(0, -5px);
+  }
+  100% {
+    opacity: 0;
+    -ms-transform: scale(1) translate(-20px, -130px);
+    -webkit-transform: scale(1) translate(-20px, -130px);
+    transform: scale(1) translate(-20px, -130px);
+  }
+}
+@keyframes burbujasL {
+  0% {
+    -ms-transform: scale(0.2) translate(0, 0);
+    -webkit-transform: scale(0.2) translate(0, 0);
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    -ms-transform: scale(0.2) translate(0, -5px);
+    -webkit-transform: scale(0.2) translate(0, -5px);
+    transform: scale(0.2) translate(0, -5px);
+  }
+  100% {
+    opacity: 0;
+    -ms-transform: scale(1) translate(-20px, -130px);
+    -webkit-transform: scale(1) translate(-20px, -130px);
+    transform: scale(1) translate(-20px, -130px);
+  }
+}
+@-webkit-keyframes burbujasR {
+  0% {
+    -ms-transform: scale(0.2) translate(0, 0);
+    -webkit-transform: scale(0.2) translate(0, 0);
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    -ms-transform: scale(0.2) translate(0, -5px);
+    -webkit-transform: scale(0.2) translate(0, -5px);
+    transform: scale(0.2) translate(0, -5px);
+  }
+  100% {
+    opacity: 0;
+    -ms-transform: scale(1) translate(20px, -130px);
+    -webkit-transform: scale(1) translate(20px, -130px);
+    transform: scale(1) translate(20px, -130px);
+  }
+}
+@keyframes burbujasR {
+  0% {
+    -ms-transform: scale(0.2) translate(0, 0);
+    -webkit-transform: scale(0.2) translate(0, 0);
+    transform: scale(0.2) translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+    -ms-transform: scale(0.2) translate(0, -5px);
+    -webkit-transform: scale(0.2) translate(0, -5px);
+    transform: scale(0.2) translate(0, -5px);
+  }
+  100% {
+    opacity: 0;
+    -ms-transform: scale(1) translate(20px, -130px);
+    -webkit-transform: scale(1) translate(20px, -130px);
+    transform: scale(1) translate(20px, -130px);
+  }
+}
+#burbujas .b0 {
+  -webkit-animation: burbujasL 10s 0s infinite;
+  animation: burbujasL 10s 0s infinite;
+}
+#burbujas .b1 {
+  -webkit-animation: burbujasR 10s 1s infinite;
+  animation: burbujasR 10s 1s infinite;
+}
+#burbujas .b2 {
+  -webkit-animation: burbujasL 10s 2s infinite;
+  animation: burbujasL 10s 2s infinite;
+}
+#burbujas .b3 {
+  -webkit-animation: burbujasR 10s 3s infinite;
+  animation: burbujasR 10s 3s infinite;
+}
+#burbujas .b4 {
+  -webkit-animation: burbujasL 10s 4s infinite;
+  animation: burbujasL 10s 4s infinite;
+}
+#burbujas .b5 {
+  -webkit-animation: burbujasR 10s 5s infinite;
+  animation: burbujasR 10s 5s infinite;
+}
+#burbujas .b6 {
+  -webkit-animation: burbujasL 10s 6s infinite;
+  animation: burbujasL 10s 6s infinite;
+}
+#burbujas .b7 {
+  -webkit-animation: burbujasR 10s 7s infinite;
+  animation: burbujasR 10s 7s infinite;
+}
+#burbujas .b8 {
+  -webkit-animation: burbujasR 10s 8s infinite;
+  animation: burbujasR 10s 8s infinite;
+}
+#burbujas .b8 {
+  -webkit-animation: burbujasR 10s 9s infinite;
+  animation: burbujasR 10s 9s infinite;
 }
 </style>

@@ -31,10 +31,8 @@ export default {
     Shangqing,
   },
   data() {
-    return {
-
-    };
-  }
+    return {};
+  },
 };
 </script>
 
@@ -99,5 +97,17 @@ li {
   height: 100%;
   padding: 15px;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 1400px) {
+  /* 弊端：不居中 */
+  /* html {
+    transform: scale(0.8);
+  } */
+
+  /* 弊端：火狐浏览器不支持 */
+  html {
+    zoom: 0.8;
+  }
 }
 </style>
