@@ -1,34 +1,16 @@
 <template>
   <div id="app">
-    <!-- <Header></Header> -->
-    <div class="content">
-      <!-- <div class="left">
-        <Shishi></Shishi>
-        <Kongzhi></Kongzhi>
-        <Shangqing></Shangqing>
-      </div> -->
-      <div class="center">
-        <Shuifeiji></Shuifeiji>
-      </div>
-    </div>
+    <Shuifeiji></Shuifeiji>
   </div>
 </template>
 
 <script>
-import Header from "./components/Header";
-import Shuifeiji from "./components/Shuifeiji";
-import Shishi from "./components/Shishi";
-import Kongzhi from "./components/Kongzhi";
-import Shangqing from "./components/Shangqing";
+import Shuifeiji from "./components/daping/Shuifeiji";
 
 export default {
   name: "App",
   components: {
-    Header,
     Shuifeiji,
-    Shishi,
-    Kongzhi,
-    Shangqing,
   },
   data() {
     return {};
@@ -68,36 +50,9 @@ li {
   font-size: 12px;
 }
 #app {
-  background: url("./assets/images/底图.png");
-  width: 1920px;
-  height: 1080px;
-  /* height: 100%; */
-}
-.content {
-  /* height: calc(100% - 75px);
-    margin-top: 6px;
-    position: relative; */
-}
-.center {
-  /* width: calc(100% - 350px);
-    margin-left: 350px; */
-  width: 1860px;
-  height: 1040px;
-  position: relative;
-  padding: 30px;
-  box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 1px solid #2192f1;
-  margin: 0 auto;
-}
-.left {
-  position: absolute;
-  left: 0;
-  width: 350px;
   height: 100%;
-  padding: 15px;
-  box-sizing: border-box;
 }
+
 
 @media screen and (max-width: 1400px) {
   /* 弊端：不居中 */
@@ -106,8 +61,8 @@ li {
   } */
 
   /* 弊端：火狐浏览器不支持 */
-  html {
+  /* html {
     zoom: 0.8;
-  }
+  } */
 }
 </style>

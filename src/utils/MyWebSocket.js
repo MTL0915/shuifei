@@ -78,7 +78,7 @@ class MyWebSocket {
             // console.log(data)
             this.deviceInfoUpload && this.deviceInfoUpload(data.data);
             // App.vue获取数据
-            this.vue.getWebsocketInfo(data.data)
+            // this.vue.getWebsocketInfo(data.data)
           } else if (data.code === 215) {
             // 传感器数据主动上报
             // console.log(data)

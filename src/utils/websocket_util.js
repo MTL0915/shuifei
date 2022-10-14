@@ -133,26 +133,6 @@ export function openChannel(hd_device_sensor_id, ws) {
     'socket_type': 0,
     'request_type': 'OpenChannel',
   }
-
-  // var obj = {
-  //   access_token: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODkyOTU3NjkzNSIsImV4cCI6MTYzNzY4MTI5MSwiaWF0IjoxNjM2Mzg1MjkxfQ.yW911PRRI3yeb4cd7K1xzMo7RRlW2TXz54VPx5frcA0SPqZJIYaGXj3opmb8u9YYQNo84vmalOE7irygN51taw",
-  //   device_id: "ZG02A-2000022",
-  //   message_id: 4,
-  //   request_type: "OpenByDevice_id",
-  //   request_body:{
-  //   channels:"3"
-  //   }
-  // }
-  //测试
-//   var obj = {
-//     access_token:"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODkyOTU3NjkzNSIsImV4cCI6MTYzOTU2MDYwMywiaWF0IjoxNjM4MjY0NjAzfQ.rU79adFRAAeBbJ9mT2Fv_MEigARtN92DAQVld6RuuLD6HvO7nIiPssMgYiWeCr8Wu6YzcYWIfnruEIP4K-QtrQ",
-// hd_device_sensor_id:"ff8080817d5bd650017d70288a13013f",
-// message_id:"1638268707.7656116458",
-// request_type:"OpenChannel",
-// socket_type:0,
-// timestamp:1638268707.765
-// }
-
   return ws.send(obj)
 }
 
@@ -163,15 +143,6 @@ export function closeChannel(hd_device_sensor_id, ws) {
     'socket_type': 0,
     'request_type': 'CloseChannel'
   }
-  // var obj = {
-  //   access_token: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODkyOTU3NjkzNSIsImV4cCI6MTYzNzY4MTI5MSwiaWF0IjoxNjM2Mzg1MjkxfQ.yW911PRRI3yeb4cd7K1xzMo7RRlW2TXz54VPx5frcA0SPqZJIYaGXj3opmb8u9YYQNo84vmalOE7irygN51taw",
-  //   device_id: "ZG02A-2000022",
-  //   message_id: 4,
-  //   request_type: "OpenByDevice_id",
-  //   request_body:{
-  //   channels:"3"
-  //   }
-  // }
   return ws.send(obj)
 }
 
@@ -242,16 +213,6 @@ export function getStaOld(hd_device_id, ws) {
 
 // 设置水肥操作逻辑
 export function SetSFLogic(hd_device_id,request_body, ws) {
-  //  'request_body':{
-  //         "action":"pollopen",
-  //         "controlMethod":"time",
-  //         "fertilizerRatios":[{"fertilizerOrd":1,"fertilizerRatio":null,"fertilizerTotal":80},{"fertilizerOrd":2,"fertilizerRatio":null,"fertilizerTotal":90}],
-  //         "hd_device_sensor_ids":["40288ad270bea92d0170c35acc040088"],
-  //         "logicNum":5,"openTime":"00:00",
-  //         "restrictValue":15.0,"sourceID":"PC01B-1900003",
-  //         "value":100,
-  //         "weeks":{0:1,1:1,2:1,3:1,4:1,5:1,6:0,7:0}
-  //   }
   var obj = {
    'hd_device_id': hd_device_id,
    'socket_type': 0,
