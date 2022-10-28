@@ -3,8 +3,6 @@
   <div class="pot_cont">
     <!--操作装置等待-->
     <loading ref="loading" />
-    <!--入口背景-->
-    <div class="pot_entry" v-show="potsArr.length"></div>
     <!-- 小水流 -->
     <div class="smallWater-box">
       <div class="smallWater smallWater1" where="17" or="">
@@ -168,7 +166,8 @@
         </div>
       </div>
     </div>
-
+    <!--入口背景-->
+    <div class="pot_entry" v-show="potsArr.length"></div>
     <!--循环遍历每一个桶-->
     <div
       class="pot_box"
@@ -287,10 +286,10 @@ export default {
   computed: {
     // 这里是拿到VueX的装置数组数据
     shebeiArr() {
-      return this.$store.state.pkpc.pkArr;
+      return this.$store.state.shuifei.pkArr;
     },
     chuanganqiArr() {
-      return this.$store.state.pkpc.pcArr;
+      return this.$store.state.shuifei.pcArr;
     },
   },
   watch: {
@@ -448,7 +447,7 @@ export default {
           this.$refs.loading.closeLoadInstance();
           // 异步完成之后对vuex进行操作，改变按钮与水流
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
-          const index = this.$store.state.btn.openKey.indexOf(code);
+          const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
             this.$store.commit("addCode", code);
           } else {
@@ -482,7 +481,7 @@ export default {
           this.$refs.loading.closeLoadInstance();
           // 异步完成之后对vuex进行操作，改变按钮与水流
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
-          const index = this.$store.state.btn.openKey.indexOf(code);
+          const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
             this.$store.commit("addCode", code);
           } else {
@@ -515,7 +514,7 @@ export default {
           this.$refs.loading.closeLoadInstance();
           // 异步完成之后对vuex进行操作，改变按钮与水流
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
-          const index = this.$store.state.btn.openKey.indexOf(code);
+          const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
             this.$store.commit("addCode", code);
           } else {
@@ -548,7 +547,7 @@ export default {
           this.$refs.loading.closeLoadInstance();
           // 异步完成之后对vuex进行操作，改变按钮与水流
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
-          const index = this.$store.state.btn.openKey.indexOf(code);
+          const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
             this.$store.commit("addCode", code);
           } else {
@@ -571,7 +570,7 @@ export default {
 
       for (var i = 0; i < smallWaterBox.length; i++) {
         // 获取开着的按钮
-        var openKey = this.$store.state.btn.openKey;
+        var openKey = this.$store.state.shuifei.openKey;
         var smallWaterItem = smallWaterBox[i];
         var where = smallWaterItem.getAttribute("where");
         if (!where) continue;
@@ -611,12 +610,12 @@ export default {
 .pot_cont {
   /* z-index: 1; */
   width: 822px;
-  height: 608px;
+  height: 658px;
   /* position: relative; */
 }
 .pot_entry {
   width: 196px;
-  height: 608px;
+  height: 658px;
   background-image: url(~@/assets/images/shuifeiji/pot_01.png);
   background-position: top;
   background-repeat: no-repeat;
@@ -628,10 +627,10 @@ export default {
 .pot_box {
   position: absolute;
   left: 0;
-  top: 0;
+  top: -50px;
   width: 120px;
   /* height: 100%; */
-  height: 608px;
+  height: 658px;
   background-image: url(~@/assets/images/shuifeiji/pot_03.png);
   background-position: top;
   background-repeat: no-repeat;
@@ -649,7 +648,7 @@ export default {
 .pot_box a {
   position: absolute;
   left: 17px;
-  top: 123px;
+  top: 173px;
   color: #e5596b;
   font-weight: bold;
   display: flex;
@@ -672,7 +671,7 @@ export default {
   height: 93px;
   position: relative;
   left: 11px;
-  top: 166px;
+  top: 216px;
   overflow: hidden;
 }
 
@@ -780,8 +779,8 @@ export default {
   cursor: pointer;
   z-index: 1;
   background-size: cover;
-  right: 52%;
-  bottom: 31.5%;
+  right: 62.5px;
+  top: 442px;
   position: absolute;
 }
 
@@ -795,7 +794,7 @@ export default {
 
 /* 注水阀 */
 .zhushuiBtn {
-  top: 33px;
+  top: 83px;
   left: 55px;
   position: absolute;
   width: 10px;
@@ -807,8 +806,8 @@ export default {
 
 /* 进肥阀 */
 .jinfeiBtn {
-  top: 92px;
-  left: 25px;
+  top: 142px;
+  left: 24px;
   position: absolute;
   width: 10px;
   height: 10px;
@@ -819,7 +818,7 @@ export default {
 
 /* 排水阀 */
 .paishuiBtn {
-  top: 274px;
+  top: 324px;
   left: 85px;
   position: absolute;
   width: 10px;
@@ -840,7 +839,7 @@ export default {
 .water04 {
   position: absolute;
   left: 55px;
-  top: 326px;
+  top: 376px;
 }
 .pot_box1 .water04{
   display: none !important;
@@ -848,7 +847,7 @@ export default {
 .water05 {
   position: absolute;
   left: 26px;
-  top: 226px;
+  top: 276px;
 }
 
 /* 小水流 */

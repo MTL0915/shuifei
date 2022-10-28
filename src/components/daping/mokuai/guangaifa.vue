@@ -58,10 +58,13 @@ export default {
       this.tiaozhengguangaifa();
     });
   },
+  beforeDestroy(){
+    this.$bus.$off("guangaifaEvent")
+  },
   computed: {
     // 这里是拿到VueX的装置数组数据
     shebeiArr() {
-      return this.$store.state.pkpc.pkArr;
+      return this.$store.state.shuifei.pkArr;
     },
   },
   watch: {
@@ -100,7 +103,7 @@ export default {
       // 转变成数字
       code = Number(code);
       // 获取目前开关的情况，根据情况切换，并保存到vuex里
-      const index = this.$store.state.btn.openKey.indexOf(code);
+      const index = this.$store.state.shuifei.openKey.indexOf(code);
 
       var hd_sensor_id = id;
       var oldValue = value;
@@ -114,7 +117,7 @@ export default {
           this.$refs.loading.closeLoadInstance();
           // 异步完成之后对vuex进行操作，改变按钮与水流
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
-          const index = this.$store.state.btn.openKey.indexOf(code);
+          const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
             this.$store.commit("addCode", code);
           } else {
@@ -138,7 +141,7 @@ export default {
       // console.log(penshuiBox)
       for (var i = 0; i < penshuiBox.length; i++) {
         // 获取开着的按钮
-        var openKey = this.$store.state.btn.openKey;
+        var openKey = this.$store.state.shuifei.openKey;
         var penshuiItem = penshuiBox[i];
         var where = penshuiItem.getAttribute("where");
         if (!where) continue;

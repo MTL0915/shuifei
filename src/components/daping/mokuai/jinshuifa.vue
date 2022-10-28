@@ -32,7 +32,7 @@ export default {
   computed: {
     // 这里是拿到VueX的装置数组数据
     shebeiArr() {
-      return this.$store.state.pkpc.pkArr;
+      return this.$store.state.shuifei.pkArr;
     },
   },
   watch: {
@@ -65,7 +65,7 @@ export default {
           this.$refs.loading.closeLoadInstance();
           // 异步完成之后对vuex进行操作，改变按钮与水流
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
-          const index = this.$store.state.btn.openKey.indexOf(code);
+          const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
             this.$store.commit("addCode", code);
           } else {

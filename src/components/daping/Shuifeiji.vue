@@ -25,8 +25,7 @@ import MyWebSocket from "@/utils/MyWebSocket";
 import { getToken } from "@/utils/auth";
 
 import { getTokenMethod } from "@/api/login";
-import { getPK } from "@/api/getPK";
-import { getPC } from "@/api/getPC";
+import { getShuifeiData } from "@/api/getShuifeiData";
 
 import draggable from 'vuedraggable'
 
@@ -84,7 +83,7 @@ export default {
     // axios获取传感器
     const PCid = "PC01B-2110019";
 
-    Promise.all([getPK(PKid1), getPK(PKid2), getPC(PCid)]).then(([res1,res2,res3]) => {
+    Promise.all([getShuifeiData(PKid1), getShuifeiData(PKid2), getShuifeiData(PCid)]).then(([res1,res2,res3]) => {
       this.$store.commit("setShebeiData", {pkArr01:res1.data.sensor, pkArr02:res2.data.sensor});
       this.$store.commit("initCode", {pkArr01:res1.data.sensor, pkArr02:res2.data.sensor});
       this.$store.commit("setChuanganqiData", res3.data.sensor);
@@ -131,7 +130,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: calc(100% - 69px);
+  height: calc(100% - 98px);
   /* min-height: 1030px; */
   overflow: hidden;
   color: #fff;
@@ -145,6 +144,7 @@ export default {
   overflow-y: hidden;
   padding-top: 180px;
   box-sizing: content-box;
+  margin-right: 20px;
 }
 .shuifeiji-left {
   padding-left: 60px;
@@ -152,8 +152,20 @@ export default {
 .shuifeiji-right {
 
 }
-.shuifeiji {
-    zoom: 0.85;
+/* .shuifeiji {
+    zoom: 0.8;
+} */
+@media screen and (max-height: 1049px) {
+  /* 弊端：火狐浏览器不支持 */
+  .shuifeiji {
+      zoom: 0.8;
+  }
+}
+@media screen and (min-height: 1050px) {
+  /* 弊端：火狐浏览器不支持 */
+  .shuifeiji {
+      zoom: 0.9;
+  }
 }
 
 .shuifeiji::-webkit-scrollbar {/*滚动条整体样式*/
@@ -176,7 +188,11 @@ export default {
 .show{
   height: 100%;
 }
-.chosen {
+/* .chosen {
+  opacity: 0.4;
+} */
+
+.sortable-ghost{
   opacity: 0;
 }
 

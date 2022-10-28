@@ -1,23 +1,34 @@
 <template>
     <div class="header">
-        <div class="header-left"></div>
         <div class="header-middle">
-            <div class="led-box">
-                <span class="led-times">{{dateTime}}</span>
-                <span class="led-times-info">{{dateYear}}{{dateWeek}}</span>
-            </div>
-            <div class="progress-title">水肥一体化系统云平台</div>
-            <div class="jingbao-box">
-                <img class="jingbao" src="@/assets/images/shuifeiji/cb.png">
-            </div> 
-            <div class="tianqi">
-				<div>
-					<span>空气湿度 :</span><span class="valChange">18.5</span><span>%</span></div>
-				<div>
-					<span>空气温度 :</span><span class="valChange">23.0</span><span>℃</span></div>
-			</div>        
+          <div class="select">
+            <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </div>
+          <ul>
+            <li class="item">首页</li>
+            <li class="item">设置</li>
+            <li class="item">日志</li>
+            <li class="item">数据</li>
+            <li class="item">视频</li>
+          </ul>
         </div>
-        <div class="header-right"></div>
+        <div class="header-right">
+          <div class="tianqi-box">
+            <img src="@/assets/images/shuifeiji/header_tianqi_qing.png" class="tianqi-icon">
+            <div class="tianqi">晴 32℃</div>
+          </div>
+          <div class="led-box">
+              <div class="led-times">{{dateTime}}</div>
+              <div class="led-times-info">{{dateYear}}{{dateWeek}}</div>
+          </div>
+        </div>
     </div>
 </template>
 
@@ -32,7 +43,17 @@ export default {
             dateYear: null,
             dateWeek: null,
             weekday: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-            timer:null
+            timer:null,
+            options: [
+              {
+                value: '选项1',
+                label: '旁路式'
+              }, {
+                value: '选项2',
+                label: '在线式'
+              }
+            ],
+            value: '旁路式'
         };
     },
     mounted () {
@@ -56,66 +77,97 @@ export default {
 .header{
   width: 100%;
   display: flex;
-  height: 69px;
-}
-.header-left{
-    background: url(~@/assets/images/shuifeiji/right3.png);
-    background-size: 100%;
-    width: 66px;
-    height: 69px;
+  height: 98px;
+  background: url(~@/assets/images/shuifeiji/header_logo.png) no-repeat;
+  background-size: cover;
 }
 
 .header-middle{
-    background: url(~@/assets/images/shuifeiji/right2.png);
-    background-size: clip;
-    width: calc(100% - 66px - 74px);
-    height: 69px;
-    display: flex;
+  padding-left: 800px;
+  display: flex;
+  width: calc(100% - 1110px);
+  align-items: center;
+}
+.header-middle .select {
+  width: 122px;
+  height: 40px;
+}
+.header-middle ul {
+  display: flex;
+  margin-left: 48px;
+}
+.header-middle ul li{
+  width: 85px;
+  height: 41px;
+  margin: 0 15px;
+  line-height: 41px;
+  text-align: center;
+  font-size: 18px;
+  background: url(~@/assets/images/shuifeiji/header_item_bg.png) no-repeat;
+  cursor: pointer;
+}
+.header-right{
+  display: flex;
+  width: 310px;
+  align-items: center;
+  justify-content: space-around;
+}
+.tianqi-box{
+  display: flex;
+  align-items: center;
+}
+.tianqi-icon{
+  width: 35px;
+  height: 35px;
+}
+.tianqi {
+  font-size: 16px;
+  color: #79EEFC;
+}
+.tianqi-icon {
+  margin-right: 10px;
 }
 .led-box {
-    height: 65px;
-    line-height: 65px;
+  height: 50px;
+  color: #79EEFC;
 }
 .led-times {
-    font-family: UniDreamLED;
-    font-size: 28px;
-    margin-right: 15px;
+  font-family: UniDreamLED;
+  font-size: 24px;
+}
+.led-times-info{
+  font-size: 16px;
 }
 
-
-.progress-title{
-    font-size: 32px;
-    color: #01f1ff;
-    line-height: 68px;
-    text-align: center;
-    flex-grow: 1;
+/* 修改饿了么选择框 */
+::v-deep .el-input--suffix .el-input__inner {
+  padding-right: 20px;
+}
+::v-deep .el-input__inner {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 20px;
 }
 
-.jingbao-box{
-    display: flex;
-    align-items: center;
-    width: 60px;
-}
+.el-select-dropdown__item {
 
-.jingbao{
-    cursor: pointer;
-    width: 32px;
-    height: 32px;  
 }
-
-.tianqi {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    color: #01f1ff;
+::v-deep .el-select-dropdown {
+  background-color: transparent;
 }
-
-.header-right{
-    background: url(~@/assets/images/shuifeiji/right3.png);
-    background-size: 100%;
-    width: 66px;
-    height: 69px;
-    transform: rotateY(180deg);
+::v-deep .el-select-dropdown__list {
+  padding: 0;
+}
+::v-deep .el-popper[x-placement^="bottom"] {
+  margin-top: 0px;
+}
+::v-deep .el-popper .popper__arrow,
+::v-deep .el-popper .popper__arrow::after {
+  display: none;
+}
+.el-select-dropdown__item:hover {
+  color: #052037;
 }
 
 </style>

@@ -1,13 +1,11 @@
 import Vue from "vue";
-import Vuex from "vuex"
-import btn from "./btn"
-import pkpc from "./pkpc"
+import Vuex from "vuex";
+import shuifei from "./modules/shuifei";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules:{
-    btn,
-    pkpc
-  }
-})
+  modules: {
+    shuifei,
+  },
+});

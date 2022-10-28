@@ -1,34 +1,36 @@
 <template>
   <div class="showbox">
     <draggable class="small-box" chosenClass="chosen" forceFallback="true" group="small" animation="1000">
-    <Shishi></Shishi>
-    <Kongzhi></Kongzhi>
-    <Shangqing></Shangqing>
+    <shuju></shuju>
+    <jiankong></jiankong>
+    <rizhi></rizhi>
     </draggable>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
-import Shishi from './Shishi'
-import Kongzhi from './Kongzhi'
-import Shangqing from './Shangqing'
+import shuju from './shuju.vue'
+import jiankong from './jiankong.vue'
+import rizhi from './rizhi.vue'
+
 export default {
   components: {
     draggable,
-    Shishi,
-    Kongzhi,
-    Shangqing
+    shuju,
+    jiankong,
+    rizhi,
   }
 }
 </script>
 
 <style scoped>
 .showbox {
-    width: 350px;
+    width: 450px;
     height: 100%;
     padding: 15px;
     box-sizing: border-box;
+    margin-left: 20px;
 }
 .small-box{
   height: 100%;

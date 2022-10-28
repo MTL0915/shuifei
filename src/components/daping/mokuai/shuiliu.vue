@@ -23,6 +23,9 @@ export default {
       this.tiaozhengshuiliu();
     });
   },
+    beforeDestroy(){
+    this.$bus.$off("waterEvent")
+  },
   components: {
     water01,
     water02,
@@ -39,7 +42,7 @@ export default {
       // 调整水流的逻辑
       for (var i = 0; i < shuiliuBox.length; i++) {
         // 获取开着的按钮
-        var openKey = this.$store.state.btn.openKey;
+        var openKey = this.$store.state.shuifei.openKey;
         var shuiliuItem = shuiliuBox[i];
         var where = shuiliuItem.getAttribute("where");
         if (!where) continue;

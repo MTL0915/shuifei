@@ -12,7 +12,7 @@ export default {
   computed: {
     // 这里是拿到VueX的装置数组数据
     chuanganqiArr() {
-      return this.$store.state.pkpc.pcArr;
+      return this.$store.state.shuifei.pcArr;
     },
   },
   watch: {

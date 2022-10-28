@@ -26,7 +26,7 @@ body {
   margin: 0;
   color: #fff;
   font-size: 12px;
-  min-width: 1440px;
+  min-width: 1900px;
 }
 /*重置*/
 body,
