@@ -11,8 +11,8 @@
             <bgRight></bgRight>
           </div>
         </div>
-        <div class="show">
-          <show></show>
+        <div class="showList">
+          <showList></showList>
         </div>
       </draggable>
     <!-- </div> -->
@@ -29,9 +29,9 @@ import { getShuifeiData } from "@/api/getShuifeiData";
 
 import draggable from 'vuedraggable'
 
-import bgLeft from "./mokuai/bgLeft.vue";
-import bgRight from "./mokuai/bgRight.vue";
-import show from "./show";
+import bgLeft from "./pipe/bgLeft.vue";
+import bgRight from "./pipe/bgRight.vue";
+import showList from "./showList";
 import headerNav from "./Header.vue"
 export default {
   data() {
@@ -40,7 +40,7 @@ export default {
   components: {
     bgLeft,
     bgRight,
-    show,
+    showList,
     headerNav,
     draggable,
   },
@@ -48,25 +48,26 @@ export default {
     getWebsocketInfo(data) {
       // console.log("WebSocket" + "上报了");
       if (data.device_id == "PK01B-2111020" && data.channelValue != null) {
-        this.$store.commit("setShebeiData", {pkArr02:data.sensorInfos});
-        this.$store.commit("initCode", {pkArr02:data.sensorInfos});
+        this.$store.commit("SET_EQUIPMENT_DATA", {pkArr02:data.sensorInfos});
+        this.$store.commit("INIT_CODE", {pkArr02:data.sensorInfos});
         // console.log(data.sensorInfos);
         console.log("2111020装置设备上报");
       }
       if (data.device_id == "PK01B-2110019" && data.channelValue != null) {
-        this.$store.commit("setShebeiData", {pkArr01:data.sensorInfos});
-        this.$store.commit("initCode", {pkArr01:data.sensorInfos});
+        this.$store.commit("SET_EQUIPMENT_DATA", {pkArr01:data.sensorInfos});
+        this.$store.commit("INIT_CODE", {pkArr01:data.sensorInfos});
         // console.log(data.sensorInfos);
         console.log("2110019装置设备上报");
       }
       if (data.device_id == "PC01B-2110019") {
-        this.$store.commit("setChuanganqiData", data.sensorInfos);
+        this.$store.commit("SET_SENSOR_DATA", data.sensorInfos);
         // console.log(data.sensorInfos);
         console.log("2110019传感器上报");
       }
     },
   },
   created() {
+    console.log(JSON.parse(this.$route.query.row))
     // axios获取token
     const data = {
       expires_in: 0,
@@ -78,15 +79,18 @@ export default {
     });
 
     // axios获取设备
-    const PKid1 = "PK01B-2110019";
-    const PKid2 = "PK01B-2111020";
+    // const PKid1 = "PK01B-2110019";
+    // const PKid2 = "PK01B-2111020";
+    const PKid1 = JSON.parse(this.$route.query.row).firstEquipment;
+    const PKid2 = JSON.parse(this.$route.query.row).secondEquipment;
     // axios获取传感器
-    const PCid = "PC01B-2110019";
+    // const PCid = "PC01B-2110019";
+    const PCid = JSON.parse(this.$route.query.row).sensor;
 
     Promise.all([getShuifeiData(PKid1), getShuifeiData(PKid2), getShuifeiData(PCid)]).then(([res1,res2,res3]) => {
-      this.$store.commit("setShebeiData", {pkArr01:res1.data.sensor, pkArr02:res2.data.sensor});
-      this.$store.commit("initCode", {pkArr01:res1.data.sensor, pkArr02:res2.data.sensor});
-      this.$store.commit("setChuanganqiData", res3.data.sensor);
+      this.$store.commit("SET_EQUIPMENT_DATA", {pkArr01:res1.data.sensor, pkArr02:res2.data.sensor});
+      this.$store.commit("INIT_CODE", {pkArr01:res1.data.sensor, pkArr02:res2.data.sensor});
+      this.$store.commit("SET_SENSOR_DATA", res3.data.sensor);
     });
 
 
@@ -185,7 +189,7 @@ export default {
   background: rgba(0,0,0,0);
 }
 
-.show{
+.showList{
   height: 100%;
 }
 /* .chosen {

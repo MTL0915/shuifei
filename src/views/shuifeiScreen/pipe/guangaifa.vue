@@ -119,9 +119,9 @@ export default {
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
           const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
-            this.$store.commit("addCode", code);
+            this.$store.commit("ADD_CODE", code);
           } else {
-            this.$store.commit("delCode", index);
+            this.$store.commit("DEL_CODE", index);
           }
           // 事件总线触发流水事件
           this.$bus.$emit("waterEvent");

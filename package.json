@@ -12,8 +12,9 @@
     "core-js": "^3.8.3",
     "dayjs": "^1.11.4",
     "echarts": "^5.4.0",
-    "element-ui": "^2.15.10",
+    "element-ui": "^2.9.2",
     "vue": "^2.6.14",
+    "vue-router": "^3.6.5",
     "vuedraggable": "^2.24.3",
     "vuex": "^3.6.2"
   },

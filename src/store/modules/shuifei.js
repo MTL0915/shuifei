@@ -1,14 +1,14 @@
 export default {
   // namespaced: true, //开启命名空间
   state: {
-    pkArr: [],
-    pcArr: [],
-    pkArr01: [],
-    pkArr02: [],
-    openKey: [],
+    pkArr: [], // 合并后的正确设备
+    pcArr: [], // 传感器数组
+    pkArr01: [], // 主设备
+    pkArr02: [], // 副设备
+    openKey: [], // 打开的开关按钮
   },
   mutations: {
-    setShebeiData(state, pkArrObj) {
+    SET_EQUIPMENT_DATA(state, pkArrObj) {
       if (pkArrObj.pkArr01) {
         state.pkArr01 = pkArrObj.pkArr01;
       }
@@ -29,13 +29,12 @@ export default {
           state.pkArr.push(state.pkArr02[i]);
         }
       }
-      // console.log(state.pkArr)
     },
-    setChuanganqiData(state, pcArr) {
+    SET_SENSOR_DATA(state, pcArr) {
       state.pcArr = pcArr;
     },
     // 循环所有设备，获得开启的channel
-    initCode(state, pkArrObj) {
+    INIT_CODE(state, pkArrObj) {
       // console.log(pkArrObj);
       if (pkArrObj.pkArr01) {
         state.pkArr01 = pkArrObj.pkArr01;
@@ -63,11 +62,11 @@ export default {
       }
       console.log(state.openKey);
     },
-    addCode(state, code) {
+    ADD_CODE(state, code) {
       state.openKey.push(code);
       console.log(state.openKey);
     },
-    delCode(state, index) {
+    DEL_CODE(state, index) {
       state.openKey.splice(index, 1);
       console.log(state.openKey);
     },

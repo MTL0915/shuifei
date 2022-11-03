@@ -13,10 +13,11 @@
           </div>
           <ul>
             <li class="item">首页</li>
-            <li class="item">设置</li>
+            <li class="item">策略</li>
             <li class="item">日志</li>
             <li class="item">数据</li>
             <li class="item">视频</li>
+            <li class="item">设置</li>
           </ul>
         </div>
         <div class="header-right">
@@ -83,10 +84,11 @@ export default {
 }
 
 .header-middle{
-  padding-left: 800px;
+  padding-left: 780px;
   display: flex;
-  width: calc(100% - 1110px);
+  width: calc(100% - 1090px);
   align-items: center;
+  justify-content: space-between;
 }
 .header-middle .select {
   width: 122px;
@@ -94,7 +96,6 @@ export default {
 }
 .header-middle ul {
   display: flex;
-  margin-left: 48px;
 }
 .header-middle ul li{
   width: 85px;
@@ -145,11 +146,19 @@ export default {
 }
 ::v-deep .el-input__inner {
   background: rgba(255,255,255,0.1);
-  color: #fff;
-  border: 1px solid #fff;
+  color: #00E5FF;
+  border: 1px solid #00E5FF;
   border-radius: 20px;
 }
-
+::v-deep .el-input__inner:hover {
+  border: 1px solid #00E5FF;
+}
+::v-deep .el-select .el-input.is-focus .el-input__inner {
+    border-color: #00E5FF;
+}
+::v-deep .el-select .el-input__inner:focus {
+    border-color: #00E5FF;
+}
 .el-select-dropdown__item {
 
 }
@@ -167,7 +176,7 @@ export default {
   display: none;
 }
 .el-select-dropdown__item:hover {
-  color: #052037;
+  color: #00E5FF;
 }
 
 </style>

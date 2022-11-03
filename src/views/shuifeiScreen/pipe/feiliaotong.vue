@@ -1,6 +1,12 @@
 <template>
   <!--施肥桶-->
-  <div class="pot_cont">
+  <div
+    class="pot_cont"
+    v-loading="loading"
+    element-loading-text="水肥数据加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0)"
+  >
     <!--操作装置等待-->
     <loading ref="loading" />
     <!-- 小水流 -->
@@ -259,7 +265,10 @@
         :code="`${item.paishuifa.channel}`"
       ></i>
       <water04 class="water water04" where="41,45"></water04>
-      <water05 class="water water05" :where="`${item.zhufeifa.channel}`"></water05>
+      <water05
+        class="water water05"
+        :where="`${item.zhufeifa.channel}`"
+      ></water05>
     </div>
   </div>
 </template>
@@ -276,6 +285,7 @@ export default {
       potsData: [],
       potsArr: [],
       maxLength: "",
+      loading: true,
     };
   },
   components: {
@@ -413,6 +423,7 @@ export default {
       // console.log(this.potsArr);
     },
     potsArr() {
+      this.loading = false
       this.$nextTick(function () {
         if (this.potsArr.length == 0) {
           var potEntry = document.getElementsByClassName("pot_entry")[0];
@@ -449,9 +460,9 @@ export default {
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
           const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
-            this.$store.commit("addCode", code);
+            this.$store.commit("ADD_CODE", code);
           } else {
-            this.$store.commit("delCode", index);
+            this.$store.commit("DEL_CODE", index);
           }
           // 事件总线触发流水事件
           this.$bus.$emit("waterEvent");
@@ -483,9 +494,9 @@ export default {
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
           const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
-            this.$store.commit("addCode", code);
+            this.$store.commit("ADD_CODE", code);
           } else {
-            this.$store.commit("delCode", index);
+            this.$store.commit("DEL_CODE", index);
           }
           this.tiaozhengSmallWater();
         })
@@ -516,9 +527,9 @@ export default {
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
           const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
-            this.$store.commit("addCode", code);
+            this.$store.commit("ADD_CODE", code);
           } else {
-            this.$store.commit("delCode", index);
+            this.$store.commit("DEL_CODE", index);
           }
           this.tiaozhengSmallWater();
         })
@@ -549,9 +560,9 @@ export default {
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
           const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
-            this.$store.commit("addCode", code);
+            this.$store.commit("ADD_CODE", code);
           } else {
-            this.$store.commit("delCode", index);
+            this.$store.commit("DEL_CODE", index);
           }
           this.tiaozhengSmallWater();
         })
@@ -841,7 +852,7 @@ export default {
   left: 55px;
   top: 376px;
 }
-.pot_box1 .water04{
+.pot_box1 .water04 {
   display: none !important;
 }
 .water05 {
@@ -1253,5 +1264,17 @@ export default {
 #burbujas .b8 {
   -webkit-animation: burbujasR 10s 9s infinite;
   animation: burbujasR 10s 9s infinite;
+}
+
+/* 饿了么组件loading修改 */
+::v-deep .el-loading-spinner .el-loading-text {
+    color: red;
+    margin: -50px 0;
+    font-size: 20px;
+}
+::v-deep .el-loading-spinner i {
+    color: red;
+    font-size: 20px;
+    margin: -50px 0;
 }
 </style>

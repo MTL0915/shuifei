@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <Shuifeiji></Shuifeiji>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Shuifeiji from "./components/daping/Shuifeiji";
 
 export default {
   name: "App",
   components: {
-    Shuifeiji,
+
   },
   data() {
     return {};

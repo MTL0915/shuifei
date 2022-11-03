@@ -1,7 +1,7 @@
 // import Cookies from 'js-cookie'
 
 const TokenKey =
-  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODkyMzIzNjY4MyIsImV4cCI6MTY2Njk0NTc0MiwiaWF0IjoxNjY2OTM4NTQyfQ.z0BFFHOFgBGNgwrqLdcxmNhS4zAhU4rneCZIiJRH86HoYuqdZ8wAWKViZzxujqHLV2Fn0HCO1GMrXz6A9ZM9Vw";
+  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODkyMzIzNjY4MyIsImV4cCI6MTY2NzQ3MjkwNywiaWF0IjoxNjY3NDY1NzA3fQ.GLaV9WtFYf3lXg0on79-tl1xHpVUffOGvvSEQIJjQGJ8tBAZJyer1IpFSTw2hNt3ovVFL54fR_seFNSMaz8RVA";
 let lsToken = {};
 
 export function getToken() {

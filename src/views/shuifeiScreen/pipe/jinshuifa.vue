@@ -1,11 +1,8 @@
 <template>
-  <div class="jiayashifeibeng">
+  <div class="jinshuifa">
     <!--操作装置等待-->
     <loading ref="loading" />
-    <div
-      class="device-bg"
-      :class="[shebeiData.value ? 'device-bg_on' : 'device-bg_off']"
-    >
+    <div class="device-bg">
       <i
         @click="
           btnClick($event, shebeiData.hd_device_sensor_id, shebeiData.value)
@@ -16,7 +13,7 @@
         :class="[shebeiData.value ? 'btn_on' : 'btn_off']"
       ></i>
     </div>
-    <div class="device-name">加压施肥泵</div>
+    <div class="device-name">进水阀</div>
   </div>
 </template>
 
@@ -40,9 +37,9 @@ export default {
   },
   watch: {
     shebeiArr(shebeiArr) {
-      // 过滤出加压施肥泵
+      // 过滤出进水阀
       for (var i = 0; i < shebeiArr.length; i++) {
-        if (shebeiArr[i].name.indexOf("施肥（增压）泵") != -1) {
+        if (shebeiArr[i].name.indexOf("施肥进水阀") != -1) {
           this.shebeiData = shebeiArr[i];
         }
       }
@@ -70,9 +67,9 @@ export default {
           // 获取目前开关的情况，根据情况切换，并保存到vuex里
           const index = this.$store.state.shuifei.openKey.indexOf(code);
           if (index === -1) {
-            this.$store.commit("addCode", code);
+            this.$store.commit("ADD_CODE", code);
           } else {
-            this.$store.commit("delCode", index);
+            this.$store.commit("DEL_CODE", index);
           }
           // 事件总线触发流水事件
           this.$bus.$emit("waterEvent");
@@ -88,27 +85,21 @@ export default {
 </script>
 
 <style scoped>
-.jiayashifeibeng {
+.jinshuifa {
   display: flex;
+  width: 80px;
+  height: 73px;
   justify-content: space-between;
-  width: 123px;
-  height: 103px;
 }
-.jiayashifeibeng .device-name {
+.jinshuifa .device-name {
   writing-mode: tb-rl;
   text-align: center;
 }
-.jiayashifeibeng .device-bg {
-  width: 118px;
-  height: 103px;
+.jinshuifa .device-bg {
+  background: url(~@/assets/images/shuifeiji/进水阀.png) no-repeat;
+  width: 75px;
+  height: 73px;
   background-size: 100% 100%;
-  position: relative;
-}
-.jiayashifeibeng .device-bg_on {
-  background: url(~@/assets/images/shuifeiji/加压施肥泵on.png) no-repeat;
-}
-.jiayashifeibeng .device-bg_off {
-  background: url(~@/assets/images/shuifeiji/加压施肥泵off.png) no-repeat;
 }
 .btn_s {
   width: 25px;
@@ -117,15 +108,12 @@ export default {
   z-index: 1;
   background-size: cover;
   position: absolute;
-  top: 50%;
-  margin-top: -8.5px;
-  left: 57%;
+  bottom: 30%;
+  left: 7%;
 }
-
 .btn_on {
   background-image: url(~@/assets/images/shuifeiji/on.png);
 }
-
 .btn_off {
   background-image: url(~@/assets/images/shuifeiji/off.png);
 }
