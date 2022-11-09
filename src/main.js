@@ -29,6 +29,8 @@ import {
   Form,
   FormItem,
   DatePicker,
+  Card,
+  Cascader,
 } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
@@ -55,6 +57,8 @@ Vue.use(InputNumber);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(DatePicker);
+Vue.use(Card);
+Vue.use(Cascader);
 Vue.use(Loading.directive);
 
 Vue.prototype.$echarts = echarts;
